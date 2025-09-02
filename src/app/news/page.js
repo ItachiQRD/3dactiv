@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { Calendar, User, ArrowRight } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
+import { processImageUrl } from '../../utils/assetPath'
 
 const News = () => {
   // Articles récupérés de l'admin
@@ -121,7 +122,7 @@ const News = () => {
               >
                 <div className="relative">
                   <img
-                    src={article.imageUrl}
+                    src={processImageUrl(article.imageUrl)}
                     alt={article.title}
                     className="w-full h-48 object-cover"
                   />

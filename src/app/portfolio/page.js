@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { ExternalLink, Calendar, MapPin, Users } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
+import { processImageUrl } from '../../utils/assetPath'
 
 const Portfolio = () => {
   // Projets récupérés de l'admin
@@ -165,7 +166,7 @@ const Portfolio = () => {
               >
                 <div className="relative">
                   <img
-                    src={project.imageUrl}
+                    src={processImageUrl(project.imageUrl)}
                     alt={project.title}
                     className="w-full h-64 object-cover"
                   />

@@ -20,6 +20,7 @@ import {
   Upload,
   ExternalLink
 } from 'lucide-react'
+import { processImageUrl } from '../../../utils/assetPath'
 import Link from 'next/link'
 
 const NewsManagement = () => {
@@ -679,7 +680,7 @@ const ArticleViewModal = ({ article, onClose, categories, statusOptions }) => {
             <div>
               {article.imageUrl ? (
                 <img
-                  src={article.imageUrl}
+                  src={processImageUrl(article.imageUrl)}
                   alt={article.title}
                   className="w-full h-64 object-cover rounded-lg"
                 />
