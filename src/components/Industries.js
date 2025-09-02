@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { processImageUrl } from '../utils/assetPath'
 
 const Industries = () => {
   const industries = [
@@ -53,7 +54,7 @@ const Industries = () => {
                 {/* Image Header - Plus grande et sans overlay */}
                 <div className="relative h-64 rounded-t-xl overflow-hidden">
                   <img
-                    src={industry.image}
+                    src={processImageUrl(industry.image)}
                     alt={industry.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

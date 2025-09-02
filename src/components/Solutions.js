@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { processImageUrl } from '../utils/assetPath'
 
 const Solutions = () => {
   const solutions = [
@@ -57,7 +58,7 @@ const Solutions = () => {
                 {/* Image Header - Plus grande et sans overlay */}
                 <div className="relative h-64 rounded-t-xl overflow-hidden">
                   <img
-                    src={solution.image}
+                    src={processImageUrl(solution.image)}
                     alt={solution.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
