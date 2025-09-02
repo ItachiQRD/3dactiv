@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
 import AssetPath from '../../../components/AssetPath'
+import { processImageUrl } from '../../../utils/assetPath'
 
 const Inspection = () => {
   const sections = [
@@ -124,7 +125,7 @@ Notre rigueur s'appuie sur :
                   >
                     <div className="relative">
                       <img
-                        src={section.image}
+                        src={processImageUrl(section.image)}
                         alt={section.title}
                         className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                       />
@@ -177,7 +178,7 @@ Notre rigueur s'appuie sur :
                   >
                     <div className="relative">
                       <img
-                        src={section.image}
+                        src={processImageUrl(section.image)}
                         alt={section.title}
                         className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                       />

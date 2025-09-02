@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Zap, Atom, Wind } from 'lucide-react'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
+import { processImageUrl } from '../../utils/assetPath'
 
 const Industries = () => {
   const industries = [
@@ -130,7 +131,7 @@ Grâce à notre réseau d'intervenants disponibles, qualifiés et expérimentés
                 >
                   <div className="relative">
                     <img
-                      src={industry.image}
+                      src={processImageUrl(industry.image)}
                       alt={industry.title}
                       className="w-full h-[500px] object-cover"
                     />
@@ -202,7 +203,7 @@ Grâce à notre réseau d'intervenants disponibles, qualifiés et expérimentés
                 >
                   <div className="relative">
                     <img
-                      src={industry.image}
+                      src={processImageUrl(industry.image)}
                       alt={industry.title}
                       className="w-full h-[500px] object-cover"
                     />
