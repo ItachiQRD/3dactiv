@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Police Lastica personnalisée */
+@font-face {
+  font-family: 'Lastica';
+  src: url('/fonts/FontsFree-Net-Lastica.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Helvetica Neue', 'Helvetica Light', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    color: #111827;
+    background-color: #FFFFFF;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito Sans', 'Avenir', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .container-nordic {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-accent-600 hover:bg-accent-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-nordic hover:shadow-nordic-md;
+  }
+  
+  .btn-secondary {
+    @apply bg-nordic-100 hover:bg-nordic-200 text-nordic-900 font-medium py-3 px-6 rounded-lg transition-all duration-200 border border-nordic-200;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-accent-600 text-accent-600 hover:bg-accent-600 hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-200;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-nordic border border-nordic-100 p-6;
+  }
+  
+  .card-hover {
+    @apply card hover:shadow-nordic-lg hover:border-nordic-200 transition-all duration-300;
+  }
+  
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+  
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-600 to-accent-800 bg-clip-text text-transparent;
+  }
+  
+  .bg-gradient-metal {
+    @apply bg-gradient-to-br from-metal-50 via-metal-200 to-metal-400;
+  }
+  
+  .bg-gradient-metal-subtle {
+    @apply bg-gradient-to-r from-metal-100 to-metal-300;
+  }
+  
+  .bg-gradient-metal-vertical {
+    @apply bg-gradient-to-b from-metal-50 to-metal-500;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+  
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 3s ease infinite;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out;
+  }
+}
