@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Menu, X, ChevronDown } from 'lucide-react'
+import AssetPath from './AssetPath'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -70,8 +71,8 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <img 
-              src="/3dactiv/images/logo-3dactiv.png" 
+            <AssetPath 
+              src="/images/logo-3dactiv.png" 
               alt="3DACTIV Logo" 
               className="h-16 w-auto"
             />

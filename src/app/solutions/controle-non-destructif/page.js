@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
+import AssetPath from '../../../components/AssetPath'
 
 const ControleNonDestructif = () => {
   const sections = [
@@ -86,8 +87,8 @@ Cette exigence garantit la mobilisation rapide de profils fiables, opérationnel
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/solutions/cnd/background.avif"
+          <AssetPath
+            src="/images/solutions/cnd/background.avif"
             alt="3DACTIV - Contrôle Non-Destructif"
             className="w-full h-full object-cover"
           />

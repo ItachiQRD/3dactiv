@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { ExternalLink, Calendar, MapPin, Users } from 'lucide-react'
+import AssetPath from '../../components/AssetPath'
 
 const Portfolio = () => {
   // Projets récupérés de l'admin
@@ -71,8 +72,8 @@ const Portfolio = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/portfolio/portfolio.avif"
+          <AssetPath
+            src="/images/portfolio/portfolio.avif"
             alt="3DACTIV - Portfolio"
             className="w-full h-full object-cover"
           />

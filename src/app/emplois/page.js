@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
+import AssetPath from '../../components/AssetPath'
 import { MapPin, Clock, Briefcase, ArrowRight, Upload, Send } from 'lucide-react'
 import { useState } from 'react'
 
@@ -284,8 +285,8 @@ const Emplois = () => {
       {/* Hero Section */}
       <section className="relative h-[50vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-800 via-blue-800 to-slate-900">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/emplois-hero.jpg"
+          <AssetPath
+            src="/images/emplois-hero.jpg"
             alt="Emplois 3D ACTIV"
             className="w-full h-full object-cover opacity-30"
           />

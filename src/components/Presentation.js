@@ -2,6 +2,7 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
+import AssetPath from './AssetPath'
 
 const Presentation = () => {
   const ref = useRef(null)
@@ -60,7 +61,7 @@ const Presentation = () => {
     <section id="presentation" className="relative min-h-screen flex items-center bg-gradient-to-b from-white via-metal-50 to-metal-100">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <img
+        <AssetPath
           src="/images/team.avif"
           alt="3DACTIV - Notre équipe"
           className="w-full h-full object-cover"

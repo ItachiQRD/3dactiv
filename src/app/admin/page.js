@@ -15,6 +15,7 @@ import {
   Filter,
   XCircle
 } from 'lucide-react'
+import AssetPath from '../../components/AssetPath'
 import Link from 'next/link'
 
 // Composant de connexion (défini AVANT AdminDashboard)
@@ -48,8 +49,8 @@ const AdminLogin = ({ onLogin }) => {
         className="bg-white rounded-2xl shadow-nordic-lg p-8 w-full max-w-md"
       >
         <div className="text-center mb-8">
-          <img
-            src="/3dactiv/images/logo-3dactiv.png"
+          <AssetPath
+            src="/images/logo-3dactiv.png"
             alt="3DACTIV Logo"
             className="h-12 w-auto mx-auto mb-4"
           />
@@ -195,11 +196,11 @@ const AdminDashboard = () => {
         <div className="container-nordic">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <img
-                src="/3dactiv/images/logo-3dactiv.png"
-                alt="3DACTIV Logo"
-                className="h-8 w-auto"
-              />
+                              <AssetPath
+                  src="/images/logo-3dactiv.png"
+                  alt="3DACTIV Logo"
+                  className="h-8 w-auto"
+                />
               <span className="text-xl font-semibold text-nordic-900">Admin Panel</span>
             </div>
 

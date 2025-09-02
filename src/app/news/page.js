@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { Calendar, User, ArrowRight } from 'lucide-react'
+import AssetPath from '../../components/AssetPath'
 
 const News = () => {
   // Articles récupérés de l'admin
@@ -65,8 +66,8 @@ const News = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/news/news.avif"
+          <AssetPath
+            src="/images/news/news.avif"
             alt="3DACTIV - Actualités"
             className="w-full h-full object-cover"
           />

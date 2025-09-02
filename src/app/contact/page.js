@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react'
+import AssetPath from '../../components/AssetPath'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -61,8 +62,8 @@ const Contact = () => {
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/contact/contact.avif"
+          <AssetPath
+            src="/images/contact/contact.avif"
             alt="3DACTIV - Contact"
             className="w-full h-full object-cover"
           />

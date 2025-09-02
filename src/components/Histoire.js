@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import AssetPath from './AssetPath'
 import Link from 'next/link'
 
 const Histoire = () => {
@@ -9,7 +10,7 @@ const Histoire = () => {
     <section id="histoire" className="relative min-h-screen flex items-center bg-gradient-to-b from-metal-400 via-metal-300 to-metal-200">
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
-        <img
+        <AssetPath
           src="/images/histoire-3dactiv.avif"
           alt="3DACTIV - Notre histoire"
           className="w-full h-full object-cover"

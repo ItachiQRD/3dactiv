@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
+import AssetPath from '../../../components/AssetPath'
 
 const Inspection = () => {
   const sections = [
@@ -79,8 +80,8 @@ Notre rigueur s'appuie sur :
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/solutions/inspection/background.avif"
+          <AssetPath
+            src="/images/solutions/inspection/background.avif"
             alt="3DACTIV - Inspection"
             className="w-full h-full object-cover"
           />

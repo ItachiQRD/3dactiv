@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && npm run copy-assets",
+    "build:github": "GITHUB_PAGES=true npm run build",
+    "build:ovh": "BASE_PATH= ASSET_PREFIX= npm run build",
+    "build:custom": "BASE_PATH= ASSET_PREFIX= npm run build",
     "start": "next start",
     "export": "next build && npm run copy-assets",
     "copy-assets": "cp -r public/* out/ 2>/dev/null || xcopy public\\* out\\ /E /I /Y",

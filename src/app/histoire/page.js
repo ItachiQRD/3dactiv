@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
+import AssetPath from '../../components/AssetPath'
 
 const Histoire = () => {
   return (
@@ -11,8 +12,8 @@ const Histoire = () => {
       {/* Hero Section avec background */}
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
-          <img
-            src="/3dactiv/images/histoire/background.avif"
+          <AssetPath
+            src="/images/histoire/background.avif"
             alt="3DACTIV - Notre histoire"
             className="w-full h-full object-cover"
           />
