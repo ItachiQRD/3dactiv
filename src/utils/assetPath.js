@@ -41,7 +41,13 @@ export const getAssetPath = (src) => {
   return finalSrc
 }
 
-// Fonction pour les images dans les données
+// Fonction pour les images dans les données - version simple
 export const processImageUrl = (imageUrl) => {
+  // Si on est côté serveur, retourner le chemin original
+  if (typeof window === 'undefined') {
+    return imageUrl
+  }
+  
+  // Côté client, utiliser la logique de détection
   return getAssetPath(imageUrl)
 }
