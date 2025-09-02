@@ -1,31 +1,63 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const AssetPath = ({ src, alt, className, ...props }) => {
   const pathname = usePathname()
+  const [finalSrc, setFinalSrc] = useState(src)
+  const [isClient, setIsClient] = useState(false)
   
-  // Détecter l'environnement
-  const isGitHubPages = typeof window !== 'undefined' && window.location.hostname.includes('github.io')
-  const isOVH = typeof window !== 'undefined' && window.location.hostname.includes('ovh')
-  const isProduction = process.env.NODE_ENV === 'production'
+  useEffect(() => {
+    setIsClient(true)
+    
+    // Détecter l'environnement côté client
+    const isGitHubPages = window.location.hostname.includes('github.io')
+    const isOVH = window.location.hostname.includes('ovh')
+    const isProduction = process.env.NODE_ENV === 'production'
+    
+    // Déterminer le préfixe selon l'environnement
+    let prefix = ''
+    if (isGitHubPages) {
+      prefix = '/3dactiv'
+    } else if (isOVH) {
+      // Pour OVH, pas de préfixe nécessaire
+      prefix = ''
+    } else if (isProduction) {
+      // Pour d'autres hébergeurs en production
+      prefix = ''
+    }
+    
+    // Si on a un préfixe et que le chemin ne commence pas par ce préfixe
+    const needsPrefix = prefix && !src.startsWith(prefix)
+    
+    const newSrc = needsPrefix ? `${prefix}${src}` : src
+    setFinalSrc(newSrc)
+    
+    // Debug en console
+    console.log('AssetPath Debug:', {
+      hostname: window.location.hostname,
+      isGitHubPages,
+      isOVH,
+      isProduction,
+      prefix,
+      originalSrc: src,
+      finalSrc: newSrc,
+      isClient
+    })
+  }, [src])
   
-  // Déterminer le préfixe selon l'environnement
-  let prefix = ''
-  if (isGitHubPages) {
-    prefix = '/3dactiv'
-  } else if (isOVH) {
-    // Pour OVH, pas de préfixe nécessaire
-    prefix = ''
-  } else if (isProduction) {
-    // Pour d'autres hébergeurs en production
-    prefix = ''
+  // Pendant le rendu côté serveur, utiliser le src original
+  if (!isClient) {
+    if (src.endsWith('.mp4') || src.endsWith('.webm')) {
+      return (
+        <source src={src} {...props} />
+      )
+    }
+    return (
+      <img src={src} alt={alt} className={className} {...props} />
+    )
   }
-  
-  // Si on a un préfixe et que le chemin ne commence pas par ce préfixe
-  const needsPrefix = prefix && !src.startsWith(prefix)
-  
-  const finalSrc = needsPrefix ? `${prefix}${src}` : src
   
   if (src.endsWith('.mp4') || src.endsWith('.webm')) {
     return (
