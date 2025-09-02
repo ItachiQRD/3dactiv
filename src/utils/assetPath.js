@@ -25,7 +25,20 @@ export const getAssetPath = (src) => {
   // Si on a un préfixe et que le chemin ne commence pas par ce préfixe
   const needsPrefix = prefix && !src.startsWith(prefix)
   
-  return needsPrefix ? `${prefix}${src}` : src
+  const finalSrc = needsPrefix ? `${prefix}${src}` : src
+  
+  // Debug en console
+  console.log('getAssetPath Debug:', {
+    hostname: window.location.hostname,
+    isGitHubPages,
+    isOVH,
+    isProduction,
+    prefix,
+    originalSrc: src,
+    finalSrc
+  })
+  
+  return finalSrc
 }
 
 // Fonction pour les images dans les données

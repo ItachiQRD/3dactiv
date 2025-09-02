@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { processImageUrl } from '../utils/assetPath'
 
 const Partenaires = () => {
   const [scrollPosition, setScrollPosition] = useState(0)
@@ -62,7 +63,7 @@ const Partenaires = () => {
                 <div key={partner.id} className="group">
                   <div className="w-32 h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
                     <img
-                      src={partner.logo}
+                      src={processImageUrl(partner.logo)}
                       alt={partner.name}
                       className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
                     />
@@ -82,7 +83,7 @@ const Partenaires = () => {
                 <div key={`${partner.id}-duplicate`} className="group">
                   <div className="w-32 h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
                     <img
-                      src={partner.logo}
+                      src={processImageUrl(partner.logo)}
                       alt={partner.name}
                       className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
                     />
