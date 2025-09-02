@@ -8,6 +8,10 @@ const nextConfig = {
     unoptimized: true,
     domains: ['localhost'],
   },
+  // Forcer la copie des assets statiques
+  experimental: {
+    outputFileTracingRoot: undefined,
+  },
 };
 
 module.exports = nextConfig;
