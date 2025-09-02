@@ -49,7 +49,7 @@ const AdminLogin = ({ onLogin }) => {
       >
         <div className="text-center mb-8">
           <img
-            src="/images/logo-3dactiv.png"
+            src="/3dactiv/images/logo-3dactiv.png"
             alt="3DACTIV Logo"
             className="h-12 w-auto mx-auto mb-4"
           />
@@ -196,7 +196,7 @@ const AdminDashboard = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <img
-                src="/images/logo-3dactiv.png"
+                src="/3dactiv/images/logo-3dactiv.png"
                 alt="3DACTIV Logo"
                 className="h-8 w-auto"
               />

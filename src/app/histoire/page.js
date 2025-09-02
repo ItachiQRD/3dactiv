@@ -12,7 +12,7 @@ const Histoire = () => {
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/histoire/background.avif"
+            src="/3dactiv/images/histoire/background.avif"
             alt="3DACTIV - Notre histoire"
             className="w-full h-full object-cover"
           />

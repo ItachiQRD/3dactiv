@@ -71,7 +71,7 @@ Grâce à notre réseau d'intervenants disponibles, qualifiés et expérimentés
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-blue-900 to-black">
         <div className="absolute inset-0 w-full h-full">
                      <img
-             src="/images/industries/background.avif"
+             src="/3dactiv/images/industries/background.avif"
              alt="Industries énergétiques"
              className="w-full h-full object-cover opacity-40"
            />

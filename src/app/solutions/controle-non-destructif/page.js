@@ -87,7 +87,7 @@ Cette exigence garantit la mobilisation rapide de profils fiables, opérationnel
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/solutions/cnd/background.avif"
+            src="/3dactiv/images/solutions/cnd/background.avif"
             alt="3DACTIV - Contrôle Non-Destructif"
             className="w-full h-full object-cover"
           />

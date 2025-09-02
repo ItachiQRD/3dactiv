@@ -80,7 +80,7 @@ Notre rigueur s'appuie sur :
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/solutions/inspection/background.avif"
+            src="/3dactiv/images/solutions/inspection/background.avif"
             alt="3DACTIV - Inspection"
             className="w-full h-full object-cover"
           />

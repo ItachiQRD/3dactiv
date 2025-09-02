@@ -285,7 +285,7 @@ const Emplois = () => {
       <section className="relative h-[50vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-800 via-blue-800 to-slate-900">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/emplois-hero.jpg"
+            src="/3dactiv/images/emplois-hero.jpg"
             alt="Emplois 3D ACTIV"
             className="w-full h-full object-cover opacity-30"
           />

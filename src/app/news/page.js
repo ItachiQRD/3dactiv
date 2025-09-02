@@ -66,7 +66,7 @@ const News = () => {
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/news/news.avif"
+            src="/3dactiv/images/news/news.avif"
             alt="3DACTIV - Actualités"
             className="w-full h-full object-cover"
           />

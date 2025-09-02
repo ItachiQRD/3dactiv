@@ -71,7 +71,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <img 
-              src="/images/logo-3dactiv.png" 
+              src="/3dactiv/images/logo-3dactiv.png" 
               alt="3DACTIV Logo" 
               className="h-16 w-auto"
             />

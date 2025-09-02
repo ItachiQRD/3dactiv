@@ -62,7 +62,7 @@ const Contact = () => {
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/contact/contact.avif"
+            src="/3dactiv/images/contact/contact.avif"
             alt="3DACTIV - Contact"
             className="w-full h-full object-cover"
           />

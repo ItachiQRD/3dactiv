@@ -38,8 +38,8 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/hero-background.mp4" type="video/mp4" />
-          <source src="/videos/hero-background.webm" type="video/webm" />
+          <source src="/3dactiv/videos/hero-background.mp4" type="video/mp4" />
+          <source src="/3dactiv/videos/hero-background.webm" type="video/webm" />
         </video>
         
 

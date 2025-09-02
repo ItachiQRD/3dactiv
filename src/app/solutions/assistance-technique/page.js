@@ -73,7 +73,7 @@ Notre suivi de mission, couplé à un retour d'expérience systématique, permet
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/solutions/assistance/background.avif"
+            src="/3dactiv/images/solutions/assistance/background.avif"
             alt="3DACTIV - Assistance Technique"
             className="w-full h-full object-cover"
           />

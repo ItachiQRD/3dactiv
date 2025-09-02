@@ -72,7 +72,7 @@ const Portfolio = () => {
       <section className="relative h-[60vh] flex items-end">
         <div className="absolute inset-0 w-full h-full">
           <img
-            src="/images/portfolio/portfolio.avif"
+            src="/3dactiv/images/portfolio/portfolio.avif"
             alt="3DACTIV - Portfolio"
             className="w-full h-full object-cover"
           />
