@@ -20,6 +20,7 @@ import {
   ExternalLink
 } from 'lucide-react'
 import ImageWrapper from '../../../components/ImageWrapper'
+import ImageUpload from '../../../components/ImageUpload'
 import Link from 'next/link'
 
 const PortfolioManagement = () => {
@@ -619,15 +620,12 @@ const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, cat
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                URL de l'image
-              </label>
-              <input
-                type="url"
+              <ImageUpload
                 value={formData.imageUrl}
-                onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="https://exemple.com/image.jpg"
+                onChange={(imageUrl) => setFormData({ ...formData, imageUrl })}
+                label="Image du projet"
+                accept="image/*"
+                maxSize={5 * 1024 * 1024} // 5MB
               />
             </div>
 
