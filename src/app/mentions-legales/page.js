@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
+import Footer from '../../components/Footer'
 
 const MentionsLegales = () => {
   return (
@@ -66,29 +67,25 @@ const MentionsLegales = () => {
               </p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">1. Éditeur du site</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p><strong>Le présent site est édité par :</strong> 3D ACTIV</p>
-                <p>Entreprise spécialisée dans la fourniture de services techniques et industriels dans les secteurs de l'énergie, de l'oil & gas, du nucléaire et des énergies renouvelables.</p>
-                <ul className="mt-4 space-y-2">
-                  <li><strong>Siège social :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
-                  <li><strong>Adresse e-mail :</strong> contact@3dactiv.com</li>
-                  <li><strong>Forme juridique :</strong> Société à responsabilité limitée (SARL)</li>
-                  <li><strong>N° SIRET :</strong> 84995020900015</li>
-                  <li><strong>TVA intracommunautaire :</strong> FR96849950209</li>
-                  <li><strong>Code APE / NAF :</strong> 7112B - Ingénierie, études techniques</li>
-                </ul>
-              </div>
+              <p><strong>Le présent site est édité par :</strong> 3D ACTIV</p>
+              <p>Entreprise spécialisée dans la fourniture de services techniques et industriels dans les secteurs de l'énergie, de l'oil & gas, du nucléaire et des énergies renouvelables.</p>
+              <ul className="mt-4 space-y-2">
+                <li><strong>Siège social :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
+                <li><strong>Adresse e-mail :</strong> contact@3dactiv.com</li>
+                <li><strong>Forme juridique :</strong> Société à responsabilité limitée (SARL)</li>
+                <li><strong>N° SIRET :</strong> 84995020900015</li>
+                <li><strong>TVA intracommunautaire :</strong> FR96849950209</li>
+                <li><strong>Code APE / NAF :</strong> 7112B - Ingénierie, études techniques</li>
+              </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">2. Hébergement du site</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p><strong>Le site est hébergé par :</strong> OVH</p>
-                <ul className="mt-4 space-y-2">
-                  <li><strong>Adresse :</strong> 2, rue Kellermann, 59100 Roubaix</li>
-                  <li><strong>Contact e-mail :</strong> contact@3dactiv.com</li>
-                  <li><strong>Site web de l'hébergeur :</strong> www.ovhcloud.com/fr/</li>
-                </ul>
-                <p className="mt-4">Ce prestataire assure le stockage permanent des données conformément à la législation française et européenne en vigueur.</p>
-              </div>
+              <p><strong>Le site est hébergé par :</strong> OVH</p>
+              <ul className="mt-4 space-y-2">
+                <li><strong>Adresse :</strong> 2, rue Kellermann, 59100 Roubaix</li>
+                <li><strong>Contact e-mail :</strong> contact@3dactiv.com</li>
+                <li><strong>Site web de l'hébergeur :</strong> www.ovhcloud.com/fr/</li>
+              </ul>
+              <p className="mt-4">Ce prestataire assure le stockage permanent des données conformément à la législation française et européenne en vigueur.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">3. Contenu du site</h2>
               <ul className="space-y-3">
@@ -104,20 +101,18 @@ const MentionsLegales = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">5. Protection des données personnelles – RGPD</h2>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <p>Conformément au Règlement Général sur la Protection des Données (RGPD - UE 2016/679) et à la Loi Informatique et Libertés modifiée, les données collectées via les formulaires (contact, candidature, etc.) sont strictement utilisées dans le cadre de la gestion de la relation commerciale et du recrutement.</p>
-                
-                <div className="mt-6">
-                  <p><strong>Responsable du traitement :</strong> 3D ACTIV</p>
-                  <p><strong>Finalité :</strong> gestion des candidatures, traitement des demandes, envoi de communications professionnelles</p>
-                  <p><strong>Durée de conservation :</strong> maximum 24 mois à compter du dernier contact</p>
-                </div>
+              <p>Conformément au Règlement Général sur la Protection des Données (RGPD - UE 2016/679) et à la Loi Informatique et Libertés modifiée, les données collectées via les formulaires (contact, candidature, etc.) sont strictement utilisées dans le cadre de la gestion de la relation commerciale et du recrutement.</p>
+              
+              <div className="mt-6">
+                <p><strong>Responsable du traitement :</strong> 3D ACTIV</p>
+                <p><strong>Finalité :</strong> gestion des candidatures, traitement des demandes, envoi de communications professionnelles</p>
+                <p><strong>Durée de conservation :</strong> maximum 24 mois à compter du dernier contact</p>
+              </div>
 
-                <div className="mt-6">
-                  <p>Les utilisateurs disposent d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de leurs données.</p>
-                  <p>Ces droits peuvent être exercés en envoyant un e-mail à <strong>contact@3dactiv.com</strong> ou par courrier postal à l'adresse du siège social.</p>
-                  <p>En cas de réclamation, vous pouvez également saisir la CNIL (www.cnil.fr).</p>
-                </div>
+              <div className="mt-6">
+                <p>Les utilisateurs disposent d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de leurs données.</p>
+                <p>Ces droits peuvent être exercés en envoyant un e-mail à <strong>contact@3dactiv.com</strong> ou par courrier postal à l'adresse du siège social.</p>
+                <p>En cas de réclamation, vous pouvez également saisir la CNIL (www.cnil.fr).</p>
               </div>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">6. Cookies</h2>
@@ -145,6 +140,8 @@ const MentionsLegales = () => {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }

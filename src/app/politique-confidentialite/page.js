@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
+import Footer from '../../components/Footer'
 
 const PolitiqueConfidentialite = () => {
   return (
@@ -62,15 +63,13 @@ const PolitiqueConfidentialite = () => {
               </p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">1. Identité du responsable de traitement</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p><strong>Responsable du traitement :</strong></p>
-                <ul className="mt-4 space-y-2">
-                  <li><strong>3D ACTIV</strong></li>
-                  <li><strong>Adresse :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
-                  <li><strong>Email :</strong> contact@3dactiv.com</li>
-                </ul>
-                <p className="mt-4">3D ACTIV est une entreprise française spécialisée dans la fourniture de services techniques et humains dans les secteurs de l'énergie, du nucléaire, de l'industrie et des énergies renouvelables, opérant en France, en Europe et à l'international.</p>
-              </div>
+              <p><strong>Responsable du traitement :</strong></p>
+              <ul className="mt-4 space-y-2">
+                <li><strong>3D ACTIV</strong></li>
+                <li><strong>Adresse :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
+                <li><strong>Email :</strong> contact@3dactiv.com</li>
+              </ul>
+              <p className="mt-4">3D ACTIV est une entreprise française spécialisée dans la fourniture de services techniques et humains dans les secteurs de l'énergie, du nucléaire, de l'industrie et des énergies renouvelables, opérant en France, en Europe et à l'international.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">2. Finalités des traitements</h2>
               <p>Les données personnelles collectées sur le site www.3dactiv.com sont utilisées dans les finalités suivantes :</p>
@@ -92,15 +91,13 @@ const PolitiqueConfidentialite = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">4. Base légale du traitement</h2>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <p>Conformément à l'article 6 du RGPD, les traitements sont fondés :</p>
-                <ul className="mt-4 space-y-2 ml-6">
-                  <li>• sur votre consentement (formulaires de contact, candidature, cookies) ;</li>
-                  <li>• sur l'exécution d'un contrat ou de mesures précontractuelles ;</li>
-                  <li>• sur notre intérêt légitime (suivi commercial, statistiques) ;</li>
-                  <li>• sur le respect d'obligations légales.</li>
-                </ul>
-              </div>
+              <p>Conformément à l'article 6 du RGPD, les traitements sont fondés :</p>
+              <ul className="mt-4 space-y-2 ml-6">
+                <li>• sur votre consentement (formulaires de contact, candidature, cookies) ;</li>
+                <li>• sur l'exécution d'un contrat ou de mesures précontractuelles ;</li>
+                <li>• sur notre intérêt légitime (suivi commercial, statistiques) ;</li>
+                <li>• sur le respect d'obligations légales.</li>
+              </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">5. Durée de conservation des données</h2>
               <p>Les données sont conservées pour les durées suivantes :</p>
@@ -112,39 +109,33 @@ const PolitiqueConfidentialite = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">6. Destinataires des données</h2>
-              <div className="bg-green-50 p-6 rounded-lg">
-                <p>Les données collectées sont uniquement destinées à :</p>
-                <ul className="mt-4 space-y-2 ml-6">
-                  <li>• L'équipe interne de 3D ACTIV (RH, commercial, technique) ;</li>
-                  <li>• Les partenaires et sous-traitants autorisés dans le cadre strict des finalités ci-dessus ;</li>
-                  <li>• Les autorités administratives ou judiciaires en cas d'obligation légale.</li>
-                </ul>
-                <p className="mt-4"><strong>Aucune donnée n'est vendue ni cédée à des tiers non autorisés.</strong></p>
-              </div>
+              <p>Les données collectées sont uniquement destinées à :</p>
+              <ul className="mt-4 space-y-2 ml-6">
+                <li>• L'équipe interne de 3D ACTIV (RH, commercial, technique) ;</li>
+                <li>• Les partenaires et sous-traitants autorisés dans le cadre strict des finalités ci-dessus ;</li>
+                <li>• Les autorités administratives ou judiciaires en cas d'obligation légale.</li>
+              </ul>
+              <p className="mt-4"><strong>Aucune donnée n'est vendue ni cédée à des tiers non autorisés.</strong></p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">7. Transfert de données hors UE</h2>
               <p>3D ACTIV peut collaborer avec des partenaires internationaux. Lorsque des données sont transférées en dehors de l'Espace Économique Européen, nous veillons à ce que des garanties adéquates soient en place (clauses contractuelles types, décision d'adéquation, etc.).</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">8. Sécurité des données</h2>
-              <div className="bg-yellow-50 p-6 rounded-lg">
-                <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre toute perte, accès non autorisé, altération ou divulgation, conformément à l'article 32 du RGPD (pare-feu, contrôle d'accès, chiffrement, hébergement sécurisé...).</p>
-              </div>
+              <p>Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre toute perte, accès non autorisé, altération ou divulgation, conformément à l'article 32 du RGPD (pare-feu, contrôle d'accès, chiffrement, hébergement sécurisé...).</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">9. Vos droits</h2>
-              <div className="bg-purple-50 p-6 rounded-lg">
-                <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-                <ul className="mt-4 space-y-2 ml-6">
-                  <li>• Droit d'accès à vos données ;</li>
-                  <li>• Droit de rectification ;</li>
-                  <li>• Droit à l'effacement (droit à l'oubli) ;</li>
-                  <li>• Droit à la limitation du traitement ;</li>
-                  <li>• Droit d'opposition au traitement ;</li>
-                  <li>• Droit à la portabilité de vos données.</li>
-                </ul>
-                <p className="mt-4">Vous pouvez exercer vos droits à tout moment en nous contactant à <strong>contact@3dactiv.com</strong> ou par courrier à :</p>
-                <p><strong>3D ACTIV – 14 Rue Édouard Nieuport, 92150 Suresnes – France.</strong></p>
-                <p className="mt-4">En cas de désaccord non résolu, vous pouvez introduire une réclamation auprès de la CNIL (www.cnil.fr).</p>
-              </div>
+              <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+              <ul className="mt-4 space-y-2 ml-6">
+                <li>• Droit d'accès à vos données ;</li>
+                <li>• Droit de rectification ;</li>
+                <li>• Droit à l'effacement (droit à l'oubli) ;</li>
+                <li>• Droit à la limitation du traitement ;</li>
+                <li>• Droit d'opposition au traitement ;</li>
+                <li>• Droit à la portabilité de vos données.</li>
+              </ul>
+              <p className="mt-4">Vous pouvez exercer vos droits à tout moment en nous contactant à <strong>contact@3dactiv.com</strong> ou par courrier à :</p>
+              <p><strong>3D ACTIV – 14 Rue Édouard Nieuport, 92150 Suresnes – France.</strong></p>
+              <p className="mt-4">En cas de désaccord non résolu, vous pouvez introduire une réclamation auprès de la CNIL (www.cnil.fr).</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">10. Modification de la politique</h2>
               <p>La présente politique de confidentialité peut être modifiée à tout moment pour refléter les évolutions législatives, réglementaires ou techniques. La version en vigueur est celle publiée sur le site à la date de votre consultation.</p>
@@ -152,6 +143,8 @@ const PolitiqueConfidentialite = () => {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }

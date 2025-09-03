@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
+import Footer from '../../components/Footer'
 
 const PolitiqueCookies = () => {
   return (
@@ -62,14 +63,12 @@ const PolitiqueCookies = () => {
               </p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">1. Éditeur du site</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p><strong>3D ACTIV</strong></p>
-                <ul className="mt-4 space-y-2">
-                  <li><strong>Siège social :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
-                  <li><strong>Contact :</strong> contact@3dactiv.com</li>
-                </ul>
-                <p className="mt-4">Société française collaborant avec des acteurs européens et internationaux dans les secteurs de l'industrie, de l'énergie et de l'ingénierie technique.</p>
-              </div>
+              <p><strong>3D ACTIV</strong></p>
+              <ul className="mt-4 space-y-2">
+                <li><strong>Siège social :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
+                <li><strong>Contact :</strong> contact@3dactiv.com</li>
+              </ul>
+              <p className="mt-4">Société française collaborant avec des acteurs européens et internationaux dans les secteurs de l'industrie, de l'énergie et de l'ingénierie technique.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">2. Qu'est-ce qu'un cookie ?</h2>
               <ul className="space-y-3">
@@ -81,39 +80,37 @@ const PolitiqueCookies = () => {
               <p>Le site www.3dactiv.com utilise les catégories de cookies suivantes :</p>
               
               <div className="mt-6 space-y-6">
-                <div className="bg-blue-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-blue-900 mb-3">🔹 Cookies strictement nécessaires (obligatoires)</h3>
+                <div>
+                  <h3 className="text-lg font-semibold text-nordic-900 mb-3">🔹 Cookies strictement nécessaires (obligatoires)</h3>
                   <p>Ces cookies sont essentiels pour vous permettre de naviguer sur le site et d'utiliser ses fonctionnalités de base (ex : accès sécurisé, gestion de session, formulaires de contact).</p>
                 </div>
 
-                <div className="bg-green-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-green-900 mb-3">🔹 Cookies de performance / statistiques (avec consentement)</h3>
+                <div>
+                  <h3 className="text-lg font-semibold text-nordic-900 mb-3">🔹 Cookies de performance / statistiques (avec consentement)</h3>
                   <p>Ces cookies collectent des informations anonymes sur la manière dont les visiteurs utilisent le site (nombre de visites, pages consultées, temps passé…).</p>
                   <p className="mt-2">Ils nous permettent d'améliorer l'expérience utilisateur et d'optimiser le contenu.</p>
                 </div>
 
-                <div className="bg-yellow-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-yellow-900 mb-3">🔹 Cookies de personnalisation (avec consentement)</h3>
+                <div>
+                  <h3 className="text-lg font-semibold text-nordic-900 mb-3">🔹 Cookies de personnalisation (avec consentement)</h3>
                   <p>Ils mémorisent vos préférences d'affichage et vos choix afin d'améliorer votre navigation future (ex : langue, résolution d'écran, préférences utilisateur).</p>
                 </div>
 
-                <div className="bg-purple-50 p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold text-purple-900 mb-3">🔹 Cookies tiers (avec consentement)</h3>
+                <div>
+                  <h3 className="text-lg font-semibold text-nordic-900 mb-3">🔹 Cookies tiers (avec consentement)</h3>
                   <p>Certains contenus ou fonctionnalités intégrés (ex : vidéos, boutons de partage, cartes interactives, outils de recrutement) peuvent déposer des cookies provenant de services externes (YouTube, LinkedIn, Google Maps…).</p>
                 </div>
               </div>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">4. Gestion du consentement</h2>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <p>Conformément au RGPD et à la directive ePrivacy, votre consentement explicite est requis pour l'activation des cookies non essentiels.</p>
-                <p className="mt-4">Un bandeau de consentement apparaît lors de votre première visite et vous permet :</p>
-                <ul className="mt-4 space-y-2 ml-6">
-                  <li>• d'accepter tous les cookies,</li>
-                  <li>• de les refuser tous,</li>
-                  <li>• ou de les personnaliser selon vos préférences.</li>
-                </ul>
-                <p className="mt-4">Vous pouvez à tout moment modifier ou retirer votre consentement via le lien [Gestion des cookies] (à intégrer dans le site) situé en bas de page.</p>
-              </div>
+              <p>Conformément au RGPD et à la directive ePrivacy, votre consentement explicite est requis pour l'activation des cookies non essentiels.</p>
+              <p className="mt-4">Un bandeau de consentement apparaît lors de votre première visite et vous permet :</p>
+              <ul className="mt-4 space-y-2 ml-6">
+                <li>• d'accepter tous les cookies,</li>
+                <li>• de les refuser tous,</li>
+                <li>• ou de les personnaliser selon vos préférences.</li>
+              </ul>
+              <p className="mt-4">Vous pouvez à tout moment modifier ou retirer votre consentement via le lien [Gestion des cookies] (à intégrer dans le site) situé en bas de page.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">5. Durée de conservation</h2>
               <ul className="space-y-3">
@@ -129,20 +126,18 @@ const PolitiqueCookies = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">7. Vos droits</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p>Vous disposez à tout moment des droits suivants sur vos données :</p>
-                <ul className="mt-4 space-y-2 ml-6">
-                  <li>• Accès</li>
-                  <li>• Rectification</li>
-                  <li>• Effacement</li>
-                  <li>• Limitation du traitement</li>
-                  <li>• Portabilité</li>
-                  <li>• Opposition</li>
-                </ul>
-                <p className="mt-4">Vous pouvez exercer vos droits en contactant <strong>contact@3dactiv.com</strong> ou en adressant un courrier à :</p>
-                <p><strong>3D ACTIV – 14 Rue Édouard Nieuport, 92150 Suresnes – France.</strong></p>
-                <p className="mt-4">En cas de désaccord, vous avez la possibilité de saisir la CNIL (www.cnil.fr).</p>
-              </div>
+              <p>Vous disposez à tout moment des droits suivants sur vos données :</p>
+              <ul className="mt-4 space-y-2 ml-6">
+                <li>• Accès</li>
+                <li>• Rectification</li>
+                <li>• Effacement</li>
+                <li>• Limitation du traitement</li>
+                <li>• Portabilité</li>
+                <li>• Opposition</li>
+              </ul>
+              <p className="mt-4">Vous pouvez exercer vos droits en contactant <strong>contact@3dactiv.com</strong> ou en adressant un courrier à :</p>
+              <p><strong>3D ACTIV – 14 Rue Édouard Nieuport, 92150 Suresnes – France.</strong></p>
+              <p className="mt-4">En cas de désaccord, vous avez la possibilité de saisir la CNIL (www.cnil.fr).</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">8. Modification de la politique de cookies</h2>
               <ul className="space-y-3">
@@ -153,6 +148,8 @@ const PolitiqueCookies = () => {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }

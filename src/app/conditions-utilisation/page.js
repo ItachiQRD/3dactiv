@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
+import Footer from '../../components/Footer'
 
 const ConditionsUtilisation = () => {
   return (
@@ -66,17 +67,15 @@ const ConditionsUtilisation = () => {
               </p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">1. Mentions légales</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <p><strong>3D ACTIV</strong></p>
-                <ul className="mt-4 space-y-2">
-                  <li><strong>Siège social :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
-                  <li><strong>Email :</strong> contact@3dactiv.com</li>
-                  <li><strong>SIRET / RCS :</strong> 84995020900015</li>
-                  <li><strong>CODE NAF ou APE :</strong> 7112B - Ingénierie, études techniques</li>
-                  <li><strong>FORME JURIDIQUE :</strong> Société à responsabilité limitée (SARL)</li>
-                </ul>
-                <p className="mt-4">3D ACTIV est une société française opérant dans les secteurs de l'énergie, du nucléaire, de l'industrie, de l'oil & gas et des énergies renouvelables. Elle intervient en France, en Europe et à l'international.</p>
-              </div>
+              <p><strong>3D ACTIV</strong></p>
+              <ul className="mt-4 space-y-2">
+                <li><strong>Siège social :</strong> 14 Rue Édouard Nieuport, 92150 Suresnes, France</li>
+                <li><strong>Email :</strong> contact@3dactiv.com</li>
+                <li><strong>SIRET / RCS :</strong> 84995020900015</li>
+                <li><strong>CODE NAF ou APE :</strong> 7112B - Ingénierie, études techniques</li>
+                <li><strong>FORME JURIDIQUE :</strong> Société à responsabilité limitée (SARL)</li>
+              </ul>
+              <p className="mt-4">3D ACTIV est une société française opérant dans les secteurs de l'énergie, du nucléaire, de l'industrie, de l'oil & gas et des énergies renouvelables. Elle intervient en France, en Europe et à l'international.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">2. Objet du site</h2>
               <p>Le site www.3dactiv.com a pour vocation de :</p>
@@ -95,16 +94,14 @@ const ConditionsUtilisation = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">4. Comportement de l'utilisateur</h2>
-              <div className="bg-blue-50 p-6 rounded-lg">
-                <p>En accédant au Site, l'utilisateur s'engage à :</p>
-                <ul className="mt-4 space-y-2 ml-6">
-                  <li>• Utiliser le Site uniquement à des fins légales et non commerciales (hors partenaires) ;</li>
-                  <li>• Ne pas perturber ou tenter de perturber le fonctionnement du Site ;</li>
-                  <li>• Ne pas introduire de virus ou tout autre code malveillant ;</li>
-                  <li>• Ne pas tenter d'accéder à des zones non autorisées.</li>
-                </ul>
-                <p className="mt-4">Tout manquement pourra entraîner la suppression de l'accès au site et, si nécessaire, des poursuites judiciaires.</p>
-              </div>
+              <p>En accédant au Site, l'utilisateur s'engage à :</p>
+              <ul className="mt-4 space-y-2 ml-6">
+                <li>• Utiliser le Site uniquement à des fins légales et non commerciales (hors partenaires) ;</li>
+                <li>• Ne pas perturber ou tenter de perturber le fonctionnement du Site ;</li>
+                <li>• Ne pas introduire de virus ou tout autre code malveillant ;</li>
+                <li>• Ne pas tenter d'accéder à des zones non autorisées.</li>
+              </ul>
+              <p className="mt-4">Tout manquement pourra entraîner la suppression de l'accès au site et, si nécessaire, des poursuites judiciaires.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">5. Données personnelles</h2>
               <ul className="space-y-3">
@@ -114,12 +111,10 @@ const ConditionsUtilisation = () => {
               </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">6. Propriété intellectuelle</h2>
-              <div className="bg-yellow-50 p-6 rounded-lg">
-                <ul className="space-y-3">
-                  <li>• Tous les éléments du Site (textes, images, graphismes, logos, icônes, fichiers, contenus, structure) sont la propriété exclusive de 3D ACTIV ou font l'objet d'une licence d'utilisation.</li>
-                  <li>• Toute reproduction, diffusion, modification, adaptation ou extraction, totale ou partielle, est strictement interdite sans l'autorisation préalable et écrite de 3D ACTIV.</li>
-                </ul>
-              </div>
+              <ul className="space-y-3">
+                <li>• Tous les éléments du Site (textes, images, graphismes, logos, icônes, fichiers, contenus, structure) sont la propriété exclusive de 3D ACTIV ou font l'objet d'une licence d'utilisation.</li>
+                <li>• Toute reproduction, diffusion, modification, adaptation ou extraction, totale ou partielle, est strictement interdite sans l'autorisation préalable et écrite de 3D ACTIV.</li>
+              </ul>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">7. Responsabilité</h2>
               <p>L'éditeur du Site ne peut être tenu responsable :</p>
@@ -137,16 +132,16 @@ const ConditionsUtilisation = () => {
               <p>3D ACTIV se réserve le droit de modifier les présentes CGU à tout moment, sans préavis. L'utilisateur est invité à les consulter régulièrement.</p>
 
               <h2 className="text-2xl font-bold text-nordic-900 mt-12 mb-6">10. Loi applicable & juridiction compétente</h2>
-              <div className="bg-gray-50 p-6 rounded-lg">
-                <ul className="space-y-3">
-                  <li>• Les présentes CGU sont régies par le droit français.</li>
-                  <li>• Tout litige relatif à l'interprétation ou l'exécution de ces conditions relèvera des tribunaux compétents du ressort de Paris, sauf disposition légale impérative contraire.</li>
-                </ul>
-              </div>
+              <ul className="space-y-3">
+                <li>• Les présentes CGU sont régies par le droit français.</li>
+                <li>• Tout litige relatif à l'interprétation ou l'exécution de ces conditions relèvera des tribunaux compétents du ressort de Paris, sauf disposition légale impérative contraire.</li>
+              </ul>
             </div>
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   )
 }
