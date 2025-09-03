@@ -9,8 +9,10 @@ class DataManager {
       applications: '3dactiv_applications'
     }
     
-    // Initialiser les données par défaut si elles n'existent pas
-    this.initializeDefaultData()
+    // Initialiser les données par défaut si elles n'existent pas (seulement côté client)
+    if (typeof window !== 'undefined') {
+      this.initializeDefaultData()
+    }
   }
 
   // Initialiser les données par défaut
@@ -158,6 +160,10 @@ class DataManager {
   // Récupérer des données
   getData(type) {
     try {
+      // Vérifier si on est côté serveur
+      if (typeof window === 'undefined') {
+        return []
+      }
       const data = localStorage.getItem(this.storageKeys[type])
       return data ? JSON.parse(data) : []
     } catch (error) {
@@ -169,6 +175,10 @@ class DataManager {
   // Sauvegarder des données
   setData(type, data) {
     try {
+      // Vérifier si on est côté serveur
+      if (typeof window === 'undefined') {
+        return false
+      }
       localStorage.setItem(this.storageKeys[type], JSON.stringify(data))
       return true
     } catch (error) {

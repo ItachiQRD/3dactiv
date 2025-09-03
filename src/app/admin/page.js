@@ -16,7 +16,8 @@ import {
   XCircle,
   Home,
   TrendingUp,
-  TrendingDown
+  TrendingDown,
+  Building2
 } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
 import Link from 'next/link'
