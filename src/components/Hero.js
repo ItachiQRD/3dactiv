@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Play } from 'lucide-react'
 import AssetPath from './AssetPath'
-import VideoWrapper from './VideoWrapper'
 
 const Hero = () => {
   const videoRef = useRef(null)
@@ -40,8 +39,8 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <VideoWrapper src="/videos/hero-background.mp4" type="video/mp4" />
-          <VideoWrapper src="/videos/hero-background.webm" type="video/webm" />
+          <AssetPath src="/videos/hero-background.mp4" type="video/mp4" />
+          <AssetPath src="/videos/hero-background.webm" type="video/webm" />
         </video>
         
 
