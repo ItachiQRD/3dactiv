@@ -32,7 +32,7 @@ const Histoire = () => {
             transition={{ duration: 0.8 }}
             className="max-w-2xl"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-8 tracking-wide text-nordic-900" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-8 tracking-wide text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
               Notre vision, votre réussite
             </h2>
             
