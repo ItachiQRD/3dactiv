@@ -18,6 +18,7 @@ import {
   Clock,
   Building2
 } from 'lucide-react'
+import dataManager from '../../../utils/dataManager'
 import Link from 'next/link'
 
 const JobsManagement = () => {
@@ -41,60 +42,25 @@ const JobsManagement = () => {
     deadline: ''
   })
 
-  // Données de démonstration
+  // Charger les données depuis le DataManager
   useEffect(() => {
-    const demoJobs = [
-      {
-        id: 1,
-        title: 'Ingénieur CND',
-        company: 'EDF',
-        location: 'Paris, France',
-        type: 'CDI',
-        salary: '45 000 - 55 000 €',
-        description: 'Nous recherchons un ingénieur CND expérimenté pour rejoindre notre équipe technique.',
-        requirements: 'Master en ingénierie, 3+ ans d\'expérience en CND, certification ASNT niveau II',
-        benefits: 'Mutuelle, tickets restaurant, 13ème mois, formation continue',
-        status: 'published',
-        publishedAt: '2024-01-15',
-        deadline: '2024-03-15',
-        applications: 12,
-        createdAt: '2024-01-15'
-      },
-      {
-        id: 2,
-        title: 'Technicien Inspection',
-        company: 'ENGIE',
-        location: 'Lyon, France',
-        type: 'CDD',
-        salary: '35 000 - 42 000 €',
-        description: 'Poste de technicien inspection pour missions sur sites industriels.',
-        requirements: 'BTS/DUT technique, 2+ ans d\'expérience, permis B obligatoire',
-        benefits: 'Prime de déplacement, véhicule de service, formation',
-        status: 'published',
-        publishedAt: '2024-01-20',
-        deadline: '2024-02-28',
-        applications: 8,
-        createdAt: '2024-01-20'
-      },
-      {
-        id: 3,
-        title: 'Chef de Projet Nucléaire',
-        company: 'AREVA',
-        location: 'Marseille, France',
-        type: 'CDI',
-        salary: '60 000 - 75 000 €',
-        description: 'Direction de projets dans le secteur nucléaire civil.',
-        requirements: 'Master/Ingénieur, 5+ ans d\'expérience, anglais courant',
-        benefits: 'Participation, intéressement, télétravail partiel',
-        status: 'draft',
-        publishedAt: '',
-        deadline: '2024-04-30',
-        applications: 0,
-        createdAt: '2024-02-01'
+    const loadJobs = () => {
+      const data = dataManager.getData('jobs')
+      setJobs(data)
+      setFilteredJobs(data)
+    }
+    
+    loadJobs()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.jobs) {
+        loadJobs()
       }
-    ]
-    setJobs(demoJobs)
-    setFilteredJobs(demoJobs)
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   // Filtrage des emplois
@@ -117,22 +83,20 @@ const JobsManagement = () => {
     
     if (editingJob) {
       // Modification
-      const updatedJobs = jobs.map(job =>
-        job.id === editingJob.id
-          ? { ...job, ...formData, updatedAt: new Date().toISOString().split('T')[0] }
-          : job
-      )
-      setJobs(updatedJobs)
+      dataManager.updateItem('jobs', editingJob.id, formData)
     } else {
       // Ajout
-      const newJob = {
-        id: Date.now(),
+      const newJobData = {
         ...formData,
-        applications: 0,
-        createdAt: new Date().toISOString().split('T')[0]
+        applications: 0
       }
-      setJobs([newJob, ...jobs])
+      dataManager.addItem('jobs', newJobData)
     }
+    
+    // Recharger les données
+    const data = dataManager.getData('jobs')
+    setJobs(data)
+    setFilteredJobs(data)
     
     resetForm()
   }
@@ -145,7 +109,12 @@ const JobsManagement = () => {
 
   const handleDelete = (id) => {
     if (confirm('Êtes-vous sûr de vouloir supprimer cette offre d\'emploi ?')) {
-      setJobs(jobs.filter(job => job.id !== id))
+      dataManager.deleteItem('jobs', id)
+      
+      // Recharger les données
+      const data = dataManager.getData('jobs')
+      setJobs(data)
+      setFilteredJobs(data)
     }
   }
 

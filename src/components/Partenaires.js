@@ -3,73 +3,32 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import ImageWrapper from './ImageWrapper'
+import dataManager from '../utils/dataManager'
 
 const Partenaires = () => {
   const [scrollPosition, setScrollPosition] = useState(0)
   const [partners, setPartners] = useState([])
 
-  // Charger les partenaires depuis l'admin (simulation)
+  // Charger les partenaires depuis le DataManager
   useEffect(() => {
-    const adminPartners = [
-      {
-        id: 1,
-        name: 'EDF',
-        logo: '/images/partners/edf-logo.png',
-        website: 'https://www.edf.fr',
-        description: 'Électricien français, leader mondial de l\'énergie bas carbone',
-        sector: 'Énergie',
-        status: 'active'
-      },
-      {
-        id: 2,
-        name: 'ENGIE',
-        logo: '/images/partners/engie-logo.png',
-        website: 'https://www.engie.com',
-        description: 'Groupe énergétique mondial, leader de la transition énergétique',
-        sector: 'Énergie',
-        status: 'active'
-      },
-      {
-        id: 3,
-        name: 'AREVA',
-        logo: '/images/partners/areva-logo.png',
-        website: 'https://www.areva.com',
-        description: 'Spécialiste du cycle du combustible nucléaire',
-        sector: 'Nucléaire',
-        status: 'active'
-      },
-      {
-        id: 4,
-        name: 'TotalEnergies',
-        logo: '/logos/totalenergies-1756032591177.png',
-        website: 'https://www.totalenergies.com',
-        description: 'Compagnie multi-énergies mondiale',
-        sector: 'Pétrole & Gaz',
-        status: 'active'
-      },
-      {
-        id: 5,
-        name: 'Shell',
-        logo: '/logos/shell-1756153457363.png',
-        website: 'https://www.shell.com',
-        description: 'Compagnie énergétique internationale',
-        sector: 'Pétrole & Gaz',
-        status: 'active'
-      },
-      {
-        id: 6,
-        name: 'BP',
-        logo: '/logos/bp-1756153799793.png',
-        website: 'https://www.bp.com',
-        description: 'Compagnie pétrolière et gazière britannique',
-        sector: 'Pétrole & Gaz',
-        status: 'active'
-      }
-    ]
+    const loadPartners = () => {
+      // Récupérer tous les partenaires et filtrer seulement les actifs
+      const allPartners = dataManager.getData('partners')
+      const activePartners = allPartners.filter(partner => partner.status === 'active')
+      setPartners(activePartners)
+    }
     
-    // Filtrer seulement les partenaires actifs
-    const activePartners = adminPartners.filter(partner => partner.status === 'active')
-    setPartners(activePartners)
+    loadPartners()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.partners) {
+        loadPartners()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   // Auto-scroll effect

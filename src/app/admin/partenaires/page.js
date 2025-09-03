@@ -17,10 +17,11 @@ import {
   Mail
 } from 'lucide-react'
 import ImageUpload from '../../../components/ImageUpload'
+import { usePartners } from '../../../hooks/useDataManager'
 import Link from 'next/link'
 
 const PartenairesManagement = () => {
-  const [partenaires, setPartenaires] = useState([])
+  const { data: partenaires, addItem, updateItem, deleteItem } = usePartners()
   const [filteredPartenaires, setFilteredPartenaires] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [showForm, setShowForm] = useState(false)
@@ -37,53 +38,6 @@ const PartenairesManagement = () => {
     status: 'active'
   })
 
-  // Données de démonstration
-  useEffect(() => {
-    const demoPartenaires = [
-      {
-        id: 1,
-        name: 'EDF',
-        logo: '/images/partners/edf-logo.png',
-        website: 'https://www.edf.fr',
-        description: 'Électricien français, leader mondial de l\'énergie bas carbone',
-        sector: 'Énergie',
-        contact: 'Jean Dupont',
-        email: 'contact@edf.fr',
-        phone: '+33 1 40 42 22 22',
-        status: 'active',
-        createdAt: '2024-01-15'
-      },
-      {
-        id: 2,
-        name: 'ENGIE',
-        logo: '/images/partners/engie-logo.png',
-        website: 'https://www.engie.com',
-        description: 'Groupe énergétique mondial, leader de la transition énergétique',
-        sector: 'Énergie',
-        contact: 'Marie Martin',
-        email: 'contact@engie.com',
-        phone: '+33 1 44 22 00 00',
-        status: 'active',
-        createdAt: '2024-01-20'
-      },
-      {
-        id: 3,
-        name: 'AREVA',
-        logo: '/images/partners/areva-logo.png',
-        website: 'https://www.areva.com',
-        description: 'Spécialiste du cycle du combustible nucléaire',
-        sector: 'Nucléaire',
-        contact: 'Pierre Durand',
-        email: 'contact@areva.com',
-        phone: '+33 1 34 96 00 00',
-        status: 'active',
-        createdAt: '2024-02-01'
-      }
-    ]
-    setPartenaires(demoPartenaires)
-    setFilteredPartenaires(demoPartenaires)
-  }, [])
-
   // Filtrage des partenaires
   useEffect(() => {
     const filtered = partenaires.filter(partner =>
@@ -99,20 +53,10 @@ const PartenairesManagement = () => {
     
     if (editingPartner) {
       // Modification
-      const updatedPartenaires = partenaires.map(partner =>
-        partner.id === editingPartner.id
-          ? { ...partner, ...formData, updatedAt: new Date().toISOString().split('T')[0] }
-          : partner
-      )
-      setPartenaires(updatedPartenaires)
+      updateItem(editingPartner.id, formData)
     } else {
       // Ajout
-      const newPartner = {
-        id: Date.now(),
-        ...formData,
-        createdAt: new Date().toISOString().split('T')[0]
-      }
-      setPartenaires([newPartner, ...partenaires])
+      addItem(formData)
     }
     
     resetForm()
@@ -126,7 +70,7 @@ const PartenairesManagement = () => {
 
   const handleDelete = (id) => {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce partenaire ?')) {
-      setPartenaires(partenaires.filter(partner => partner.id !== id))
+      deleteItem(id)
     }
   }
 

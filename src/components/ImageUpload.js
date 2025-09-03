@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react'
 import { Upload, X, Image as ImageIcon } from 'lucide-react'
 import { useFileUpload, validateFile, generateUniqueFileName } from './FileUploadHandler'
+import dataManager from '../utils/dataManager'
 
 const ImageUpload = ({ 
   value, 
@@ -28,18 +29,22 @@ const ImageUpload = ({
     }
 
     setError('')
+    setIsUploading(true)
 
-    // Utiliser le hook d'upload
-    await uploadFile(
-      file,
-      (imageUrl) => {
-        onChange(imageUrl)
-      },
-      (error) => {
-        setError('Erreur lors de l\'upload de l\'image')
-        console.error('Upload error:', error)
-      }
-    )
+    try {
+      // Sauvegarder l'image avec le DataManager
+      const imageData = await dataManager.saveUploadedImage(file, 'admin')
+      
+      // Utiliser l'URL data pour l'affichage
+      const imageUrl = imageData.data
+      onChange(imageUrl)
+      
+    } catch (error) {
+      setError('Erreur lors de l\'upload de l\'image')
+      console.error('Upload error:', error)
+    } finally {
+      setIsUploading(false)
+    }
   }
 
   const handleDrop = (e) => {

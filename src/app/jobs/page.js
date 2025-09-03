@@ -14,6 +14,7 @@ import {
   Filter,
   ArrowRight
 } from 'lucide-react'
+import dataManager from '../../utils/dataManager'
 import Link from 'next/link'
 
 const JobsPage = () => {
@@ -23,75 +24,27 @@ const JobsPage = () => {
   const [selectedType, setSelectedType] = useState('all')
   const [selectedLocation, setSelectedLocation] = useState('all')
 
-  // Charger les emplois depuis l'admin (simulation)
+  // Charger les emplois depuis le DataManager
   useEffect(() => {
-    const demoJobs = [
-      {
-        id: 1,
-        title: 'Ingénieur CND',
-        company: 'EDF',
-        location: 'Paris, France',
-        type: 'CDI',
-        salary: '45 000 - 55 000 €',
-        description: 'Nous recherchons un ingénieur CND expérimenté pour rejoindre notre équipe technique. Vous serez responsable des inspections non destructives sur nos installations.',
-        requirements: 'Master en ingénierie, 3+ ans d\'expérience en CND, certification ASNT niveau II',
-        benefits: 'Mutuelle, tickets restaurant, 13ème mois, formation continue',
-        status: 'published',
-        publishedAt: '2024-01-15',
-        deadline: '2024-03-15',
-        applications: 12
-      },
-      {
-        id: 2,
-        title: 'Technicien Inspection',
-        company: 'ENGIE',
-        location: 'Lyon, France',
-        type: 'CDD',
-        salary: '35 000 - 42 000 €',
-        description: 'Poste de technicien inspection pour missions sur sites industriels. Vous interviendrez sur différents types d\'équipements.',
-        requirements: 'BTS/DUT technique, 2+ ans d\'expérience, permis B obligatoire',
-        benefits: 'Prime de déplacement, véhicule de service, formation',
-        status: 'published',
-        publishedAt: '2024-01-20',
-        deadline: '2024-02-28',
-        applications: 8
-      },
-      {
-        id: 3,
-        title: 'Chef de Projet Nucléaire',
-        company: 'AREVA',
-        location: 'Marseille, France',
-        type: 'CDI',
-        salary: '60 000 - 75 000 €',
-        description: 'Direction de projets dans le secteur nucléaire civil. Vous coordonnerez les équipes et assurerez le suivi des projets.',
-        requirements: 'Master/Ingénieur, 5+ ans d\'expérience, anglais courant',
-        benefits: 'Participation, intéressement, télétravail partiel',
-        status: 'published',
-        publishedAt: '2024-02-01',
-        deadline: '2024-04-30',
-        applications: 5
-      },
-      {
-        id: 4,
-        title: 'Ingénieur Énergies Renouvelables',
-        company: 'TotalEnergies',
-        location: 'Nantes, France',
-        type: 'CDI',
-        salary: '50 000 - 65 000 €',
-        description: 'Développement de projets d\'énergies renouvelables. Vous travaillerez sur l\'éolien offshore et le solaire.',
-        requirements: 'Master en énergies renouvelables, 3+ ans d\'expérience',
-        benefits: 'Mutuelle, intéressement, télétravail, formation',
-        status: 'published',
-        publishedAt: '2024-02-05',
-        deadline: '2024-05-15',
-        applications: 15
-      }
-    ]
+    const loadJobs = () => {
+      // Récupérer tous les emplois et filtrer seulement les publiés
+      const allJobs = dataManager.getData('jobs')
+      const publishedJobs = allJobs.filter(job => job.status === 'published')
+      setJobs(publishedJobs)
+      setFilteredJobs(publishedJobs)
+    }
     
-    // Filtrer seulement les emplois publiés
-    const publishedJobs = demoJobs.filter(job => job.status === 'published')
-    setJobs(publishedJobs)
-    setFilteredJobs(publishedJobs)
+    loadJobs()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.jobs) {
+        loadJobs()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   // Filtrage des emplois
