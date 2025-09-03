@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
 import AssetPath from '../../../components/AssetPath'
-import { processImageUrl } from '../../../utils/assetPath'
+import ImageWrapper from '../../../components/ImageWrapper'
 
 const AssistanceTechnique = () => {
   const sections = [
@@ -117,8 +117,8 @@ Notre suivi de mission, couplé à un retour d'expérience systématique, permet
                     className="order-2 lg:order-1"
                   >
                     <div className="relative">
-                      <img
-                        src={processImageUrl(section.image)}
+                      <ImageWrapper
+                        src={section.image}
                         alt={section.title}
                         className="w-full h-auto min-h-[500px] object-cover rounded-lg shadow-lg"
                       />
@@ -170,8 +170,8 @@ Notre suivi de mission, couplé à un retour d'expérience systématique, permet
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
                     <div className="relative">
-                      <img
-                        src={processImageUrl(section.image)}
+                      <ImageWrapper
+                        src={section.image}
                         alt={section.title}
                         className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                       />

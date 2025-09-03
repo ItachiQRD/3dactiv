@@ -20,7 +20,7 @@ import {
   Upload,
   ExternalLink
 } from 'lucide-react'
-import { processImageUrl } from '../../../utils/assetPath'
+import ImageWrapper from '../../../components/ImageWrapper'
 import Link from 'next/link'
 
 const NewsManagement = () => {
@@ -679,8 +679,8 @@ const ArticleViewModal = ({ article, onClose, categories, statusOptions }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
               {article.imageUrl ? (
-                <img
-                  src={processImageUrl(article.imageUrl)}
+                <ImageWrapper
+                  src={article.imageUrl}
                   alt={article.title}
                   className="w-full h-64 object-cover rounded-lg"
                 />

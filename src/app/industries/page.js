@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Zap, Atom, Wind } from 'lucide-react'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
-import { processImageUrl } from '../../utils/assetPath'
+import ImageWrapper from '../../components/ImageWrapper'
 
 const Industries = () => {
   const industries = [
@@ -130,8 +130,8 @@ Grâce à notre réseau d'intervenants disponibles, qualifiés et expérimentés
                   className="order-2 lg:order-1"
                 >
                   <div className="relative">
-                    <img
-                      src={processImageUrl(industry.image)}
+                    <ImageWrapper
+                      src={industry.image}
                       alt={industry.title}
                       className="w-full h-[500px] object-cover"
                     />
@@ -202,8 +202,8 @@ Grâce à notre réseau d'intervenants disponibles, qualifiés et expérimentés
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   <div className="relative">
-                    <img
-                      src={processImageUrl(industry.image)}
+                    <ImageWrapper
+                      src={industry.image}
                       alt={industry.title}
                       className="w-full h-[500px] object-cover"
                     />

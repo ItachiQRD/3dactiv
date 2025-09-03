@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
 import AssetPath from '../../../components/AssetPath'
-import { processImageUrl } from '../../../utils/assetPath'
+import ImageWrapper from '../../../components/ImageWrapper'
 
 const Inspection = () => {
   const sections = [
@@ -124,8 +124,8 @@ Notre rigueur s'appuie sur :
                     className="order-2 lg:order-1"
                   >
                     <div className="relative">
-                      <img
-                        src={processImageUrl(section.image)}
+                      <ImageWrapper
+                        src={section.image}
                         alt={section.title}
                         className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                       />
@@ -177,8 +177,8 @@ Notre rigueur s'appuie sur :
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
                     <div className="relative">
-                      <img
-                        src={processImageUrl(section.image)}
+                      <ImageWrapper
+                        src={section.image}
                         alt={section.title}
                         className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                       />

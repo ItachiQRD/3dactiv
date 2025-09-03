@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
 import AssetPath from '../../../components/AssetPath'
-import { processImageUrl } from '../../../utils/assetPath'
+import ImageWrapper from '../../../components/ImageWrapper'
 
 const ControleNonDestructif = () => {
   const sections = [
@@ -131,8 +131,8 @@ Cette exigence garantit la mobilisation rapide de profils fiables, opérationnel
                     className="order-2 lg:order-1"
                   >
                     <div className="relative">
-                      <img
-                        src={processImageUrl(section.image)}
+                      <ImageWrapper
+                        src={section.image}
                         alt={section.title}
                         className="w-full h-auto min-h-[500px] object-cover rounded-lg shadow-lg"
                       />
@@ -184,8 +184,8 @@ Cette exigence garantit la mobilisation rapide de profils fiables, opérationnel
                     transition={{ duration: 0.8, delay: 0.2 }}
                   >
                     <div className="relative">
-                      <img
-                        src={processImageUrl(section.image)}
+                      <ImageWrapper
+                        src={section.image}
                         alt={section.title}
                         className="w-full h-[400px] object-cover rounded-lg shadow-lg"
                       />

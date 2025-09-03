@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { ExternalLink, Calendar, MapPin, Users } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
-import { processImageUrl } from '../../utils/assetPath'
+import ImageWrapper from '../../components/ImageWrapper'
 
 const Portfolio = () => {
   // Projets récupérés de l'admin
@@ -165,8 +165,8 @@ const Portfolio = () => {
                 className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
               >
                 <div className="relative">
-                  <img
-                    src={processImageUrl(project.imageUrl)}
+                  <ImageWrapper
+                    src={project.imageUrl}
                     alt={project.title}
                     className="w-full h-64 object-cover"
                   />

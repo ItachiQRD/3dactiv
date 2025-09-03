@@ -19,7 +19,7 @@ import {
   X,
   ExternalLink
 } from 'lucide-react'
-import { processImageUrl } from '../../../utils/assetPath'
+import ImageWrapper from '../../../components/ImageWrapper'
 import Link from 'next/link'
 
 const PortfolioManagement = () => {
@@ -330,8 +330,8 @@ const PortfolioManagement = () => {
               {/* Image du projet */}
               <div className="relative h-48 bg-gradient-to-br from-nordic-100 to-nordic-200">
                 {project.imageUrl ? (
-                  <img
-                    src={processImageUrl(project.imageUrl)}
+                  <ImageWrapper
+                    src={project.imageUrl}
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
@@ -719,8 +719,8 @@ const ProjectViewModal = ({ project, onClose, categories, statusOptions }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
             <div>
               {project.imageUrl ? (
-                <img
-                  src={processImageUrl(project.imageUrl)}
+                <ImageWrapper
+                  src={project.imageUrl}
                   alt={project.title}
                   className="w-full h-64 object-cover rounded-lg"
                 />

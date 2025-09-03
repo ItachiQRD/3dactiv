@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { Calendar, User, ArrowRight } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
-import { processImageUrl } from '../../utils/assetPath'
+import ImageWrapper from '../../components/ImageWrapper'
 
 const News = () => {
   // Articles récupérés de l'admin
@@ -121,8 +121,8 @@ const News = () => {
                 className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
               >
                 <div className="relative">
-                  <img
-                    src={processImageUrl(article.imageUrl)}
+                  <ImageWrapper
+                    src={article.imageUrl}
                     alt={article.title}
                     className="w-full h-48 object-cover"
                   />
