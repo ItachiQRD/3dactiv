@@ -5,10 +5,36 @@ import Navigation from '../../components/Navigation'
 import { Calendar, User, ArrowRight } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
 import ImageWrapper from '../../components/ImageWrapper'
+import { useState, useEffect } from 'react'
+import dataManager from '../../utils/dataManager'
 
 const News = () => {
-  // Articles récupérés de l'admin
-  const articles = [
+  const [articles, setArticles] = useState([])
+
+  // Charger les articles depuis le DataManager
+  useEffect(() => {
+    const loadArticles = () => {
+      const allArticles = dataManager.getData('news')
+      // Filtrer seulement les articles publiés
+      const publishedArticles = allArticles.filter(article => article.status === 'published')
+      setArticles(publishedArticles)
+    }
+    
+    loadArticles()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.news) {
+        loadArticles()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+
+  // Données par défaut si aucun article n'est trouvé
+  const defaultArticles = [
     {
       id: 1,
       title: 'Nouveaux défis de la transition énergétique en 2024',
@@ -52,6 +78,9 @@ const News = () => {
       views: 456
     }
   ]
+
+  // Utiliser les articles par défaut si aucun n'est chargé
+  const displayArticles = articles.length > 0 ? articles : defaultArticles
 
   const categories = [
     { value: 'all', label: 'Tous' },
@@ -112,7 +141,7 @@ const News = () => {
 
           {/* Articles Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article, index) => (
+            {displayArticles.map((article, index) => (
               <motion.article
                 key={article.id}
                 initial={{ opacity: 0, y: 30 }}

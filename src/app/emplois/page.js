@@ -6,7 +6,7 @@ import AssetPath from '../../components/AssetPath'
 import { MapPin, Clock, Briefcase, ArrowRight, Upload, Send } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import dataManager from '../../utils/dataManager'
-import ImageUpload from '../../components/ImageUpload'
+import FileUpload from '../../components/FileUpload'
 
 const Emplois = () => {
   const [selectedJob, setSelectedJob] = useState(null)
@@ -296,11 +296,11 @@ const Emplois = () => {
               </div>
 
               <div>
-                <ImageUpload
+                <FileUpload
                   value={formData.cv}
                   onChange={(cv) => setFormData({ ...formData, cv })}
-                  label="CV (PDF, DOC, DOCX)"
-                  accept=".pdf,.doc,.docx,image/*"
+                  label="CV (PDF, DOC, DOCX, TXT)"
+                  accept=".pdf,.doc,.docx,.txt,image/*"
                   maxSize={10 * 1024 * 1024} // 10MB
                 />
               </div>

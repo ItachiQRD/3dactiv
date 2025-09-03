@@ -195,6 +195,13 @@ const PartenairesManagement = () => {
             </div>
             <div className="flex items-center space-x-3">
               <Link 
+                href="/admin" 
+                className="flex items-center space-x-2 px-3 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors duration-200"
+              >
+                <ArrowLeft className="w-4 h-4" />
+                <span>Admin</span>
+              </Link>
+              <Link 
                 href="/" 
                 className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200"
               >
