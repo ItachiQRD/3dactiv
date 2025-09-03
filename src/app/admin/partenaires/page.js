@@ -14,7 +14,8 @@ import {
   Building2,
   Globe,
   Phone,
-  Mail
+  Mail,
+  Home
 } from 'lucide-react'
 import ImageUpload from '../../../components/ImageUpload'
 import { usePartners } from '../../../hooks/useDataManager'
@@ -192,13 +193,22 @@ const PartenairesManagement = () => {
               <Users className="w-8 h-8 text-blue-600" />
               <h1 className="text-3xl font-bold text-gray-900">Gestion des Partenaires</h1>
             </div>
-            <button
-              onClick={() => setShowForm(true)}
-              className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              <Plus className="w-5 h-5" />
-              <span>Nouveau partenaire</span>
-            </button>
+            <div className="flex items-center space-x-3">
+              <Link 
+                href="/" 
+                className="flex items-center space-x-2 px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors duration-200"
+              >
+                <Home className="w-4 h-4" />
+                <span>Accueil</span>
+              </Link>
+              <button
+                onClick={() => setShowForm(true)}
+                className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <Plus className="w-5 h-5" />
+                <span>Nouveau partenaire</span>
+              </button>
+            </div>
           </div>
 
           <div className="mb-6">

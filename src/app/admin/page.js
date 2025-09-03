@@ -13,10 +13,14 @@ import {
   Plus,
   Search,
   Filter,
-  XCircle
+  XCircle,
+  Home,
+  TrendingUp,
+  TrendingDown
 } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
 import Link from 'next/link'
+import dataManager from '../../utils/dataManager'
 
 // Composant de connexion (défini AVANT AdminDashboard)
 const AdminLogin = ({ onLogin }) => {
@@ -115,6 +119,12 @@ const AdminLogin = ({ onLogin }) => {
 const AdminDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
+  const [stats, setStats] = useState({
+    jobs: 0,
+    applications: 0,
+    partners: 0,
+    portfolio: 0
+  })
   const [activeTab, setActiveTab] = useState('dashboard')
 
   // Vérification de l'authentification
@@ -125,6 +135,30 @@ const AdminDashboard = () => {
       setIsAuthenticated(true)
       setUser({ name: 'Admin 3DACTIV', role: 'Administrateur' })
     }
+  }, [])
+
+  // Charger les statistiques
+  useEffect(() => {
+    const loadStats = () => {
+      const jobs = dataManager.getData('jobs').filter(job => job.status === 'published').length
+      const applications = dataManager.getData('applications').length
+      const partners = dataManager.getData('partners').filter(partner => partner.status === 'active').length
+      const portfolio = dataManager.getData('portfolio').length
+      
+      setStats({ jobs, applications, partners, portfolio })
+    }
+    
+    loadStats()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (Object.values(dataManager.storageKeys).includes(e.key)) {
+        loadStats()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   const adminModules = [
@@ -178,11 +212,39 @@ const AdminDashboard = () => {
     }
   ]
 
-  const stats = [
-    { label: 'Emplois Actifs', value: '24', change: '+12%', changeType: 'positive' },
-    { label: 'Candidatures', value: '156', change: '+8%', changeType: 'positive' },
-    { label: 'Partenaires', value: '18', change: '+2', changeType: 'positive' },
-    { label: 'Projets Portfolio', value: '42', change: '+5', changeType: 'positive' }
+  const statsData = [
+    { 
+      label: 'Emplois Actifs', 
+      value: stats.jobs.toString(), 
+      change: '+0%', 
+      changeType: 'neutral',
+      icon: Briefcase,
+      color: 'from-blue-500 to-blue-600'
+    },
+    { 
+      label: 'Candidatures', 
+      value: stats.applications.toString(), 
+      change: '+0%', 
+      changeType: 'neutral',
+      icon: Users,
+      color: 'from-green-500 to-green-600'
+    },
+    { 
+      label: 'Partenaires', 
+      value: stats.partners.toString(), 
+      change: '+0%', 
+      changeType: 'neutral',
+      icon: Building2,
+      color: 'from-purple-500 to-purple-600'
+    },
+    { 
+      label: 'Projets Portfolio', 
+      value: stats.portfolio.toString(), 
+      change: '+0%', 
+      changeType: 'neutral',
+      icon: FolderOpen,
+      color: 'from-orange-500 to-orange-600'
+    }
   ]
 
   if (!isAuthenticated) {
@@ -195,16 +257,23 @@ const AdminDashboard = () => {
       <header className="bg-white shadow-nordic-sm border-b border-nordic-100">
         <div className="container-nordic">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-4">
-                              <AssetPath
-                  src="/images/logo-3dactiv.png"
-                  alt="3DACTIV Logo"
-                  className="h-8 w-auto"
-                />
+                        <div className="flex items-center space-x-4">
+              <AssetPath
+                src="/images/logo-3dactiv.png"
+                alt="3DACTIV Logo"
+                className="h-8 w-auto"
+              />
               <span className="text-xl font-semibold text-nordic-900">Admin Panel</span>
             </div>
 
             <div className="flex items-center space-x-4">
+              <Link 
+                href="/" 
+                className="flex items-center space-x-2 px-3 py-2 bg-nordic-600 text-white rounded-lg hover:bg-nordic-700 transition-colors duration-200"
+              >
+                <Home className="w-4 h-4" />
+                <span className="text-sm">Accueil</span>
+              </Link>
               <div className="text-right">
                 <div className="text-sm font-medium text-nordic-900">{user?.name}</div>
                 <div className="text-xs text-nordic-600">{user?.role}</div>
@@ -246,17 +315,28 @@ const AdminDashboard = () => {
           transition={{ delay: 0.1 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
         >
-          {stats.map((stat, index) => (
+          {statsData.map((stat, index) => (
             <div key={stat.label} className="bg-white rounded-xl p-6 shadow-nordic border border-nordic-100">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-nordic-600">{stat.label}</p>
                   <p className="text-2xl font-bold text-nordic-900">{stat.value}</p>
+                  <div className="flex items-center mt-1">
+                    {stat.changeType === 'positive' ? (
+                      <TrendingUp className="w-4 h-4 text-green-500 mr-1" />
+                    ) : stat.changeType === 'negative' ? (
+                      <TrendingDown className="w-4 h-4 text-red-500 mr-1" />
+                    ) : null}
+                    <span className={`text-sm ${
+                      stat.changeType === 'positive' ? 'text-green-600' : 
+                      stat.changeType === 'negative' ? 'text-red-600' : 'text-nordic-500'
+                    }`}>
+                      {stat.change}
+                    </span>
+                  </div>
                 </div>
-                <div className={`text-sm font-medium ${
-                  stat.changeType === 'positive' ? 'text-green-600' : 'text-red-600'
-                }`}>
-                  {stat.change}
+                <div className={`p-3 rounded-lg bg-gradient-to-r ${stat.color}`}>
+                  <stat.icon className="w-6 h-6 text-white" />
                 </div>
               </div>
             </div>

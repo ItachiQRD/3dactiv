@@ -18,7 +18,8 @@ import {
   ArrowLeft,
   X,
   Upload,
-  ExternalLink
+  ExternalLink,
+  Home
 } from 'lucide-react'
 import ImageWrapper from '../../../components/ImageWrapper'
 import ImageUpload from '../../../components/ImageUpload'
@@ -180,13 +181,22 @@ const NewsManagement = () => {
                 <p className="text-sm text-nordic-600">Créez et gérez vos articles et actualités</p>
               </div>
             </div>
-            <button
-              onClick={() => setShowCreateModal(true)}
-              className="btn-primary inline-flex items-center space-x-2"
-            >
-              <Plus className="w-4 h-4" />
-              <span>Nouvel Article</span>
-            </button>
+            <div className="flex items-center space-x-3">
+              <Link 
+                href="/" 
+                className="flex items-center space-x-2 px-3 py-2 bg-nordic-600 text-white rounded-lg hover:bg-nordic-700 transition-colors duration-200"
+              >
+                <Home className="w-4 h-4" />
+                <span>Accueil</span>
+              </Link>
+              <button
+                onClick={() => setShowCreateModal(true)}
+                className="btn-primary inline-flex items-center space-x-2"
+              >
+                <Plus className="w-4 h-4" />
+                <span>Nouvel Article</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>

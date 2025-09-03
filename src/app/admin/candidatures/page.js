@@ -14,7 +14,11 @@ import {
   X,
   CheckCircle,
   Clock,
-  XCircle
+  XCircle,
+  Trash2,
+  Lock,
+  Unlock,
+  Home
 } from 'lucide-react'
 import ImageWrapper from '../../../components/ImageWrapper'
 import dataManager from '../../../utils/dataManager'
@@ -65,6 +69,16 @@ const CandidaturesManagement = () => {
     dataManager.updateItem('applications', applicationId, { status: newStatus })
   }
 
+  const deleteApplication = (applicationId) => {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette candidature ? Cette action est irréversible.')) {
+      dataManager.deleteItem('applications', applicationId)
+    }
+  }
+
+  const toggleApplicationLock = (applicationId, currentLocked) => {
+    dataManager.updateItem('applications', applicationId, { locked: !currentLocked })
+  }
+
   const openViewModal = (application) => {
     setSelectedApplication(application)
     setShowViewModal(true)
@@ -77,6 +91,10 @@ const CandidaturesManagement = () => {
     { value: 'accepted', label: 'Acceptée', color: 'bg-green-100 text-green-800' },
     { value: 'rejected', label: 'Refusée', color: 'bg-red-100 text-red-800' }
   ]
+
+  const getLockedCount = () => {
+    return applications.filter(a => a.locked).length
+  }
 
   const getStatusColor = (status) => {
     return statusOptions.find(s => s.value === status)?.color || 'bg-gray-100 text-gray-800'
@@ -111,13 +129,22 @@ const CandidaturesManagement = () => {
                 <p className="text-sm text-nordic-600">Consultez et gérez les candidatures reçues</p>
               </div>
             </div>
+            <div className="flex items-center space-x-2">
+              <Link 
+                href="/" 
+                className="flex items-center space-x-2 px-4 py-2 bg-nordic-600 text-white rounded-lg hover:bg-nordic-700 transition-colors duration-200"
+              >
+                <Home className="w-4 h-4" />
+                <span>Retour à l'accueil</span>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
 
       <div className="container-nordic py-8">
         {/* Statistiques */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
           <div className="bg-white rounded-xl p-6 shadow-nordic border border-nordic-100">
             <div className="flex items-center justify-between">
               <div>
@@ -165,6 +192,19 @@ const CandidaturesManagement = () => {
               </div>
               <div className="p-3 bg-red-100 rounded-lg">
                 <XCircle className="w-6 h-6 text-red-600" />
+              </div>
+            </div>
+          </div>
+          <div className="bg-white rounded-xl p-6 shadow-nordic border border-nordic-100">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-nordic-600">Verrouillées</p>
+                <p className="text-2xl font-bold text-nordic-900">
+                  {getLockedCount()}
+                </p>
+              </div>
+              <div className="p-3 bg-purple-100 rounded-lg">
+                <Lock className="w-6 h-6 text-purple-600" />
               </div>
             </div>
           </div>
@@ -250,6 +290,12 @@ const CandidaturesManagement = () => {
                         CV joint
                       </span>
                     )}
+                    {application.locked && (
+                      <span className="px-2 py-1 bg-purple-100 text-purple-700 rounded-full text-xs flex items-center">
+                        <Lock className="w-3 h-3 mr-1" />
+                        Verrouillée
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -262,7 +308,7 @@ const CandidaturesManagement = () => {
                     <Eye className="w-4 h-4" />
                   </button>
                   
-                  {application.status === 'pending' && (
+                  {!application.locked && application.status === 'pending' && (
                     <>
                       <button
                         onClick={() => updateApplicationStatus(application.id, 'accepted')}
@@ -280,6 +326,26 @@ const CandidaturesManagement = () => {
                       </button>
                     </>
                   )}
+                  
+                  <button
+                    onClick={() => toggleApplicationLock(application.id, application.locked)}
+                    className={`p-2 rounded-lg transition-colors duration-200 ${
+                      application.locked 
+                        ? 'text-green-600 hover:text-green-700 hover:bg-green-50' 
+                        : 'text-purple-600 hover:text-purple-700 hover:bg-purple-50'
+                    }`}
+                    title={application.locked ? "Déverrouiller" : "Verrouiller"}
+                  >
+                    {application.locked ? <Unlock className="w-4 h-4" /> : <Lock className="w-4 h-4" />}
+                  </button>
+                  
+                  <button
+                    onClick={() => deleteApplication(application.id)}
+                    className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                    title="Supprimer"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             </motion.div>
