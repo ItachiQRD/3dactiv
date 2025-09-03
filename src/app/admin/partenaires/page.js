@@ -29,21 +29,13 @@ const PartenairesManagement = () => {
   const [formData, setFormData] = useState({
     name: '',
     logo: '',
-    website: '',
-    description: '',
-    sector: '',
-    contact: '',
-    email: '',
-    phone: '',
     status: 'active'
   })
 
   // Filtrage des partenaires
   useEffect(() => {
     const filtered = partenaires.filter(partner =>
-      partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      partner.sector.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      partner.description.toLowerCase().includes(searchTerm.toLowerCase())
+      partner.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
     setFilteredPartenaires(filtered)
   }, [searchTerm, partenaires])
@@ -78,12 +70,6 @@ const PartenairesManagement = () => {
     setFormData({
       name: '',
       logo: '',
-      website: '',
-      description: '',
-      sector: '',
-      contact: '',
-      email: '',
-      phone: '',
       status: 'active'
     })
     setEditingPartner(null)
@@ -132,39 +118,18 @@ const PartenairesManagement = () => {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Nom du partenaire *
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Ex: EDF"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Secteur d'activité
-                  </label>
-                  <select
-                    value={formData.sector}
-                    onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option value="">Sélectionner un secteur</option>
-                    <option value="Énergie">Énergie</option>
-                    <option value="Nucléaire">Nucléaire</option>
-                    <option value="Pétrole & Gaz">Pétrole & Gaz</option>
-                    <option value="Renouvelables">Renouvelables</option>
-                    <option value="Industrie">Industrie</option>
-                    <option value="Autre">Autre</option>
-                  </select>
-                </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Nom du partenaire *
+                </label>
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  placeholder="Ex: EDF"
+                  required
+                />
               </div>
 
               <div>
@@ -175,73 +140,6 @@ const PartenairesManagement = () => {
                   accept="image/*"
                   maxSize={2 * 1024 * 1024} // 2MB
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Site web
-                </label>
-                <input
-                  type="url"
-                  value={formData.website}
-                  onChange={(e) => setFormData({ ...formData, website: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="https://www.exemple.com"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Description
-                </label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  placeholder="Description du partenaire..."
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Contact
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.contact}
-                    onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Nom du contact"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="contact@exemple.com"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Téléphone
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="+33 1 23 45 67 89"
-                  />
-                </div>
               </div>
 
               <div>
@@ -324,60 +222,30 @@ const PartenairesManagement = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center space-x-3">
-                    {partner.logo ? (
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="w-12 h-12 object-contain rounded-lg"
-                        onError={(e) => {
-                          e.target.style.display = 'none'
-                          e.target.nextSibling.style.display = 'flex'
-                        }}
-                      />
-                    ) : null}
-                    <div className={`w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center ${partner.logo ? 'hidden' : 'flex'}`}>
-                      <Building2 className="w-6 h-6 text-gray-400" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">{partner.name}</h3>
-                      <p className="text-sm text-gray-500">{partner.sector}</p>
-                    </div>
-                  </div>
-                  <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(partner.status)}`}>
-                    {getStatusText(partner.status)}
-                  </span>
-                </div>
-
-                {partner.description && (
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-2">
-                    {partner.description}
-                  </p>
-                )}
-
-                <div className="space-y-2 mb-4">
-                  {partner.website && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-500">
-                      <Globe className="w-4 h-4" />
-                      <a href={partner.website} target="_blank" rel="noopener noreferrer" className="hover:text-blue-600">
-                        Site web
-                      </a>
-                    </div>
-                  )}
-                  {partner.email && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-500">
-                      <Mail className="w-4 h-4" />
-                      <span>{partner.email}</span>
-                    </div>
-                  )}
-                  {partner.phone && (
-                    <div className="flex items-center space-x-2 text-sm text-gray-500">
-                      <Phone className="w-4 h-4" />
-                      <span>{partner.phone}</span>
-                    </div>
-                  )}
-                </div>
+                                 <div className="flex items-start justify-between mb-4">
+                   <div className="flex items-center space-x-3">
+                     {partner.logo ? (
+                       <img
+                         src={partner.logo}
+                         alt={partner.name}
+                         className="w-12 h-12 object-contain rounded-lg"
+                         onError={(e) => {
+                           e.target.style.display = 'none'
+                           e.target.nextSibling.style.display = 'flex'
+                         }}
+                       />
+                     ) : null}
+                     <div className={`w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center ${partner.logo ? 'hidden' : 'flex'}`}>
+                       <Building2 className="w-6 h-6 text-gray-400" />
+                     </div>
+                     <div>
+                       <h3 className="font-semibold text-gray-900">{partner.name}</h3>
+                     </div>
+                   </div>
+                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(partner.status)}`}>
+                     {getStatusText(partner.status)}
+                   </span>
+                 </div>
 
                 <div className="flex justify-end space-x-2">
                   <button

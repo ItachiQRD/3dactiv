@@ -69,51 +69,33 @@ class DataManager {
       this.setData('jobs', defaultJobs)
     }
 
-    // Données par défaut pour les partenaires
-    if (!this.getData('partners')) {
-      const defaultPartners = [
-        {
-          id: 1,
-          name: 'EDF',
-          logo: '/images/partners/edf-logo.png',
-          website: 'https://www.edf.fr',
-          description: 'Électricien français, leader mondial de l\'énergie bas carbone',
-          sector: 'Énergie',
-          contact: 'Jean Dupont',
-          email: 'contact@edf.fr',
-          phone: '+33 1 40 42 22 22',
-          status: 'active',
-          createdAt: '2024-01-15'
-        },
-        {
-          id: 2,
-          name: 'ENGIE',
-          logo: '/images/partners/engie-logo.png',
-          website: 'https://www.engie.com',
-          description: 'Groupe énergétique mondial, leader de la transition énergétique',
-          sector: 'Énergie',
-          contact: 'Marie Martin',
-          email: 'contact@engie.com',
-          phone: '+33 1 44 22 00 00',
-          status: 'active',
-          createdAt: '2024-01-20'
-        },
-        {
-          id: 3,
-          name: 'AREVA',
-          logo: '/images/partners/areva-logo.png',
-          website: 'https://www.areva.com',
-          description: 'Spécialiste du cycle du combustible nucléaire',
-          sector: 'Nucléaire',
-          contact: 'Pierre Durand',
-          email: 'contact@areva.com',
-          phone: '+33 1 34 96 00 00',
-          status: 'active',
-          createdAt: '2024-02-01'
-        }
-      ]
-      this.setData('partners', defaultPartners)
-    }
+         // Données par défaut pour les partenaires
+     if (!this.getData('partners')) {
+       const defaultPartners = [
+         {
+           id: 1,
+           name: 'EDF',
+           logo: '/images/partners/edf-logo.png',
+           status: 'active',
+           createdAt: '2024-01-15'
+         },
+         {
+           id: 2,
+           name: 'ENGIE',
+           logo: '/images/partners/engie-logo.png',
+           status: 'active',
+           createdAt: '2024-01-20'
+         },
+         {
+           id: 3,
+           name: 'AREVA',
+           logo: '/images/partners/areva-logo.png',
+           status: 'active',
+           createdAt: '2024-02-01'
+         }
+       ]
+       this.setData('partners', defaultPartners)
+     }
 
     // Données par défaut pour les actualités
     if (!this.getData('news')) {

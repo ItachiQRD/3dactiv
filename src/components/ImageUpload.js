@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { Upload, X, Image as ImageIcon } from 'lucide-react'
-import { useFileUpload, validateFile, generateUniqueFileName } from './FileUploadHandler'
+import { validateFile } from './FileUploadHandler'
 import dataManager from '../utils/dataManager'
 
 const ImageUpload = ({ 
@@ -15,8 +15,8 @@ const ImageUpload = ({
 }) => {
   const [isDragging, setIsDragging] = useState(false)
   const [error, setError] = useState('')
+  const [isUploading, setIsUploading] = useState(false)
   const fileInputRef = useRef(null)
-  const { isUploading, uploadProgress, uploadFile } = useFileUpload()
 
   const handleFileSelect = async (file) => {
     if (!file) return
