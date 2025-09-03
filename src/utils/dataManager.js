@@ -5,7 +5,8 @@ class DataManager {
       jobs: '3dactiv_jobs',
       partners: '3dactiv_partners',
       news: '3dactiv_news',
-      portfolio: '3dactiv_portfolio'
+      portfolio: '3dactiv_portfolio',
+      applications: '3dactiv_applications'
     }
     
     // Initialiser les données par défaut si elles n'existent pas
@@ -146,6 +147,11 @@ class DataManager {
         }
       ]
       this.setData('portfolio', defaultPortfolio)
+    }
+
+    // Données par défaut pour les candidatures (vide au début)
+    if (!this.getData('applications')) {
+      this.setData('applications', [])
     }
   }
 

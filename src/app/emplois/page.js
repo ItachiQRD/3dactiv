@@ -4,14 +4,40 @@ import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
 import { MapPin, Clock, Briefcase, ArrowRight, Upload, Send } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import dataManager from '../../utils/dataManager'
+import ImageUpload from '../../components/ImageUpload'
 
 const Emplois = () => {
   const [selectedJob, setSelectedJob] = useState(null)
   const [showApplicationForm, setShowApplicationForm] = useState(false)
 
-  // Mock data - en réalité, ces données viendraient de l'admin
-  const jobs = [
+  const [jobs, setJobs] = useState([])
+
+  // Charger les emplois depuis le DataManager
+  useEffect(() => {
+    const loadJobs = () => {
+      const allJobs = dataManager.getData('jobs')
+      // Filtrer seulement les emplois publiés
+      const publishedJobs = allJobs.filter(job => job.status === 'published')
+      setJobs(publishedJobs)
+    }
+    
+    loadJobs()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.jobs) {
+        loadJobs()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+
+  // Données par défaut si aucun emploi n'est trouvé
+  const defaultJobs = [
     {
       id: 1,
       title: 'Technicien CND - Radiographie',
@@ -34,7 +60,8 @@ const Emplois = () => {
         'Prime de déplacement'
       ],
       postedDate: '2024-01-15',
-      category: 'CND'
+      category: 'CND',
+      status: 'published'
     },
     {
       id: 2,
@@ -58,7 +85,8 @@ const Emplois = () => {
         'Formation certifiante'
       ],
       postedDate: '2024-01-12',
-      category: 'Inspection'
+      category: 'Inspection',
+      status: 'published'
     },
     {
       id: 3,
@@ -82,7 +110,8 @@ const Emplois = () => {
         'Formation continue'
       ],
       postedDate: '2024-01-10',
-      category: 'Ingénierie'
+      category: 'Ingénierie',
+      status: 'published'
     },
     {
       id: 4,
@@ -106,9 +135,13 @@ const Emplois = () => {
         'Évolution de carrière'
       ],
       postedDate: '2024-01-08',
-      category: 'Supervision'
+      category: 'Supervision',
+      status: 'published'
     }
   ]
+
+  // Utiliser les emplois par défaut si aucun n'est chargé
+  const displayJobs = jobs.length > 0 ? jobs : defaultJobs
 
   const categories = ['Tous', 'CND', 'Inspection', 'Ingénierie', 'Supervision']
 
@@ -120,15 +153,43 @@ const Emplois = () => {
       phone: '',
       experience: '',
       motivation: '',
-      cv: null
+      cv: ''
     })
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault()
-      // Ici, on enverrait la candidature à l'admin
-      console.log('Candidature envoyée:', { job, formData })
-      alert('Votre candidature a été envoyée avec succès !')
-      onClose()
+      setIsSubmitting(true)
+      
+      try {
+        // Créer la candidature
+        const application = {
+          id: Date.now(),
+          jobId: job.id,
+          jobTitle: job.title,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone,
+          experience: formData.experience,
+          motivation: formData.motivation,
+          cv: formData.cv,
+          status: 'pending',
+          submittedAt: new Date().toISOString(),
+          createdAt: new Date().toISOString().split('T')[0]
+        }
+        
+        // Sauvegarder la candidature
+        dataManager.addItem('applications', application)
+        
+        alert('Votre candidature a été envoyée avec succès !')
+        onClose()
+      } catch (error) {
+        console.error('Erreur lors de l\'envoi de la candidature:', error)
+        alert('Une erreur est survenue. Veuillez réessayer.')
+      } finally {
+        setIsSubmitting(false)
+      }
     }
 
     return (
@@ -235,24 +296,13 @@ const Emplois = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">
-                  CV (PDF) *
-                </label>
-                <div className="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center">
-                  <Upload size={32} className="mx-auto text-slate-400 mb-2" />
-                  <p className="text-slate-600">Glissez-déposez votre CV ou cliquez pour sélectionner</p>
-                  <input
-                    type="file"
-                    accept=".pdf"
-                    required
-                    onChange={(e) => setFormData({...formData, cv: e.target.files[0]})}
-                    className="hidden"
-                    id="cv-upload"
-                  />
-                  <label htmlFor="cv-upload" className="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-700">
-                    Sélectionner un fichier
-                  </label>
-                </div>
+                <ImageUpload
+                  value={formData.cv}
+                  onChange={(cv) => setFormData({ ...formData, cv })}
+                  label="CV (PDF, DOC, DOCX)"
+                  accept=".pdf,.doc,.docx,image/*"
+                  maxSize={10 * 1024 * 1024} // 10MB
+                />
               </div>
 
               <div className="flex gap-4">
@@ -265,10 +315,20 @@ const Emplois = () => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 flex items-center justify-center"
+                  disabled={isSubmitting}
+                  className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                 >
-                  <Send size={20} className="mr-2" />
-                  Envoyer ma candidature
+                  {isSubmitting ? (
+                    <>
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Send size={20} className="mr-2" />
+                      Envoyer ma candidature
+                    </>
+                  )}
                 </button>
               </div>
             </form>
@@ -351,7 +411,7 @@ const Emplois = () => {
       <section className="py-24 bg-slate-50">
         <div className="container-nordic">
           <div className="grid gap-8">
-            {jobs.map((job, index) => (
+            {displayJobs.map((job, index) => (
               <motion.div
                 key={job.id}
                 initial={{ opacity: 0, y: 50 }}

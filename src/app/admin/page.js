@@ -141,7 +141,7 @@ const AdminDashboard = () => {
       title: 'Candidatures',
       description: 'Consulter et gérer les candidatures reçues',
       icon: Users,
-      href: '/admin/applications',
+      href: '/admin/candidatures',
       color: 'from-green-500 to-green-600'
     },
     {
