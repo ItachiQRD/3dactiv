@@ -461,7 +461,10 @@ const ApplicationViewModal = ({ application, onClose, onStatusUpdate }) => {
                             <FileText className="w-16 h-16 text-gray-400 mx-auto mb-3" />
                             <p className="text-gray-600 font-medium">Fichier CV</p>
                             <p className="text-sm text-gray-500 mt-1">
-                              {application.cv.includes('pdf') ? 'PDF' : 
+                              {application.cv.includes('data:application/pdf') ? 'PDF' : 
+                               application.cv.includes('data:application/msword') ? 'Document Word' : 
+                               application.cv.includes('data:text/plain') ? 'Fichier texte' : 
+                               application.cv.includes('pdf') ? 'PDF' : 
                                application.cv.includes('doc') ? 'Document Word' : 
                                application.cv.includes('txt') ? 'Fichier texte' : 'Fichier'}
                             </p>
@@ -470,22 +473,48 @@ const ApplicationViewModal = ({ application, onClose, onStatusUpdate }) => {
                         <div className="flex space-x-3">
                           <button
                             onClick={() => {
-                              // Ouvrir le fichier dans un nouvel onglet pour prévisualisation
-                              const newWindow = window.open()
+                              // Ouvrir le PDF dans un nouvel onglet
+                              const newWindow = window.open('', '_blank')
                               newWindow.document.write(`
                                 <html>
-                                  <head><title>CV - ${application.nom} ${application.prenom}</title></head>
-                                  <body style="margin:0; padding:20px; background:#f5f5f5;">
-                                    <div style="max-width:800px; margin:0 auto; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                                      <h2 style="color:#333; margin-bottom:20px;">CV de ${application.nom} ${application.prenom}</h2>
-                                      <div style="text-align:center; padding:40px;">
-                                        <p style="color:#666; font-size:16px;">Ce fichier ne peut pas être prévisualisé directement.</p>
-                                        <p style="color:#999; font-size:14px; margin-top:10px;">Veuillez le télécharger pour le consulter.</p>
+                                  <head>
+                                    <title>CV - ${application.nom} ${application.prenom}</title>
+                                    <style>
+                                      body { margin: 0; padding: 0; background: #f5f5f5; font-family: Arial, sans-serif; }
+                                      .container { max-width: 100%; height: 100vh; display: flex; flex-direction: column; }
+                                      .header { background: white; padding: 20px; border-bottom: 1px solid #ddd; text-align: center; }
+                                      .content { flex: 1; display: flex; justify-content: center; align-items: center; }
+                                      .pdf-container { width: 100%; height: 100%; }
+                                      .pdf-viewer { width: 100%; height: 100%; border: none; }
+                                      .fallback { text-align: center; padding: 40px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                                    </style>
+                                  </head>
+                                  <body>
+                                    <div class="container">
+                                      <div class="header">
+                                        <h2 style="color:#333; margin:0;">CV de ${application.nom} ${application.prenom}</h2>
+                                      </div>
+                                      <div class="content">
+                                        <div class="pdf-container">
+                                          <iframe 
+                                            src="${application.cv}" 
+                                            class="pdf-viewer"
+                                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                                          ></iframe>
+                                          <div class="fallback" style="display:none;">
+                                            <p style="color:#666; font-size:16px; margin-bottom:20px;">Ce fichier ne peut pas être prévisualisé directement.</p>
+                                            <p style="color:#999; font-size:14px; margin-bottom:20px;">Veuillez le télécharger pour le consulter.</p>
+                                            <button onclick="window.close()" style="padding:10px 20px; background:#007bff; color:white; border:none; border-radius:4px; cursor:pointer;">
+                                              Fermer
+                                            </button>
+                                          </div>
+                                        </div>
                                       </div>
                                     </div>
                                   </body>
                                 </html>
                               `)
+                              newWindow.document.close()
                             }}
                             className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
                           >
@@ -496,7 +525,16 @@ const ApplicationViewModal = ({ application, onClose, onStatusUpdate }) => {
                             onClick={() => {
                               const link = document.createElement('a')
                               link.href = application.cv
-                              link.download = `CV_${application.nom}_${application.prenom}.${application.cv.includes('pdf') ? 'pdf' : application.cv.includes('doc') ? 'doc' : 'txt'}`
+                              // Déterminer l'extension du fichier
+                              let extension = 'pdf'
+                              if (application.cv.includes('data:application/msword') || application.cv.includes('doc')) {
+                                extension = 'doc'
+                              } else if (application.cv.includes('data:text/plain') || application.cv.includes('txt')) {
+                                extension = 'txt'
+                              } else if (application.cv.includes('data:image/')) {
+                                extension = 'jpg'
+                              }
+                              link.download = `CV_${application.nom}_${application.prenom}.${extension}`
                               link.click()
                             }}
                             className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
