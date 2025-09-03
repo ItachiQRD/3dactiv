@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import AssetPath from './AssetPath'
-import VideoSource from './VideoSource'
+import VideoWrapper from './VideoWrapper'
 
 const Portfolio = () => {
   return (
@@ -40,7 +40,7 @@ const Portfolio = () => {
               playsInline
               className="w-full h-80 sm:h-96 md:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover"
             >
-              <VideoSource src="/videos/portfolio.mp4" type="video/mp4" />
+              <VideoWrapper src="/videos/portfolio.mp4" type="video/mp4" />
             </video>
           </div>
         </motion.div>

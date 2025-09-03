@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 
-const VideoSource = ({ src, type, ...props }) => {
+const VideoWrapper = ({ src, type, ...props }) => {
   const [finalSrc, setFinalSrc] = useState(src)
   const [mounted, setMounted] = useState(false)
 
@@ -33,7 +33,7 @@ const VideoSource = ({ src, type, ...props }) => {
     setFinalSrc(newSrc)
 
     // Debug en console
-    console.log('VideoSource Debug:', {
+    console.log('VideoWrapper Debug:', {
       hostname: window.location.hostname,
       isGitHubPages,
       isOVH,
@@ -57,4 +57,4 @@ const VideoSource = ({ src, type, ...props }) => {
   )
 }
 
-export default VideoSource
+export default VideoWrapper
