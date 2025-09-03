@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Calendar, Clock, ArrowRight, TrendingUp, Users, Award } from 'lucide-react'
-import { processImageUrl } from '../utils/assetPath'
+import ImageWrapper from './ImageWrapper'
 
 const News = () => {
   const news = [
@@ -97,8 +97,8 @@ const News = () => {
               <div className="grid lg:grid-cols-2 gap-0">
                 {/* Image */}
                 <div className="h-80 lg:h-full overflow-hidden">
-                  <img
-                    src={processImageUrl(article.image)}
+                  <ImageWrapper
+                    src={article.image}
                     alt={article.title}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
@@ -155,8 +155,8 @@ const News = () => {
               <div className="card-hover h-full overflow-hidden">
                 {/* Image */}
                 <div className="h-48 overflow-hidden">
-                  <img
-                    src={processImageUrl(article.image)}
+                  <ImageWrapper
+                    src={article.image}
                     alt={article.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

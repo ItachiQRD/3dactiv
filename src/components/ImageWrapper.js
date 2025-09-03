@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react'
 
 const ImageWrapper = ({ src, alt, className, ...props }) => {
   const [finalSrc, setFinalSrc] = useState(src)
-  const [isClient, setIsClient] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsClient(true)
+    setMounted(true)
     
     // Détecter l'environnement côté client
     const isGitHubPages = window.location.hostname.includes('github.io')
@@ -41,13 +41,25 @@ const ImageWrapper = ({ src, alt, className, ...props }) => {
       prefix,
       originalSrc: src,
       finalSrc: newSrc,
-      isClient: true
+      mounted: true
     })
   }, [src])
 
+  // Pendant l'hydratation, utiliser le src original pour éviter les différences SSR/CSR
+  if (!mounted) {
+    return (
+      <img 
+        src={src} 
+        alt={alt} 
+        className={className} 
+        {...props} 
+      />
+    )
+  }
+
   return (
     <img 
-      src={isClient ? finalSrc : src} 
+      src={finalSrc} 
       alt={alt} 
       className={className} 
       {...props} 

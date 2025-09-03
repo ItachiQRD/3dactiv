@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { processImageUrl } from '../utils/assetPath'
+import ImageWrapper from './ImageWrapper'
 
 const Solutions = () => {
   const solutions = [
@@ -57,8 +57,8 @@ const Solutions = () => {
               <div className="card-hover h-full flex flex-col">
                 {/* Image Header - Plus grande et sans overlay */}
                 <div className="relative h-64 rounded-t-xl overflow-hidden">
-                  <img
-                    src={processImageUrl(solution.image)}
+                  <ImageWrapper
+                    src={solution.image}
                     alt={solution.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

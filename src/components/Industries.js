@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { processImageUrl } from '../utils/assetPath'
+import ImageWrapper from './ImageWrapper'
 
 const Industries = () => {
   const industries = [
@@ -53,8 +53,8 @@ const Industries = () => {
               <div className="card-hover h-full flex flex-col">
                 {/* Image Header - Plus grande et sans overlay */}
                 <div className="relative h-64 rounded-t-xl overflow-hidden">
-                  <img
-                    src={processImageUrl(industry.image)}
+                  <ImageWrapper
+                    src={industry.image}
                     alt={industry.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
