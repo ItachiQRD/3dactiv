@@ -386,15 +386,15 @@ const AdminDashboard = () => {
         >
           <h3 className="text-lg font-semibold text-nordic-900 mb-4">Actions Rapides</h3>
           <div className="flex flex-wrap gap-4">
-            <Link href="/admin/jobs/new" className="btn-primary inline-flex items-center space-x-2">
+            <Link href="/admin/jobs" className="btn-primary inline-flex items-center space-x-2">
               <Plus className="w-4 h-4" />
               <span>Nouvel Emploi</span>
             </Link>
-            <Link href="/admin/applications" className="btn-outline inline-flex items-center space-x-2">
+            <Link href="/admin/candidatures" className="btn-outline inline-flex items-center space-x-2">
               <Users className="w-4 h-4" />
               <span>Voir Candidatures</span>
             </Link>
-            <Link href="/admin/partners/new" className="btn-outline inline-flex items-center space-x-2">
+            <Link href="/admin/partenaires" className="btn-outline inline-flex items-center space-x-2">
               <UserPlus className="w-4 h-4" />
               <span>Nouveau Partenaire</span>
             </Link>

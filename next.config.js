@@ -9,9 +9,21 @@ const nextConfig = {
     unoptimized: true,
     domains: ['localhost'],
   },
-  // Forcer la copie des assets statiques
+  // Optimisations pour éviter les erreurs de chunks
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+    return config;
+  },
+  // Désactiver la génération de chunks séparés pour éviter les erreurs
   experimental: {
-    outputFileTracingRoot: undefined,
+    esmExternals: false,
   },
 };
 
