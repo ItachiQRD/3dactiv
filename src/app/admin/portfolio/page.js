@@ -22,6 +22,7 @@ import {
 import ImageWrapper from '../../../components/ImageWrapper'
 import ImageUpload from '../../../components/ImageUpload'
 import Link from 'next/link'
+import dataManager from '../../../utils/dataManager'
 
 const PortfolioManagement = () => {
   const [projects, setProjects] = useState([])
@@ -34,84 +35,35 @@ const PortfolioManagement = () => {
   const [selectedProject, setSelectedProject] = useState(null)
   const [formData, setFormData] = useState({
     title: '',
-    category: 'nuclear',
-    client: '',
-    location: '',
-    startDate: '',
-    endDate: '',
     description: '',
-    technologies: '',
-    results: '',
-    teamSize: '',
-    budget: '',
     imageUrl: '',
-    status: 'completed'
+    category: 'nuclear'
   })
 
-  // Données de test
+  // Charger les projets depuis le DataManager
   useEffect(() => {
-    const mockProjects = [
-      {
-        id: 1,
-        title: 'Inspection CND Centrale Nucléaire Flamanville',
-        category: 'nuclear',
-        client: 'EDF',
-        location: 'Flamanville, France',
-        startDate: '2023-03-01',
-        endDate: '2023-06-30',
-        description: 'Inspection complète des soudures et structures de la centrale nucléaire de Flamanville, incluant contrôle ultrasonique, radiographique et magnétoscopique.',
-        technologies: 'UT, RT, MT, PT, Phased Array',
-        results: 'Détection de 3 défauts critiques, maintenance préventive planifiée, conformité aux normes ASME et RCC-M validée.',
-        teamSize: '8 inspecteurs',
-        budget: '450,000 €',
-        imageUrl: '/images/portfolio/nuclear-inspection.jpg',
-        status: 'completed',
-        createdAt: '2024-01-15'
-      },
-      {
-        id: 2,
-        title: 'Maintenance Plateforme Offshore TotalEnergies',
-        category: 'oil-gas',
-        client: 'TotalEnergies',
-        location: 'Mer du Nord, Norvège',
-        startDate: '2023-08-15',
-        endDate: '2023-11-30',
-        description: 'Maintenance préventive et inspection des équipements de production offshore, incluant inspection des pipelines et structures sous-marines.',
-        technologies: 'ROV, UT, RT, Corrosion Monitoring',
-        results: 'Extension de la durée de vie de 5 ans, réduction des coûts de maintenance de 25%, zéro incident de sécurité.',
-        teamSize: '12 techniciens',
-        budget: '780,000 €',
-        imageUrl: '/images/portfolio/offshore-maintenance.jpg',
-        status: 'completed',
-        createdAt: '2024-01-10'
-      },
-      {
-        id: 3,
-        title: 'Supervision Parc Éolien Offshore',
-        category: 'renewable',
-        client: 'Engie',
-        location: 'Mer Baltique, Allemagne',
-        startDate: '2024-01-01',
-        endDate: '2024-12-31',
-        description: 'Supervision complète de la construction et mise en service d\'un parc éolien offshore de 500 MW, incluant contrôle qualité et sécurité.',
-        technologies: 'Drone, Lidar, Monitoring, QA/QC',
-        results: 'Construction dans les délais, respect des normes environnementales, formation de l\'équipe locale.',
-        teamSize: '15 superviseurs',
-        budget: '1,200,000 €',
-        imageUrl: '/images/portfolio/wind-farm.jpg',
-        status: 'in-progress',
-        createdAt: '2024-01-05'
+    const loadProjects = () => {
+      const allProjects = dataManager.getData('portfolio')
+      setProjects(allProjects)
+    }
+    
+    loadProjects()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.portfolio) {
+        loadProjects()
       }
-    ]
-    setProjects(mockProjects)
-    setFilteredProjects(mockProjects)
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   // Filtrage et recherche
   useEffect(() => {
     let filtered = projects.filter(project => {
       const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            project.description.toLowerCase().includes(searchTerm.toLowerCase())
       const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory
       return matchesSearch && matchesCategory
@@ -126,17 +78,14 @@ const PortfolioManagement = () => {
       ...formData,
       createdAt: new Date().toISOString().split('T')[0]
     }
-    setProjects([...projects, newProject])
+    dataManager.addItem('portfolio', newProject)
     setShowCreateModal(false)
     resetForm()
   }
 
   const handleEditProject = (e) => {
     e.preventDefault()
-    const updatedProjects = projects.map(project => 
-      project.id === selectedProject.id ? { ...project, ...formData } : project
-    )
-    setProjects(updatedProjects)
+    dataManager.updateItem('portfolio', selectedProject.id, formData)
     setShowEditModal(false)
     setSelectedProject(null)
     resetForm()
@@ -144,25 +93,16 @@ const PortfolioManagement = () => {
 
   const handleDeleteProject = (projectId) => {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) {
-      setProjects(projects.filter(project => project.id !== projectId))
+      dataManager.deleteItem('portfolio', projectId)
     }
   }
 
   const resetForm = () => {
     setFormData({
       title: '',
-      category: 'nuclear',
-      client: '',
-      location: '',
-      startDate: '',
-      endDate: '',
       description: '',
-      technologies: '',
-      results: '',
-      teamSize: '',
-      budget: '',
       imageUrl: '',
-      status: 'completed'
+      category: 'nuclear'
     })
   }
 
@@ -184,20 +124,7 @@ const PortfolioManagement = () => {
     { value: 'industrial', label: 'Industriel', color: 'from-gray-500 to-gray-600' }
   ]
 
-  const statusOptions = [
-    { value: 'completed', label: 'Terminé', color: 'bg-green-100 text-green-800' },
-    { value: 'in-progress', label: 'En cours', color: 'bg-blue-100 text-blue-800' },
-    { value: 'planned', label: 'Planifié', color: 'bg-yellow-100 text-yellow-800' },
-    { value: 'on-hold', label: 'En pause', color: 'bg-gray-100 text-gray-800' }
-  ]
 
-  const getStatusColor = (status) => {
-    return statusOptions.find(s => s.value === status)?.color || 'bg-gray-100 text-gray-800'
-  }
-
-  const getStatusLabel = (status) => {
-    return statusOptions.find(s => s.value === status)?.label || 'Inconnu'
-  }
 
   const getCategoryColor = (category) => {
     return categories.find(c => c.value === category)?.color || 'from-gray-500 to-gray-600'
@@ -250,39 +177,39 @@ const PortfolioManagement = () => {
           <div className="bg-white rounded-xl p-6 shadow-nordic border border-nordic-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-nordic-600">Terminés</p>
+                <p className="text-sm font-medium text-nordic-600">Nucléaire</p>
                 <p className="text-2xl font-bold text-nordic-900">
-                  {projects.filter(p => p.status === 'completed').length}
+                  {projects.filter(p => p.category === 'nuclear').length}
                 </p>
               </div>
-              <div className="p-3 bg-green-100 rounded-lg">
-                <Award className="w-6 h-6 text-green-600" />
+              <div className="p-3 bg-red-100 rounded-lg">
+                <Target className="w-6 h-6 text-red-600" />
               </div>
             </div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-nordic border border-nordic-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-nordic-600">En cours</p>
+                <p className="text-sm font-medium text-nordic-600">Pétrole & Gaz</p>
                 <p className="text-2xl font-bold text-nordic-900">
-                  {projects.filter(p => p.status === 'in-progress').length}
+                  {projects.filter(p => p.category === 'oil-gas').length}
                 </p>
               </div>
               <div className="p-3 bg-blue-100 rounded-lg">
-                <Target className="w-6 h-6 text-blue-600" />
+                <Award className="w-6 h-6 text-blue-600" />
               </div>
             </div>
           </div>
           <div className="bg-white rounded-xl p-6 shadow-nordic border border-nordic-100">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-nordic-600">Budget Total</p>
+                <p className="text-sm font-medium text-nordic-600">Renouvelables</p>
                 <p className="text-2xl font-bold text-nordic-900">
-                  {projects.reduce((sum, p) => sum + parseInt(p.budget.replace(/[^\d]/g, '')), 0).toLocaleString()} €
+                  {projects.filter(p => p.category === 'renewable').length}
                 </p>
               </div>
-              <div className="p-3 bg-purple-100 rounded-lg">
-                <Users className="w-6 h-6 text-purple-600" />
+              <div className="p-3 bg-green-100 rounded-lg">
+                <Users className="w-6 h-6 text-green-600" />
               </div>
             </div>
           </div>
@@ -341,11 +268,6 @@ const PortfolioManagement = () => {
                     <FolderOpen className="w-16 h-16 text-nordic-400" />
                   </div>
                 )}
-                <div className="absolute top-3 left-3">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(project.status)}`}>
-                    {getStatusLabel(project.status)}
-                  </span>
-                </div>
                 <div className="absolute top-3 right-3">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r ${getCategoryColor(project.category)} text-white`}>
                     {getCategoryLabel(project.category)}
@@ -358,55 +280,33 @@ const PortfolioManagement = () => {
                 <h3 className="text-lg font-semibold text-nordic-900 mb-3 line-clamp-2">
                   {project.title}
                 </h3>
-                
-                <div className="space-y-2 text-sm text-nordic-600 mb-4">
-                  <div className="flex items-center">
-                    <Users className="w-4 h-4 mr-2" />
-                    <span>{project.client}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="w-4 h-4 mr-2" />
-                    <span>{project.location}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="w-4 h-4 mr-2" />
-                    <span>
-                      {new Date(project.startDate).toLocaleDateString('fr-FR')} - {new Date(project.endDate).toLocaleDateString('fr-FR')}
-                    </span>
-                  </div>
-                </div>
 
                 <p className="text-nordic-600 text-sm line-clamp-3 mb-4">
                   {project.description}
                 </p>
 
-                <div className="flex items-center justify-between">
-                  <div className="text-sm text-nordic-500">
-                    <span className="font-medium">{project.budget}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <button
-                      onClick={() => openViewModal(project)}
-                      className="p-2 text-nordic-600 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors duration-200"
-                      title="Voir les détails"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => openEditModal(project)}
-                      className="p-2 text-nordic-600 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors duration-200"
-                      title="Modifier"
-                    >
-                      <Edit className="w-4 h-4" />
-                    </button>
-                    <button
-                      onClick={() => handleDeleteProject(project.id)}
-                      className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200"
-                      title="Supprimer"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
-                  </div>
+                <div className="flex items-center justify-end space-x-2">
+                  <button
+                    onClick={() => openViewModal(project)}
+                    className="p-2 text-nordic-600 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors duration-200"
+                    title="Voir les détails"
+                  >
+                    <Eye className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => openEditModal(project)}
+                    className="p-2 text-nordic-600 hover:text-accent-600 hover:bg-accent-50 rounded-lg transition-colors duration-200"
+                    title="Modifier"
+                  >
+                    <Edit className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => handleDeleteProject(project.id)}
+                    className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                    title="Supprimer"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -434,7 +334,6 @@ const PortfolioManagement = () => {
             resetForm()
           }}
           categories={categories}
-          statusOptions={statusOptions}
         />
       )}
 
@@ -451,7 +350,6 @@ const PortfolioManagement = () => {
             resetForm()
           }}
           categories={categories}
-          statusOptions={statusOptions}
         />
       )}
 
@@ -464,7 +362,6 @@ const PortfolioManagement = () => {
             setSelectedProject(null)
           }}
           categories={categories}
-          statusOptions={statusOptions}
         />
       )}
     </div>
@@ -472,7 +369,7 @@ const PortfolioManagement = () => {
 }
 
 // Composant Modal de Formulaire
-const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, categories, statusOptions }) => {
+const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, categories }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <motion.div
@@ -494,7 +391,7 @@ const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, cat
 
         <form onSubmit={onSubmit} className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
+            <div className="md:col-span-2">
               <label className="block text-sm font-medium text-nordic-700 mb-2">
                 Titre du projet *
               </label>
@@ -525,101 +422,6 @@ const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, cat
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Client *
-              </label>
-              <input
-                type="text"
-                required
-                value={formData.client}
-                onChange={(e) => setFormData({ ...formData, client: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Ex: EDF"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Localisation *
-              </label>
-              <input
-                type="text"
-                required
-                value={formData.location}
-                onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Ex: Flamanville, France"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Date de début *
-              </label>
-              <input
-                type="date"
-                required
-                value={formData.startDate}
-                onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Date de fin
-              </label>
-              <input
-                type="date"
-                value={formData.endDate}
-                onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Statut *
-              </label>
-              <select
-                required
-                value={formData.status}
-                onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-              >
-                {statusOptions.map(status => (
-                  <option key={status.value} value={status.value}>{status.label}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Taille de l'équipe
-              </label>
-              <input
-                type="text"
-                value={formData.teamSize}
-                onChange={(e) => setFormData({ ...formData, teamSize: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Ex: 8 inspecteurs"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Budget
-              </label>
-              <input
-                type="text"
-                value={formData.budget}
-                onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Ex: 450,000 €"
-              />
-            </div>
-
-            <div>
               <ImageUpload
                 value={formData.imageUrl}
                 onChange={(imageUrl) => setFormData({ ...formData, imageUrl })}
@@ -635,37 +437,11 @@ const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, cat
               </label>
               <textarea
                 required
-                rows={4}
+                rows={6}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Décrivez le projet, les objectifs, les défis..."
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Technologies utilisées
-              </label>
-              <textarea
-                rows={3}
-                value={formData.technologies}
-                onChange={(e) => setFormData({ ...formData, technologies: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Listez les technologies, méthodes, équipements utilisés..."
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-nordic-700 mb-2">
-                Résultats obtenus
-              </label>
-              <textarea
-                rows={3}
-                value={formData.results}
-                onChange={(e) => setFormData({ ...formData, results: e.target.value })}
-                className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                placeholder="Décrivez les résultats, impacts, améliorations..."
+                placeholder="Décrivez le projet, les objectifs, les défis, les technologies utilisées, les résultats obtenus..."
               />
             </div>
           </div>
@@ -692,7 +468,7 @@ const ProjectFormModal = ({ title, formData, setFormData, onSubmit, onClose, cat
 }
 
 // Composant Modal de Visualisation
-const ProjectViewModal = ({ project, onClose, categories, statusOptions }) => {
+const ProjectViewModal = ({ project, onClose, categories }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <motion.div
@@ -734,58 +510,26 @@ const ProjectViewModal = ({ project, onClose, categories, statusOptions }) => {
               
               <div className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium text-nordic-700">Client</label>
-                  <p className="text-nordic-900">{project.client}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-nordic-700">Localisation</label>
-                  <p className="text-nordic-900">{project.location}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-nordic-700">Période</label>
-                  <p className="text-nordic-900">
-                    {new Date(project.startDate).toLocaleDateString('fr-FR')} - {new Date(project.endDate).toLocaleDateString('fr-FR')}
-                  </p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-nordic-700">Statut</label>
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(project.status)}`}>
-                    {getStatusLabel(project.status)}
-                  </span>
-                </div>
-                <div>
                   <label className="text-sm font-medium text-nordic-700">Catégorie</label>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${getCategoryColor(project.category)} text-white`}>
                     {getCategoryLabel(project.category)}
                   </span>
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-nordic-700">Équipe</label>
-                  <p className="text-nordic-900">{project.teamSize}</p>
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-nordic-700">Budget</label>
-                  <p className="text-nordic-900 font-medium">{project.budget}</p>
+                  <label className="text-sm font-medium text-nordic-700">Date de création</label>
+                  <p className="text-nordic-900">
+                    {new Date(project.createdAt).toLocaleDateString('fr-FR')}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Description et détails */}
+          {/* Description */}
           <div className="space-y-6">
             <div>
               <h4 className="font-medium text-nordic-900 mb-3">Description</h4>
-              <p className="text-nordic-700 leading-relaxed">{project.description}</p>
-            </div>
-
-            <div>
-              <h4 className="font-medium text-nordic-900 mb-3">Technologies utilisées</h4>
-              <p className="text-nordic-700">{project.technologies}</p>
-            </div>
-
-            <div>
-              <h4 className="font-medium text-nordic-900 mb-3">Résultats obtenus</h4>
-              <p className="text-nordic-700">{project.results}</p>
+              <p className="text-nordic-700 leading-relaxed whitespace-pre-wrap">{project.description}</p>
             </div>
           </div>
 

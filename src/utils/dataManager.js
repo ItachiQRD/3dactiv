@@ -122,15 +122,27 @@ class DataManager {
       const defaultPortfolio = [
         {
           id: 1,
-          title: 'Inspection CND - Centrale Nucléaire',
-          description: 'Mission d\'inspection non destructive sur une centrale nucléaire française.',
-          imageUrl: '/images/portfolio/projet-1.jpg',
+          title: 'Inspection CND - Centrale Nucléaire Flamanville',
+          description: 'Inspection complète des soudures et structures de la centrale nucléaire de Flamanville, incluant contrôle ultrasonique, radiographique et magnétoscopique. Détection de 3 défauts critiques, maintenance préventive planifiée, conformité aux normes ASME et RCC-M validée.',
+          imageUrl: '/images/portfolio/nuclear-inspection.jpg',
           category: 'nuclear',
-          client: 'EDF',
-          year: '2024',
-          budget: '2.5M€',
-          status: 'completed',
           createdAt: '2024-01-15'
+        },
+        {
+          id: 2,
+          title: 'Maintenance Plateforme Offshore TotalEnergies',
+          description: 'Maintenance préventive et inspection des équipements de production offshore, incluant inspection des pipelines et structures sous-marines. Extension de la durée de vie de 5 ans, réduction des coûts de maintenance de 25%, zéro incident de sécurité.',
+          imageUrl: '/images/portfolio/offshore-maintenance.jpg',
+          category: 'oil-gas',
+          createdAt: '2024-01-10'
+        },
+        {
+          id: 3,
+          title: 'Supervision Parc Éolien Offshore',
+          description: 'Supervision complète de la construction et mise en service d\'un parc éolien offshore de 500 MW, incluant contrôle qualité et sécurité. Construction dans les délais, respect des normes environnementales, formation de l\'équipe locale.',
+          imageUrl: '/images/portfolio/wind-farm.jpg',
+          category: 'renewable',
+          createdAt: '2024-01-05'
         }
       ]
       this.setData('portfolio', defaultPortfolio)

@@ -23,6 +23,7 @@ import {
 import ImageWrapper from '../../../components/ImageWrapper'
 import ImageUpload from '../../../components/ImageUpload'
 import Link from 'next/link'
+import dataManager from '../../../utils/dataManager'
 
 const NewsManagement = () => {
   const [articles, setArticles] = useState([])
@@ -47,57 +48,24 @@ const NewsManagement = () => {
     readTime: ''
   })
 
-  // Données de test
+  // Charger les articles depuis le DataManager
   useEffect(() => {
-    const mockArticles = [
-      {
-        id: 1,
-        title: 'Nouveaux défis de la transition énergétique en 2024',
-        excerpt: 'Analyse des enjeux et opportunités de la transition énergétique dans le secteur industriel français.',
-        content: 'La transition énergétique représente un défi majeur pour l\'industrie française en 2024. Avec l\'objectif de neutralité carbone d\'ici 2050, les entreprises du secteur énergétique doivent adapter leurs processus et former leurs équipes aux nouvelles technologies...',
-        category: 'industry',
-        author: 'Marie Dubois',
-        imageUrl: '/images/news/transition-energetique.jpg',
-        tags: 'transition énergétique, industrie, 2024, neutralité carbone',
-        status: 'published',
-        publishDate: '2024-01-20',
-        readTime: '5 min',
-        views: 1247,
-        createdAt: '2024-01-15'
-      },
-      {
-        id: 2,
-        title: 'Innovations CND dans le secteur nucléaire',
-        excerpt: 'Découverte des dernières avancées en contrôle non-destructif pour la sûreté nucléaire.',
-        content: 'Les technologies de contrôle non-destructif (CND) évoluent rapidement pour répondre aux exigences croissantes de sûreté dans le secteur nucléaire. Les nouvelles méthodes d\'inspection par ultrasons, radiographie et thermographie permettent...',
-        category: 'nuclear',
-        author: 'Thomas Martin',
-        imageUrl: '/images/news/innovations-cnd.jpg',
-        tags: 'CND, nucléaire, innovation, sûreté, inspection',
-        status: 'published',
-        publishDate: '2024-01-18',
-        readTime: '7 min',
-        views: 892,
-        createdAt: '2024-01-10'
-      },
-      {
-        id: 3,
-        title: 'Formation continue : un enjeu majeur pour l\'énergie',
-        excerpt: 'L\'importance de la formation continue dans un secteur en constante évolution.',
-        content: 'Dans un secteur énergétique en pleine mutation, la formation continue des professionnels devient un enjeu stratégique. Les nouvelles réglementations, technologies et méthodes de travail nécessitent une mise à jour constante des compétences...',
-        category: 'training',
-        author: 'Sophie Bernard',
-        imageUrl: '/images/news/formation-continue.jpg',
-        tags: 'formation, énergie, compétences, évolution',
-        status: 'draft',
-        publishDate: '',
-        readTime: '4 min',
-        views: 0,
-        createdAt: '2024-01-05'
+    const loadArticles = () => {
+      const allArticles = dataManager.getData('news')
+      setArticles(allArticles)
+    }
+    
+    loadArticles()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.news) {
+        loadArticles()
       }
-    ]
-    setArticles(mockArticles)
-    setFilteredArticles(mockArticles)
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
   // Filtrage et recherche
@@ -121,17 +89,14 @@ const NewsManagement = () => {
       views: 0,
       createdAt: new Date().toISOString().split('T')[0]
     }
-    setArticles([...articles, newArticle])
+    dataManager.addItem('news', newArticle)
     setShowCreateModal(false)
     resetForm()
   }
 
   const handleEditArticle = (e) => {
     e.preventDefault()
-    const updatedArticles = articles.map(article => 
-      article.id === selectedArticle.id ? { ...article, ...formData } : article
-    )
-    setArticles(updatedArticles)
+    dataManager.updateItem('news', selectedArticle.id, formData)
     setShowEditModal(false)
     setSelectedArticle(null)
     resetForm()
@@ -139,7 +104,7 @@ const NewsManagement = () => {
 
   const handleDeleteArticle = (articleId) => {
     if (confirm('Êtes-vous sûr de vouloir supprimer cet article ?')) {
-      setArticles(articles.filter(article => article.id !== articleId))
+      dataManager.deleteItem('news', articleId)
     }
   }
 

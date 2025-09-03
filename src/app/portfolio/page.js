@@ -2,62 +2,40 @@
 
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
-import { ExternalLink, Calendar, MapPin, Users } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
 import ImageWrapper from '../../components/ImageWrapper'
+import { useState, useEffect } from 'react'
+import dataManager from '../../utils/dataManager'
 
 const Portfolio = () => {
-  // Projets récupérés de l'admin
-  const projects = [
-    {
-      id: 1,
-      title: 'Inspection CND Centrale Nucléaire Flamanville',
-      category: 'nuclear',
-      client: 'EDF',
-      location: 'Flamanville, France',
-      startDate: '2023-03-01',
-      endDate: '2023-06-30',
-      description: 'Inspection complète des soudures et structures de la centrale nucléaire de Flamanville, incluant contrôle ultrasonique, radiographique et magnétoscopique.',
-      technologies: 'UT, RT, MT, PT, Phased Array',
-      results: 'Détection de 3 défauts critiques, maintenance préventive planifiée, conformité aux normes ASME et RCC-M validée.',
-      teamSize: '8 inspecteurs',
-      budget: '450,000 €',
-      imageUrl: '/images/portfolio/nuclear-inspection.jpg',
-      status: 'completed'
-    },
-    {
-      id: 2,
-      title: 'Maintenance Plateforme Offshore TotalEnergies',
-      category: 'oil-gas',
-      client: 'TotalEnergies',
-      location: 'Mer du Nord, Norvège',
-      startDate: '2023-08-15',
-      endDate: '2023-11-30',
-      description: 'Maintenance préventive et inspection des équipements de production offshore, incluant inspection des pipelines et structures sous-marines.',
-      technologies: 'ROV, UT, RT, Corrosion Monitoring',
-      results: 'Extension de la durée de vie de 5 ans, réduction des coûts de maintenance de 25%, zéro incident de sécurité.',
-      teamSize: '12 techniciens',
-      budget: '780,000 €',
-      imageUrl: '/images/portfolio/offshore-maintenance.jpg',
-      status: 'completed'
-    },
-    {
-      id: 3,
-      title: 'Supervision Parc Éolien Offshore',
-      category: 'renewable',
-      client: 'Engie',
-      location: 'Mer Baltique, Allemagne',
-      startDate: '2024-01-01',
-      endDate: '2024-12-31',
-      description: 'Supervision complète de la construction et mise en service d\'un parc éolien offshore de 500 MW, incluant contrôle qualité et sécurité.',
-      technologies: 'Drone, Lidar, Monitoring, QA/QC',
-      results: 'Construction dans les délais, respect des normes environnementales, formation de l\'équipe locale.',
-      teamSize: '15 superviseurs',
-      budget: '1,200,000 €',
-      imageUrl: '/images/portfolio/wind-farm.jpg',
-      status: 'in-progress'
+  const [projects, setProjects] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
+  // Charger les projets depuis le DataManager
+  useEffect(() => {
+    const loadProjects = () => {
+      const allProjects = dataManager.getData('portfolio')
+      setProjects(allProjects)
     }
-  ]
+    
+    loadProjects()
+    
+    // Écouter les changements dans localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === dataManager.storageKeys.portfolio) {
+        loadProjects()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+
+  // Filtrer les projets par catégorie
+  const filteredProjects = selectedCategory === 'all' 
+    ? projects 
+    : projects.filter(project => project.category === selectedCategory)
 
   const categories = [
     { value: 'all', label: 'Tous' },
@@ -143,7 +121,12 @@ const Portfolio = () => {
             {categories.map((category) => (
               <button
                 key={category.value}
-                className="px-6 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors duration-200"
+                onClick={() => setSelectedCategory(category.value)}
+                className={`px-6 py-3 border rounded-lg transition-colors duration-200 ${
+                  selectedCategory === category.value
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'border-slate-300 text-slate-700 hover:bg-blue-600 hover:text-white hover:border-blue-600'
+                }`}
               >
                 {category.label}
               </button>
@@ -155,98 +138,65 @@ const Portfolio = () => {
       {/* Projects Section */}
       <section className="py-24 bg-gradient-to-b from-gray-200 via-gray-100 to-white">
         <div className="container-nordic">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative">
-                  <ImageWrapper
-                    src={project.imageUrl}
-                    alt={project.title}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      {categories.find(cat => cat.value === project.category)?.label || project.category}
-                    </span>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      project.status === 'completed' ? 'bg-green-100 text-green-800' : 
-                      project.status === 'in-progress' ? 'bg-blue-100 text-blue-800' : 
-                      'bg-gray-100 text-gray-800'
-                    }`}>
-                      {project.status === 'completed' ? 'Terminé' : 
-                       project.status === 'in-progress' ? 'En cours' : 'Planifié'}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="p-8">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
-                    {project.title}
-                  </h3>
-                  
-                  <div className="flex flex-wrap gap-4 text-sm text-slate-500 mb-4">
-                    <div className="flex items-center">
-                      <Calendar size={16} className="mr-2" />
-                      {new Date(project.startDate).toLocaleDateString('fr-FR')} - {new Date(project.endDate).toLocaleDateString('fr-FR')}
-                    </div>
-                    <div className="flex items-center">
-                      <MapPin size={16} className="mr-2" />
-                      {project.location}
-                    </div>
-                    <div className="flex items-center">
-                      <Users size={16} className="mr-2" />
-                      {project.teamSize}
+          {filteredProjects.length > 0 ? (
+            <div className="grid lg:grid-cols-2 gap-12">
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                >
+                  <div className="relative">
+                    <ImageWrapper
+                      src={project.imageUrl}
+                      alt={project.title}
+                      className="w-full h-64 object-cover"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {categories.find(cat => cat.value === project.category)?.label || project.category}
+                      </span>
                     </div>
                   </div>
                   
-                  <p className="text-slate-600 mb-6 leading-relaxed text-justify">
-                    {project.description}
-                  </p>
-                  
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-slate-900 mb-3">Technologies utilisées :</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.split(', ').map((tech) => (
-                        <span
-                          key={tech}
-                          className="bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-slate-900 mb-3">Résultats :</h4>
-                    <p className="text-slate-600 leading-relaxed text-justify">
-                      {project.results}
+                  <div className="p-8">
+                    <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-slate-600 mb-6 leading-relaxed text-justify">
+                      {project.description}
                     </p>
-                  </div>
-                  
-                  <div className="flex justify-between items-center pt-4 border-t border-slate-200">
-                    <div className="text-sm text-slate-500">
-                      <span className="font-medium text-slate-700">{project.client}</span>
-                      <span className="ml-2 text-slate-400">•</span>
-                      <span className="ml-2 font-medium text-slate-600">{project.budget}</span>
+                    
+                    <div className="flex justify-between items-center pt-4 border-t border-slate-200">
+                      <div className="text-sm text-slate-500">
+                        <span className="font-medium text-slate-700">
+                          {new Date(project.createdAt).toLocaleDateString('fr-FR')}
+                        </span>
+                      </div>
+                      <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center">
+                        Voir le projet
+                        <ExternalLink size={16} className="ml-2" />
+                      </button>
                     </div>
-                    <button className="text-blue-600 hover:text-blue-700 font-medium flex items-center">
-                      Voir le projet
-                      <ExternalLink size={16} className="ml-2" />
-                    </button>
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <div className="text-6xl mb-4">📁</div>
+              <h3 className="text-xl font-medium text-slate-600 mb-2">Aucun projet trouvé</h3>
+              <p className="text-slate-500">
+                {selectedCategory === 'all' 
+                  ? 'Aucun projet n\'est disponible pour le moment.' 
+                  : `Aucun projet dans la catégorie "${categories.find(cat => cat.value === selectedCategory)?.label}".`
+                }
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
