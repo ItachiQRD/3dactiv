@@ -62,7 +62,7 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'Adresse',
-      details: ['123 Avenue de l\'Énergie', '75001 Paris, France'],
+      details: ['14 Rue Edouard Nieuport', '92150 Suresnes, France'],
       color: 'from-purple-500 to-purple-600'
     },
     {
@@ -284,6 +284,62 @@ const Contact = () => {
                         </button>
                 </form>
               )}
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Section Carte */}
+        <div className="mt-16">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-8"
+          >
+            <h3 className="text-2xl font-bold text-nordic-900 mb-4">Notre Localisation</h3>
+            <p className="text-nordic-600 max-w-2xl mx-auto">
+              Retrouvez-nous au cœur de Suresnes, facilement accessible en transport en commun et en voiture.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white rounded-2xl shadow-nordic overflow-hidden"
+          >
+            <div className="h-96 w-full">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.1234567890123!2d2.2275!3d48.8708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f1234567890%3A0x1234567890abcdef!2s14%20Rue%20Edouard%20Nieuport%2C%2092150%20Suresnes%2C%20France!5e0!3m2!1sfr!2sfr!4v1234567890123!5m2!1sfr!2sfr"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Localisation 3D ACTIV - 14 Rue Edouard Nieuport, 92150 Suresnes"
+              ></iframe>
+            </div>
+            
+            <div className="p-6 bg-nordic-50">
+              <div className="flex flex-col md:flex-row items-center justify-between">
+                <div className="text-center md:text-left mb-4 md:mb-0">
+                  <h4 className="font-semibold text-nordic-900 mb-2">3D ACTIV</h4>
+                  <p className="text-nordic-600">14 Rue Edouard Nieuport</p>
+                  <p className="text-nordic-600">92150 Suresnes, France</p>
+                </div>
+                <div className="flex space-x-3">
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=14%20Rue%20Edouard%20Nieuport,%2092150%20Suresnes,%20France"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <MapPin className="w-4 h-4" />
+                    <span>Itinéraire</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>

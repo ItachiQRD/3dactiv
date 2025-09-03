@@ -432,11 +432,81 @@ const ApplicationViewModal = ({ application, onClose, onStatusUpdate }) => {
                 <div>
                   <label className="text-sm font-medium text-nordic-700 mb-2">CV</label>
                   <div className="border border-nordic-200 rounded-lg p-4">
-                    <ImageWrapper
-                      src={application.cv}
-                      alt="CV du candidat"
-                      className="w-full h-64 object-contain bg-gray-50 rounded"
-                    />
+                    {application.cv.startsWith('data:image/') ? (
+                      // Prévisualisation d'image
+                      <div className="space-y-3">
+                        <ImageWrapper
+                          src={application.cv}
+                          alt="CV du candidat"
+                          className="w-full h-64 object-contain bg-gray-50 rounded"
+                        />
+                        <button
+                          onClick={() => {
+                            const link = document.createElement('a')
+                            link.href = application.cv
+                            link.download = `CV_${application.nom}_${application.prenom}.jpg`
+                            link.click()
+                          }}
+                          className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Télécharger le CV</span>
+                        </button>
+                      </div>
+                    ) : (
+                      // Fichier non-image (PDF, DOC, etc.)
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-center p-8 bg-gray-50 rounded-lg">
+                          <div className="text-center">
+                            <FileText className="w-16 h-16 text-gray-400 mx-auto mb-3" />
+                            <p className="text-gray-600 font-medium">Fichier CV</p>
+                            <p className="text-sm text-gray-500 mt-1">
+                              {application.cv.includes('pdf') ? 'PDF' : 
+                               application.cv.includes('doc') ? 'Document Word' : 
+                               application.cv.includes('txt') ? 'Fichier texte' : 'Fichier'}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex space-x-3">
+                          <button
+                            onClick={() => {
+                              // Ouvrir le fichier dans un nouvel onglet pour prévisualisation
+                              const newWindow = window.open()
+                              newWindow.document.write(`
+                                <html>
+                                  <head><title>CV - ${application.nom} ${application.prenom}</title></head>
+                                  <body style="margin:0; padding:20px; background:#f5f5f5;">
+                                    <div style="max-width:800px; margin:0 auto; background:white; padding:20px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                                      <h2 style="color:#333; margin-bottom:20px;">CV de ${application.nom} ${application.prenom}</h2>
+                                      <div style="text-align:center; padding:40px;">
+                                        <p style="color:#666; font-size:16px;">Ce fichier ne peut pas être prévisualisé directement.</p>
+                                        <p style="color:#999; font-size:14px; margin-top:10px;">Veuillez le télécharger pour le consulter.</p>
+                                      </div>
+                                    </div>
+                                  </body>
+                                </html>
+                              `)
+                            }}
+                            className="flex items-center space-x-2 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                          >
+                            <Eye className="w-4 h-4" />
+                            <span>Prévisualiser</span>
+                          </button>
+                          <button
+                            onClick={() => {
+                              const link = document.createElement('a')
+                              link.href = application.cv
+                              link.download = `CV_${application.nom}_${application.prenom}.${application.cv.includes('pdf') ? 'pdf' : application.cv.includes('doc') ? 'doc' : 'txt'}`
+                              link.click()
+                            }}
+                            className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                          >
+                            <Download className="w-4 h-4" />
+                            <span>Télécharger</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               )}
