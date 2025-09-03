@@ -157,7 +157,7 @@ const AdminDashboard = () => {
       title: 'Partenaires',
       description: 'Ajouter ou supprimer des partenaires',
       icon: UserPlus,
-      href: '/admin/partners',
+      href: '/admin/partenaires',
       color: 'from-orange-500 to-orange-600'
     },
     {

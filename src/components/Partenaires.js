@@ -6,21 +6,71 @@ import ImageWrapper from './ImageWrapper'
 
 const Partenaires = () => {
   const [scrollPosition, setScrollPosition] = useState(0)
+  const [partners, setPartners] = useState([])
 
-  const partners = [
-    { id: 1, name: 'TotalEnergies', logo: '/logos/totalenergies-1756032591177.png' },
-    { id: 2, name: 'Shell', logo: '/logos/shell-1756153457363.png' },
-    { id: 3, name: 'BP', logo: '/logos/bp-1756153799793.png' },
-    { id: 4, name: 'Petrobras', logo: '/logos/petrobras-1756153837604.png' },
-    { id: 5, name: 'Abyss Energy', logo: '/logos/abyss-energy-1756153893184.png' },
-    { id: 6, name: 'Perenco', logo: '/logos/perenco-1756153911463.png' },
-    { id: 7, name: 'Dietsmann', logo: '/logos/dietsmann-1756153939888.png' },
-    { id: 8, name: 'Subsea 7', logo: '/logos/subsea-7-1756153869631.png' },
-    { id: 9, name: 'Airswift', logo: '/logos/airswift-1756153998656.png' },
-    { id: 10, name: 'Delta', logo: '/logos/delta-1756153960524.png' },
-    { id: 11, name: 'Woodside', logo: '/logos/woodside-1756154025583.png' },
-    { id: 12, name: 'Partner', logo: '/logos/partner-1756032219974.png' }
-  ]
+  // Charger les partenaires depuis l'admin (simulation)
+  useEffect(() => {
+    const adminPartners = [
+      {
+        id: 1,
+        name: 'EDF',
+        logo: '/images/partners/edf-logo.png',
+        website: 'https://www.edf.fr',
+        description: 'Électricien français, leader mondial de l\'énergie bas carbone',
+        sector: 'Énergie',
+        status: 'active'
+      },
+      {
+        id: 2,
+        name: 'ENGIE',
+        logo: '/images/partners/engie-logo.png',
+        website: 'https://www.engie.com',
+        description: 'Groupe énergétique mondial, leader de la transition énergétique',
+        sector: 'Énergie',
+        status: 'active'
+      },
+      {
+        id: 3,
+        name: 'AREVA',
+        logo: '/images/partners/areva-logo.png',
+        website: 'https://www.areva.com',
+        description: 'Spécialiste du cycle du combustible nucléaire',
+        sector: 'Nucléaire',
+        status: 'active'
+      },
+      {
+        id: 4,
+        name: 'TotalEnergies',
+        logo: '/logos/totalenergies-1756032591177.png',
+        website: 'https://www.totalenergies.com',
+        description: 'Compagnie multi-énergies mondiale',
+        sector: 'Pétrole & Gaz',
+        status: 'active'
+      },
+      {
+        id: 5,
+        name: 'Shell',
+        logo: '/logos/shell-1756153457363.png',
+        website: 'https://www.shell.com',
+        description: 'Compagnie énergétique internationale',
+        sector: 'Pétrole & Gaz',
+        status: 'active'
+      },
+      {
+        id: 6,
+        name: 'BP',
+        logo: '/logos/bp-1756153799793.png',
+        website: 'https://www.bp.com',
+        description: 'Compagnie pétrolière et gazière britannique',
+        sector: 'Pétrole & Gaz',
+        status: 'active'
+      }
+    ]
+    
+    // Filtrer seulement les partenaires actifs
+    const activePartners = adminPartners.filter(partner => partner.status === 'active')
+    setPartners(activePartners)
+  }, [])
 
   // Auto-scroll effect
   useEffect(() => {

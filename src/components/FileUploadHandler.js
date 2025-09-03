@@ -24,16 +24,10 @@ export const useFileUpload = () => {
       }, 100)
 
       // Simuler le délai d'upload
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      await new Promise(resolve => setTimeout(resolve, 1500))
 
-      // Générer un nom de fichier unique
-      const timestamp = Date.now()
-      const fileExtension = file.name.split('.').pop()
-      const fileName = `upload-${timestamp}.${fileExtension}`
-      
-      // Dans un vrai projet, vous feriez ici l'upload vers un serveur
-      // Pour l'instant, on simule juste le succès
-      const imageUrl = `/images/uploads/${fileName}`
+      // Créer une URL locale pour l'image
+      const imageUrl = URL.createObjectURL(file)
       
       setUploadProgress(100)
       clearInterval(interval)
@@ -43,7 +37,7 @@ export const useFileUpload = () => {
         setIsUploading(false)
         setUploadProgress(0)
         onSuccess(imageUrl)
-      }, 500)
+      }, 300)
 
     } catch (error) {
       setIsUploading(false)
