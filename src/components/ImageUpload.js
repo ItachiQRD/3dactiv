@@ -157,17 +157,9 @@ const ImageUpload = ({
             {isUploading ? (
               <div className="flex flex-col items-center space-y-3">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                <div className="w-full max-w-xs">
-                  <div className="bg-gray-200 rounded-full h-2">
-                    <div 
-                      className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                      style={{ width: `${uploadProgress}%` }}
-                    ></div>
-                  </div>
-                  <p className="text-sm text-gray-600 mt-2 text-center">
-                    Upload en cours... {uploadProgress}%
-                  </p>
-                </div>
+                <p className="text-sm text-gray-600 text-center">
+                  Upload en cours...
+                </p>
               </div>
             ) : (
               <>
