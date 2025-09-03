@@ -309,13 +309,13 @@ const Contact = () => {
             className="bg-white rounded-2xl shadow-nordic overflow-hidden"
           >
             <div className="h-96 w-full">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.2376854854047!2d2.2285230115629693!3d48.87274529957723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e664d8dbc439cf%3A0x8282e902a42522c7!2s14%20Rue%20Edouard%20Nieuport%2C%2092150%20Suresnes!5e0!3m2!1sfr!2sfr!4v1756936584540!5m2!1sfr!2sfr"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.2376854854047!2d2.2285230115629693!3d48.87274529957723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e664d8dbc439cf%3A0x8282e902a42522c7!2s14%20Rue%20Edouard%20Nieuport%2C%2092150%20Suresnes!5e0!3m2!1sfr!2sfr!4v1756936584540!5m2!1sfr!2sfr" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen="" 
+                loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Localisation 3D ACTIV - 14 Rue Edouard Nieuport, 92150 Suresnes"
               ></iframe>
@@ -343,6 +343,7 @@ const Contact = () => {
             </div>
           </motion.div>
         </div>
+
       </div>
     </section>
   )
