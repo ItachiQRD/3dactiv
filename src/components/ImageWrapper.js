@@ -26,8 +26,10 @@ const ImageWrapper = ({ src, alt, className, ...props }) => {
       prefix = ''
     }
     
-    // Si on a un préfixe et que le chemin ne commence pas par ce préfixe
-    const needsPrefix = prefix && !src.startsWith(prefix)
+    // Ne pas ajouter de préfixe pour les images base64 ou les URLs complètes
+    const isBase64 = src.startsWith('data:')
+    const isFullUrl = src.startsWith('http://') || src.startsWith('https://')
+    const needsPrefix = prefix && !src.startsWith(prefix) && !isBase64 && !isFullUrl
     
     const newSrc = needsPrefix ? `${prefix}${src}` : src
     setFinalSrc(newSrc)

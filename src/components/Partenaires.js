@@ -6,7 +6,6 @@ import ImageWrapper from './ImageWrapper'
 import dataManager from '../utils/dataManager'
 
 const Partenaires = () => {
-  const [scrollPosition, setScrollPosition] = useState(0)
   const [partners, setPartners] = useState([])
 
   // Charger les partenaires depuis le DataManager
@@ -31,15 +30,6 @@ const Partenaires = () => {
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
 
-  // Auto-scroll effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setScrollPosition((prev) => (prev + 1) % 100)
-    }, 50) // Smooth scrolling
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <section id="partenaires" className="section-padding bg-gradient-to-b from-metal-100 via-metal-200 to-metal-300 overflow-hidden">
       <div className="container-nordic">
@@ -58,53 +48,30 @@ const Partenaires = () => {
           </p>
         </motion.div>
 
-        {/* Carousel Linéaire */}
+        {/* Grille de partenaires */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative"
         >
-          <div className="flex space-x-8 animate-scroll">
-            {/* Premier groupe de logos */}
-            <div className="flex space-x-8 flex-shrink-0">
-              {partners.map((partner) => (
-                <div key={partner.id} className="group">
-                  <div className="w-32 h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
-                    <ImageWrapper
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="text-center mt-2">
-                    <p className="text-xs font-medium text-nordic-700 group-hover:text-accent-600 transition-colors duration-200">
-                      {partner.name}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            {partners.map((partner) => (
+              <div key={partner.id} className="group">
+                <div className="w-full h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
+                  <ImageWrapper
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
-              ))}
-            </div>
-            
-            {/* Deuxième groupe de logos (dupliqué pour le défilement continu) */}
-            <div className="flex space-x-8 flex-shrink-0">
-              {partners.map((partner) => (
-                <div key={`${partner.id}-duplicate`} className="group">
-                  <div className="w-32 h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
-                    <ImageWrapper
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                    />
-                  </div>
-                  <div className="text-center mt-2">
-                    <p className="text-xs font-medium text-nordic-700 group-hover:text-accent-600 transition-colors duration-200">
-                      {partner.name}
-                    </p>
-                  </div>
+                <div className="text-center mt-2">
+                  <p className="text-xs font-medium text-nordic-700 group-hover:text-accent-600 transition-colors duration-200">
+                    {partner.name}
+                  </p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>
