@@ -591,43 +591,6 @@ const Emplois = () => {
         </div>
       </section>
 
-      {/* Job Search Section */}
-      <section className="py-16 bg-white">
-        <div className="container-nordic">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl font-bold mb-4 text-slate-900">Trouvez votre poste idéal</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              Découvrez nos offres d'emploi et postulez en quelques clics
-            </p>
-          </motion.div>
-
-          {/* Search and Filter */}
-          <div className="flex flex-col md:flex-row gap-4 mb-8">
-            <div className="flex-1">
-              <input
-                type="text"
-                placeholder="Rechercher un poste..."
-                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-              />
-            </div>
-            <div className="flex gap-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  className="px-4 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-colors duration-200"
-                >
-                  {category}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Jobs List Section */}
       <section className="py-24 bg-slate-50">
