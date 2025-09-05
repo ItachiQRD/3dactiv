@@ -105,6 +105,23 @@ class DataManager {
       const defaultNews = [
         {
           id: 1,
+          title: 'Évoluer avec son temps, rester fidèle au terrain',
+          excerpt: 'Depuis sa création en 2018, 3D ACTIV s\'est construite autour d\'une idée simple : répondre avec exigence et pragmatisme aux besoins des environnements industriels complexes.',
+          content: 'Depuis sa création en 2018, 3D ACTIV s\'est construite autour d\'une idée simple : répondre avec exigence et pragmatisme aux besoins des environnements industriels complexes. Notre approche combine innovation technologique et expertise terrain pour offrir des solutions sur mesure qui répondent aux défis spécifiques de chaque environnement industriel. Nous croyons fermement que l\'évolution technologique doit toujours servir l\'efficacité opérationnelle et la sécurité des installations.',
+          category: 'company',
+          author: 'Équipe 3D ACTIV',
+          imageUrl: '/images/news/company-story.jpg',
+          tags: 'histoire, valeurs, expertise, terrain, innovation',
+          status: 'published',
+          publishDate: '2024-01-25',
+          readTime: '4 min',
+          views: 2156,
+          likes: 42,
+          comments: 8,
+          createdAt: '2024-01-25'
+        },
+        {
+          id: 2,
           title: 'Nouveaux défis de la transition énergétique en 2024',
           excerpt: 'Analyse des enjeux et opportunités de la transition énergétique dans le secteur industriel français.',
           content: 'La transition énergétique représente un défi majeur pour l\'industrie française en 2024. Avec l\'objectif de neutralité carbone d\'ici 2050, les entreprises du secteur énergétique doivent adapter leurs processus et former leurs équipes aux nouvelles technologies. 3D ACTIV s\'engage activement dans cette transformation en proposant des solutions d\'inspection et de maintenance adaptées aux énergies renouvelables.',
@@ -116,10 +133,12 @@ class DataManager {
           publishDate: '2024-01-20',
           readTime: '5 min',
           views: 1247,
+          likes: 28,
+          comments: 5,
           createdAt: '2024-01-20'
         },
         {
-          id: 2,
+          id: 3,
           title: 'Innovations technologiques en CND : vers l\'inspection 4.0',
           excerpt: 'Découvrez les dernières innovations en contrôle non-destructif qui révolutionnent l\'inspection industrielle.',
           content: 'L\'industrie 4.0 transforme également le secteur du contrôle non-destructif. Les nouvelles technologies d\'inspection, intégrant l\'intelligence artificielle et la réalité augmentée, permettent une détection plus précise des défauts et une maintenance prédictive. 3D ACTIV investit massivement dans ces technologies pour offrir à ses clients les services d\'inspection les plus avancés du marché.',
@@ -131,10 +150,12 @@ class DataManager {
           publishDate: '2024-01-15',
           readTime: '4 min',
           views: 892,
+          likes: 19,
+          comments: 3,
           createdAt: '2024-01-15'
         },
         {
-          id: 3,
+          id: 4,
           title: '3D ACTIV obtient la certification ISO 9712 niveau III',
           excerpt: 'Notre équipe de techniciens CND a obtenu la certification internationale la plus élevée en contrôle non-destructif.',
           content: 'Nous sommes fiers d\'annoncer que 3D ACTIV a obtenu la certification ISO 9712 niveau III, la plus haute certification internationale en contrôle non-destructif. Cette certification atteste de notre expertise technique et de notre capacité à mener des inspections complexes sur les installations les plus critiques. Nos clients bénéficient ainsi de la garantie d\'un service d\'inspection de niveau international.',
@@ -146,6 +167,8 @@ class DataManager {
           publishDate: '2024-01-10',
           readTime: '3 min',
           views: 1563,
+          likes: 35,
+          comments: 7,
           createdAt: '2024-01-10'
         }
       ]

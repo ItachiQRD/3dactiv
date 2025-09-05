@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
-import { Calendar, User, ArrowRight } from 'lucide-react'
+import { Calendar, User, ArrowRight, Heart, MessageCircle } from 'lucide-react'
 import AssetPath from '../../components/AssetPath'
 import ImageWrapper from '../../components/ImageWrapper'
 import { useState, useEffect } from 'react'
@@ -121,7 +121,7 @@ const News = () => {
                     {article.title}
                   </h3>
                   
-                  <p className="text-nordic-600 mb-4 line-clamp-3 text-sm leading-relaxed text-justify">
+                  <p className="text-nordic-600 mb-4 line-clamp-3 text-sm leading-relaxed text-justify cursor-pointer hover:text-accent-600 transition-colors duration-200">
                     {article.excerpt}
                   </p>
                   
@@ -136,11 +136,24 @@ const News = () => {
                     </div>
                   </div>
                   
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs text-nordic-400">
-                      {article.readTime} • {article.views} vues
-                    </span>
-                    <button className="text-accent-600 hover:text-accent-700 font-medium text-sm flex items-center">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-4 text-xs text-nordic-400">
+                      <span>{article.readTime} • {article.views} vues</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <div className="flex items-center text-nordic-500">
+                        <Heart size={12} className="mr-1" />
+                        <span>{article.likes || 0}</span>
+                      </div>
+                      <div className="flex items-center text-nordic-500">
+                        <MessageCircle size={12} className="mr-1" />
+                        <span>{article.comments || 0}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-end">
+                    <button className="text-accent-600 hover:text-accent-700 font-medium text-sm flex items-center transition-colors duration-200">
                       Lire
                       <ArrowRight size={12} className="ml-1" />
                     </button>
