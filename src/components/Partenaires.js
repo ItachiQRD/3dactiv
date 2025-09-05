@@ -48,30 +48,53 @@ const Partenaires = () => {
           </p>
         </motion.div>
 
-        {/* Grille de partenaires */}
+        {/* Effet défilement horizontal */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative"
+          className="relative overflow-hidden"
         >
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-            {partners.map((partner) => (
-              <div key={partner.id} className="group">
-                <div className="w-full h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
-                  <ImageWrapper
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                  />
+          <div className="flex animate-scroll">
+            {/* Première série de logos */}
+            <div className="flex space-x-8 flex-shrink-0">
+              {partners.map((partner) => (
+                <div key={`first-${partner.id}`} className="group">
+                  <div className="w-32 h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
+                    <ImageWrapper
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="text-center mt-2">
+                    <p className="text-xs font-medium text-nordic-700 group-hover:text-accent-600 transition-colors duration-200">
+                      {partner.name}
+                    </p>
+                  </div>
                 </div>
-                <div className="text-center mt-2">
-                  <p className="text-xs font-medium text-nordic-700 group-hover:text-accent-600 transition-colors duration-200">
-                    {partner.name}
-                  </p>
+              ))}
+            </div>
+            
+            {/* Deuxième série de logos (pour l'effet de continuité) */}
+            <div className="flex space-x-8 flex-shrink-0 ml-8">
+              {partners.map((partner) => (
+                <div key={`second-${partner.id}`} className="group">
+                  <div className="w-32 h-20 bg-white rounded-xl shadow-nordic p-4 flex items-center justify-center group-hover:shadow-nordic-lg transition-all duration-300 hover:scale-105">
+                    <ImageWrapper
+                      src={partner.logo}
+                      alt={partner.name}
+                      className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                  <div className="text-center mt-2">
+                    <p className="text-xs font-medium text-nordic-700 group-hover:text-accent-600 transition-colors duration-200">
+                      {partner.name}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

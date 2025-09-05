@@ -44,6 +44,20 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
+  /* Animation de défilement pour les partenaires */
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
   .btn-primary {
     @apply bg-accent-600 hover:bg-accent-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-nordic hover:shadow-nordic-md;
   }

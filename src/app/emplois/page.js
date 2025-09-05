@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import AssetPath from '../../components/AssetPath'
-import { MapPin, Clock, Briefcase, ArrowRight, Upload, Send } from 'lucide-react'
+import { MapPin, Clock, Briefcase, ArrowRight, Upload, Send, Search } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import dataManager from '../../utils/dataManager'
 import FileUpload from '../../components/FileUpload'
@@ -342,30 +342,252 @@ const Emplois = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative h-[50vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-800 via-blue-800 to-slate-900">
-        <div className="absolute inset-0 w-full h-full">
+      {/* Hero Section - Style 4: Minimaliste avec Search Bar et Animations Fluides */}
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <motion.div 
+          className="absolute inset-0 w-full h-full"
+          initial={{ scale: 1.1, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
           <AssetPath
-            src="/images/emplois-hero.jpg"
+            src="/images/team.avif"
             alt="Emplois 3D ACTIV"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-800/80 via-blue-800/70 to-slate-900/80"></div>
-        </div>
+          {/* Overlay animé */}
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-nordic-900/60 via-nordic-800/40 to-nordic-700/30"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+          />
+        </motion.div>
 
-        <div className="relative z-10 container-nordic text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl lg:text-7xl font-bold mb-8 text-white" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Emplois
-            </h1>
-            <p className="text-xl text-slate-200 max-w-3xl mx-auto">
-              Rejoignez notre équipe d'experts et participez à des projets d'envergure
-            </p>
-          </motion.div>
+        <div className="relative z-10 w-full px-4">
+          <div className="container-nordic">
+            <div className="max-w-5xl mx-auto">
+              {/* Header avec animations séquentielles */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 1, 
+                  delay: 0.5,
+                  type: "spring",
+                  stiffness: 80
+                }}
+                className="text-center mb-16"
+              >
+                {/* Badge animé */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.7,
+                    type: "spring",
+                    stiffness: 120
+                  }}
+                  className="mb-8"
+                >
+                  <motion.div 
+                    className="inline-flex items-center space-x-3 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <motion.div 
+                      className="w-2 h-2 bg-accent-400 rounded-full"
+                      animate={{ 
+                        scale: [1, 1.3, 1],
+                        opacity: [0.6, 1, 0.6]
+                      }}
+                      transition={{ 
+                        duration: 2, 
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                    <span className="text-accent-200 text-sm font-medium tracking-wider">CARRIÈRES INDUSTRIELLES</span>
+                  </motion.div>
+                </motion.div>
+                
+                {/* Titre avec animation en cascade */}
+                <motion.h1 
+                  className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight"
+                  initial={{ y: 80, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ 
+                    duration: 1.2, 
+                    delay: 0.9,
+                    type: "spring",
+                    stiffness: 60
+                  }}
+                >
+                  <motion.span 
+                    className="block"
+                    initial={{ x: -50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 1.1 }}
+                  >
+                    Rejoignez
+                  </motion.span>
+                  <motion.span 
+                    className="block text-accent-400"
+                    initial={{ x: 50, opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 1.3 }}
+                  >
+                    3D ACTIV
+                  </motion.span>
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-lg lg:text-xl text-nordic-200 max-w-3xl mx-auto leading-relaxed"
+                  initial={{ y: 40, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 1.5,
+                    type: "spring",
+                    stiffness: 50
+                  }}
+                >
+                  Participez à des projets d'envergure dans l'industrie énergétique avec notre équipe d'experts
+                </motion.p>
+              </motion.div>
+
+              {/* Search Bar avec animations fluides */}
+              <motion.div
+                initial={{ opacity: 0, y: 60, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 1, 
+                  delay: 1.7,
+                  type: "spring",
+                  stiffness: 80
+                }}
+                className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl p-10 border border-white/20"
+              >
+                <div className="space-y-8">
+                  {/* Header de la search bar */}
+                  <motion.div 
+                    className="text-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 1.9 }}
+                  >
+                    <h2 className="text-3xl font-bold text-nordic-900 mb-3">Trouvez votre poste idéal</h2>
+                    <p className="text-nordic-600 text-lg">Recherchez parmi nos offres d'emploi spécialisées</p>
+                  </motion.div>
+                  
+                  {/* Barre de recherche principale */}
+                  <motion.div 
+                    className="flex flex-col lg:flex-row gap-6"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2.1 }}
+                  >
+                    <div className="flex-1">
+                      <motion.div 
+                        className="relative"
+                        whileFocus={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <input
+                          type="text"
+                          placeholder="Mots-clés, poste, compétences..."
+                          className="w-full px-8 py-5 pl-14 border-2 border-nordic-200 rounded-2xl focus:ring-4 focus:ring-accent-500/20 focus:border-accent-500 transition-all duration-300 text-lg"
+                        />
+                        <motion.div 
+                          className="absolute left-5 top-1/2 transform -translate-y-1/2"
+                          animate={{ 
+                            scale: [1, 1.1, 1],
+                            rotate: [0, 5, 0]
+                          }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <Search className="w-6 h-6 text-nordic-400" />
+                        </motion.div>
+                      </motion.div>
+                    </div>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <motion.select 
+                        className="px-6 py-5 border-2 border-nordic-200 rounded-2xl focus:ring-4 focus:ring-accent-500/20 focus:border-accent-500 transition-all duration-300 bg-white text-lg"
+                        whileFocus={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <option>Tous les secteurs</option>
+                        <option>CND</option>
+                        <option>Inspection</option>
+                        <option>Ingénierie</option>
+                        <option>Supervision</option>
+                      </motion.select>
+                      
+                      <motion.select 
+                        className="px-6 py-5 border-2 border-nordic-200 rounded-2xl focus:ring-4 focus:ring-accent-500/20 focus:border-accent-500 transition-all duration-300 bg-white text-lg"
+                        whileFocus={{ scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                      >
+                        <option>Toutes les localisations</option>
+                        <option>Paris</option>
+                        <option>Lyon</option>
+                        <option>Marseille</option>
+                        <option>International</option>
+                      </motion.select>
+                      
+                      <motion.button 
+                        className="bg-accent-600 hover:bg-accent-700 text-white px-10 py-5 rounded-2xl font-semibold transition-all duration-300 shadow-lg text-lg"
+                        whileHover={{ 
+                          scale: 1.05,
+                          boxShadow: "0 15px 35px rgba(0,0,0,0.2)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        Rechercher
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                  
+                  {/* Quick filters avec animations */}
+                  <motion.div 
+                    className="flex flex-wrap gap-3 justify-center"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 2.3 }}
+                  >
+                    {['CDI', 'CDD', 'Freelance', 'Stage'].map((type, index) => (
+                      <motion.button
+                        key={type}
+                        className="px-6 py-3 bg-nordic-100 hover:bg-accent-600 hover:text-white text-nordic-700 rounded-full text-sm font-medium transition-all duration-300"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: 2.5 + index * 0.1,
+                          type: "spring",
+                          stiffness: 150
+                        }}
+                        whileHover={{ 
+                          scale: 1.05,
+                          backgroundColor: "rgb(59, 130, 246)"
+                        }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {type}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 

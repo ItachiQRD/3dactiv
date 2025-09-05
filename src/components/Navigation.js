@@ -21,8 +21,8 @@ const Navigation = () => {
     }
     
     const handleMouseMove = (e) => {
-      // Vérifier si la souris est dans les 50px du haut de la page
-      setIsMouseAtTop(e.clientY <= 50)
+      // Vérifier si la souris est dans les 80px du haut de la page (zone plus large)
+      setIsMouseAtTop(e.clientY <= 80)
     }
     
     window.addEventListener('scroll', handleScroll)
@@ -44,11 +44,25 @@ const Navigation = () => {
   }
 
   // Fonction pour gérer la fermeture du menu Solutions avec délai
-  const handleSolutionsMouseLeave = () => {
+  const handleSolutionsMouseLeave = (e) => {
+    // Vérifier si la souris quitte vraiment la zone du menu
+    const relatedTarget = e.relatedTarget
+    if (relatedTarget && (
+      relatedTarget.closest('.solutions-dropdown') || 
+      relatedTarget.closest('.solutions-trigger')
+    )) {
+      return // Ne pas fermer si on va vers le menu ou le trigger
+    }
+    
     const timeout = setTimeout(() => {
       setIsSolutionsOpen(false)
-    }, 200) // Délai de 200ms
+    }, 500) // Délai augmenté à 500ms
     setSolutionsTimeout(timeout)
+  }
+
+  // Fonction pour gérer le clic sur le menu Solutions
+  const handleSolutionsClick = () => {
+    setIsSolutionsOpen(!isSolutionsOpen)
   }
 
   const navItems = [
@@ -71,11 +85,11 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isVisible || isMouseAtTop
+      isVisible || isMouseAtTop || isSolutionsOpen
         ? 'translate-y-0 opacity-100' 
         : '-translate-y-full opacity-0'
     } ${
-      isScrolled 
+      isScrolled || isMouseAtTop || isSolutionsOpen
         ? 'bg-white/95 backdrop-blur-md shadow-nordic border-b border-nordic-100' 
         : 'bg-transparent'
     }`}>
@@ -101,9 +115,10 @@ const Navigation = () => {
               <div key={item.name} className="relative group">
                 {item.submenu ? (
                   <div
-                    className="text-nordic-700 hover:text-accent-600 font-medium transition-colors duration-200 cursor-pointer flex items-center space-x-1"
+                    className="solutions-trigger text-nordic-700 hover:text-accent-600 font-medium transition-colors duration-200 cursor-pointer flex items-center space-x-1"
                     onMouseEnter={handleSolutionsMouseEnter}
                     onMouseLeave={handleSolutionsMouseLeave}
+                    onClick={handleSolutionsClick}
                   >
                     <span>{item.name}</span>
                     <ChevronDown size={16} className={`transition-transform duration-200 ${isSolutionsOpen ? 'rotate-180' : ''}`} />
@@ -120,21 +135,28 @@ const Navigation = () => {
                 
                 {/* Solutions Dropdown */}
                 {item.submenu && isSolutionsOpen && (
-                  <div 
-                    className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-nordic-100 py-2 z-50 transition-all duration-200"
-                    onMouseEnter={handleSolutionsMouseEnter}
-                    onMouseLeave={handleSolutionsMouseLeave}
-                  >
-                    {item.submenu.map((subItem) => (
-                      <Link
-                        key={subItem.name}
-                        href={subItem.href}
-                        className="block px-4 py-3 text-nordic-700 hover:bg-nordic-50 hover:text-accent-600 transition-colors duration-200"
-                      >
-                        {subItem.name}
-                      </Link>
-                    ))}
-                  </div>
+                  <>
+                    {/* Zone invisible pour faciliter la navigation */}
+                    <div 
+                      className="absolute top-full left-0 w-full h-2 bg-transparent z-40"
+                      onMouseEnter={handleSolutionsMouseEnter}
+                    />
+                    <div 
+                      className="solutions-dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-nordic-100 py-2 z-50 transition-all duration-200"
+                      onMouseEnter={handleSolutionsMouseEnter}
+                      onMouseLeave={handleSolutionsMouseLeave}
+                    >
+                      {item.submenu.map((subItem) => (
+                        <Link
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-4 py-3 text-nordic-700 hover:bg-nordic-50 hover:text-accent-600 transition-colors duration-200"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
                 )}
               </div>
             ))}
@@ -145,7 +167,7 @@ const Navigation = () => {
             <Link href="/emplois" className="px-3 py-1.5 text-sm border border-accent-600 text-accent-600 hover:bg-accent-600 hover:text-white font-medium rounded-md transition-all duration-200">
               Search Jobs
             </Link>
-            <Link href="/connexion" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200">
+            <Link href="/admin" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200">
               Espace Admin
             </Link>
           </div>
@@ -198,7 +220,7 @@ const Navigation = () => {
                 <Link href="/emplois" className="px-3 py-1.5 text-sm border border-accent-600 text-accent-600 hover:bg-accent-600 hover:text-white font-medium rounded-md transition-all duration-200 w-full text-center block">
                   Search Jobs
                 </Link>
-                <Link href="/connexion" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200 w-full text-center block">
+                <Link href="/admin" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200 w-full text-center block">
                   Espace Admin
                 </Link>
               </div>

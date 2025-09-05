@@ -29,8 +29,7 @@ const PartenairesManagement = () => {
   const [editingPartner, setEditingPartner] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
-    logo: '',
-    status: 'active'
+    logo: ''
   })
 
   // Filtrage des partenaires
@@ -70,30 +69,12 @@ const PartenairesManagement = () => {
   const resetForm = () => {
     setFormData({
       name: '',
-      logo: '',
-      status: 'active'
+      logo: ''
     })
     setEditingPartner(null)
     setShowForm(false)
   }
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'active': return 'bg-green-100 text-green-800'
-      case 'inactive': return 'bg-gray-100 text-gray-800'
-      case 'pending': return 'bg-yellow-100 text-yellow-800'
-      default: return 'bg-gray-100 text-gray-800'
-    }
-  }
-
-  const getStatusText = (status) => {
-    switch (status) {
-      case 'active': return 'Actif'
-      case 'inactive': return 'Inactif'
-      case 'pending': return 'En attente'
-      default: return 'Inconnu'
-    }
-  }
 
   if (showForm) {
     return (
@@ -143,20 +124,6 @@ const PartenairesManagement = () => {
                 />
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Statut
-                </label>
-                <select
-                  value={formData.status}
-                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                >
-                  <option value="active">Actif</option>
-                  <option value="inactive">Inactif</option>
-                  <option value="pending">En attente</option>
-                </select>
-              </div>
 
               <div className="flex justify-end space-x-4 pt-6">
                 <button
@@ -231,54 +198,53 @@ const PartenairesManagement = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
             {filteredPartenaires.map((partner) => (
               <motion.div
                 key={partner.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow"
+                className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow group"
               >
-                                 <div className="flex items-start justify-between mb-4">
-                   <div className="flex items-center space-x-3">
-                     {partner.logo ? (
-                       <img
-                         src={partner.logo}
-                         alt={partner.name}
-                         className="w-12 h-12 object-contain rounded-lg"
-                         onError={(e) => {
-                           e.target.style.display = 'none'
-                           e.target.nextSibling.style.display = 'flex'
-                         }}
-                       />
-                     ) : null}
-                     <div className={`w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center ${partner.logo ? 'hidden' : 'flex'}`}>
-                       <Building2 className="w-6 h-6 text-gray-400" />
-                     </div>
-                     <div>
-                       <h3 className="font-semibold text-gray-900">{partner.name}</h3>
-                     </div>
-                   </div>
-                   <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(partner.status)}`}>
-                     {getStatusText(partner.status)}
-                   </span>
-                 </div>
-
-                <div className="flex justify-end space-x-2">
-                  <button
-                    onClick={() => handleEdit(partner)}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                    title="Modifier"
-                  >
-                    <Edit className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(partner.id)}
-                    className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                    title="Supprimer"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                <div className="flex flex-col items-center text-center">
+                  {/* Logo plus grand */}
+                  <div className="mb-3">
+                    {partner.logo ? (
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="w-16 h-16 object-contain rounded-lg"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                          e.target.nextSibling.style.display = 'flex'
+                        }}
+                      />
+                    ) : null}
+                    <div className={`w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center ${partner.logo ? 'hidden' : 'flex'}`}>
+                      <Building2 className="w-8 h-8 text-gray-400" />
+                    </div>
+                  </div>
+                  
+                  {/* Nom plus petit */}
+                  <h3 className="text-sm font-medium text-gray-900 mb-3 line-clamp-2">{partner.name}</h3>
+                  
+                  {/* Boutons d'action */}
+                  <div className="flex space-x-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => handleEdit(partner)}
+                      className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors"
+                      title="Modifier"
+                    >
+                      <Edit className="w-3 h-3" />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(partner.id)}
+                      className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors"
+                      title="Supprimer"
+                    >
+                      <Trash2 className="w-3 h-3" />
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}

@@ -48,6 +48,15 @@ const AdminLogin = ({ onLogin }) => {
 
   return (
     <div className="min-h-screen bg-nordic-50 flex items-center justify-center px-4">
+      {/* Bouton Retour à l'accueil */}
+      <Link 
+        href="/"
+        className="absolute top-6 left-6 z-10 flex items-center space-x-2 px-4 py-2 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg hover:bg-white transition-colors duration-200"
+      >
+        <Home className="w-5 h-5 text-nordic-600" />
+        <span className="text-nordic-700 font-medium">Accueil</span>
+      </Link>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

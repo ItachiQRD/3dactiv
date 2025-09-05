@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
 import AssetPath from '../../../components/AssetPath'
 import ImageWrapper from '../../../components/ImageWrapper'
+import { ArrowRight, Send } from 'lucide-react'
 
 const Inspection = () => {
   const sections = [
@@ -78,33 +79,186 @@ Notre rigueur s'appuie sur :
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-end">
+      {/* Hero Section - Style Grid avec Stats */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/inspection/background.avif"
-            alt="3DACTIV - Inspection"
+            alt="Inspection industrielle"
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/80 via-nordic-800/60 to-nordic-700/40"></div>
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <motion.div 
+            {/* Header */}
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="inline-flex items-center space-x-2 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30 mb-8"
+              >
+                <div className="w-2 h-2 bg-accent-400 rounded-full animate-pulse"></div>
+                <span className="text-accent-200 text-sm font-medium">EXPERTISE TECHNIQUE</span>
+              </motion.div>
+              
+              <motion.h1 
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="text-5xl lg:text-7xl font-bold text-white mb-6"
+              >
+                <span className="block">Inspection</span>
+                <span className="block text-accent-400">Industrielle</span>
+              </motion.h1>
+              
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl text-nordic-200 max-w-3xl mx-auto"
+              >
+                Expertise technique et conformité réglementaire pour vos projets industriels les plus exigeants
+              </motion.p>
+            </div>
+            
+            {/* Grid de stats et services */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+              {[
+                {
+                  number: "500+",
+                  label: "Inspections réalisées",
+                  icon: "🔍",
+                  color: "from-blue-500/20 to-blue-600/20",
+                  borderColor: "border-blue-400/30"
+                },
+                {
+                  number: "15+",
+                  label: "Années d'expérience",
+                  icon: "⏰",
+                  color: "from-green-500/20 to-green-600/20",
+                  borderColor: "border-green-400/30"
+                },
+                {
+                  number: "100%",
+                  label: "Conformité réglementaire",
+                  icon: "✅",
+                  color: "from-accent-500/20 to-accent-600/20",
+                  borderColor: "border-accent-400/30"
+                },
+                {
+                  number: "24/7",
+                  label: "Disponibilité",
+                  icon: "🚀",
+                  color: "from-purple-500/20 to-purple-600/20",
+                  borderColor: "border-purple-400/30"
+                }
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 0.6 + index * 0.1,
+                    type: "spring",
+                    stiffness: 80
+                  }}
+                  whileHover={{ 
+                    y: -5,
+                    scale: 1.02
+                  }}
+                  className={`bg-white/10 backdrop-blur-lg rounded-2xl p-6 border ${stat.borderColor} hover:bg-white/15 transition-all duration-300 text-center`}
+                >
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mx-auto mb-4`}>
+                    <span className="text-2xl">{stat.icon}</span>
+                  </div>
+                  <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
+                  <div className="text-nordic-200 text-sm">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Services grid */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              {[
+                {
+                  title: "Inspection Visuelle",
+                  description: "Contrôles visuels approfondis selon les normes en vigueur",
+                  features: ["VT - Visuel", "PT - Pénétration", "Conformité ISO"]
+                },
+                {
+                  title: "Contrôles Spécialisés",
+                  description: "Techniques avancées pour détecter les défauts cachés",
+                  features: ["Ultrasons", "Magnétoscopie", "Radiographie"]
+                },
+                {
+                  title: "Certification",
+                  description: "Validation et certification selon les standards internationaux",
+                  features: ["ISO 9712", "PCN", "ASNT Level II/III"]
+                }
+              ].map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 1.0 + index * 0.2,
+                    type: "spring",
+                    stiffness: 80
+                  }}
+                  whileHover={{ 
+                    y: -5,
+                    scale: 1.02
+                  }}
+                  className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
+                >
+                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
+                  <p className="text-nordic-200 mb-6">{service.description}</p>
+                  <div className="space-y-2">
+                    {service.features.map((feature, featureIndex) => (
+                      <motion.div
+                        key={feature}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ 
+                          duration: 0.5, 
+                          delay: 1.2 + index * 0.2 + featureIndex * 0.1
+                        }}
+                        className="flex items-center space-x-2 text-accent-300"
+                      >
+                        <div className="w-2 h-2 bg-accent-400 rounded-full"></div>
+                        <span className="text-sm">{feature}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            
+            {/* Boutons d'action */}
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-white/90 backdrop-blur-sm rounded-t-xl p-8 lg:p-12 max-w-4xl mx-auto"
+              transition={{ duration: 0.8, delay: 1.6 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center"
             >
-              <h1 className="text-4xl lg:text-6xl font-bold text-nordic-900 text-center mb-6">
-                Inspection
-              </h1>
-              <p className="text-base text-nordic-700 text-center leading-relaxed mb-4">
-                Nous proposons des prestations d'inspection technique sur l'ensemble du cycle projet, en appui aux démarches qualité, sécurité et conformité documentaire de nos clients.
-              </p>
-              <p className="text-sm text-nordic-600 text-center leading-relaxed">
-                Notre objectif : vous accompagner avec rigueur, méthode et fiabilité, en France comme à l'international.
-              </p>
+              <button className="bg-accent-600 hover:bg-accent-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
+                <span className="flex items-center justify-center space-x-2">
+                  <span>Découvrir nos services</span>
+                  <ArrowRight className="w-5 h-5" />
+                </span>
+              </button>
+              <button className="border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm px-10 py-4 rounded-xl font-semibold transition-all duration-300">
+                <span className="flex items-center justify-center space-x-2">
+                  <span>Contactez-nous</span>
+                  <Send className="w-5 h-5" />
+                </span>
+              </button>
             </motion.div>
           </div>
         </div>

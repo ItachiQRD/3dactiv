@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Navigation from '../../../components/Navigation'
 import AssetPath from '../../../components/AssetPath'
 import ImageWrapper from '../../../components/ImageWrapper'
+import { ArrowRight, Send } from 'lucide-react'
 
 const AssistanceTechnique = () => {
   const sections = [
@@ -71,34 +72,127 @@ Notre suivi de mission, couplé à un retour d'expérience systématique, permet
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-red-50">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-end">
+      {/* Hero Section - Style Timeline Vertical */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Background */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/assistance/background.avif"
-            alt="3DACTIV - Assistance Technique"
+            alt="Assistance Technique"
             className="w-full h-full object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/70 via-nordic-800/50 to-nordic-700/30"></div>
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="bg-white/90 backdrop-blur-sm rounded-t-xl p-8 lg:p-12 max-w-4xl mx-auto"
-            >
-              <h1 className="text-4xl lg:text-6xl font-bold text-nordic-900 text-center mb-6">
-                Assistance Technique
-              </h1>
-              <p className="text-base text-nordic-700 text-center leading-relaxed mb-4">
-                Nous apportons à nos partenaires industriels un soutien opérationnel structuré pour renforcer leurs équipes, sur site comme en environnement d'ingénierie.
-              </p>
-              <p className="text-sm text-nordic-600 text-center leading-relaxed">
-                Nos intervenants sont sélectionnés pour leur expertise technique, leur autonomie, et leur capacité à évoluer dans des contextes industriels exigeants, en France comme à l'international.
-              </p>
-            </motion.div>
+            <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+              {/* Contenu à gauche */}
+              <div className="text-white">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="inline-flex items-center space-x-2 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30 mb-8"
+                >
+                  <div className="w-2 h-2 bg-accent-400 rounded-full animate-pulse"></div>
+                  <span className="text-accent-200 text-sm font-medium">EXPERTISE OPÉRATIONNELLE</span>
+                </motion.div>
+                
+                <motion.h1 
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, delay: 0.2 }}
+                  className="text-4xl lg:text-6xl font-bold mb-6"
+                >
+                  <span className="block text-white">Assistance</span>
+                  <span className="block text-accent-400">Technique</span>
+                </motion.h1>
+                
+                <motion.p 
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="text-lg text-nordic-200 mb-8"
+                >
+                  Soutien opérationnel structuré pour renforcer vos équipes, sur site comme en environnement d'ingénierie
+                </motion.p>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                  className="flex flex-col sm:flex-row gap-4"
+                >
+                  <button className="bg-accent-600 hover:bg-accent-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>Découvrir nos services</span>
+                      <ArrowRight className="w-5 h-5" />
+                    </span>
+                  </button>
+                  <button className="border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold transition-all duration-300">
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>Contactez-nous</span>
+                      <Send className="w-5 h-5" />
+                    </span>
+                  </button>
+                </motion.div>
+              </div>
+              
+              {/* Timeline à droite */}
+              <div className="relative">
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-400 via-accent-500 to-accent-600"></div>
+                
+                {[
+                  {
+                    title: "Expertise Terrain",
+                    description: "Intervention directe sur chantiers et plateformes énergétiques",
+                    icon: "🔧",
+                    delay: 0.8
+                  },
+                  {
+                    title: "Compétences Ingénierie",
+                    description: "Préparation, suivi et pilotage en bureaux d'études",
+                    icon: "📊",
+                    delay: 1.0
+                  },
+                  {
+                    title: "Intégration Équipe",
+                    description: "Adaptation rapide aux environnements industriels exigeants",
+                    icon: "🤝",
+                    delay: 1.2
+                  },
+                  {
+                    title: "Performance Globale",
+                    description: "Contribution à la réussite de vos projets complexes",
+                    icon: "🚀",
+                    delay: 1.4
+                  }
+                ].map((step, index) => (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ 
+                      duration: 0.8, 
+                      delay: step.delay,
+                      type: "spring",
+                      stiffness: 80
+                    }}
+                    className="relative flex items-start mb-12 last:mb-0"
+                  >
+                    <div className="relative z-10 w-16 h-16 bg-accent-600/20 backdrop-blur-sm rounded-full flex items-center justify-center border-2 border-accent-400/30">
+                      <span className="text-2xl">{step.icon}</span>
+                    </div>
+                    
+                    <div className="ml-6 flex-1">
+                      <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                      <p className="text-nordic-200">{step.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
