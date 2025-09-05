@@ -20,6 +20,13 @@ import {
 } from 'lucide-react'
 import dataManager from '../../../utils/dataManager'
 
+// Fonction pour générer les paramètres statiques
+export async function generateStaticParams() {
+  // Cette fonction est requise pour Next.js avec output: export
+  // Elle retourne un tableau vide car nous utilisons des routes dynamiques côté client
+  return []
+}
+
 const NewsArticle = () => {
   const params = useParams()
   const router = useRouter()
