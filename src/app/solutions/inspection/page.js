@@ -79,7 +79,7 @@ Notre rigueur s'appuie sur :
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
       <Navigation />
       
-      {/* Hero Section - Style Grid avec Stats */}
+      {/* Hero Section - Style épuré */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 w-full h-full">
@@ -88,283 +88,212 @@ Notre rigueur s'appuie sur :
             alt="Inspection industrielle"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/80 via-nordic-800/60 to-nordic-700/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/70 via-nordic-800/50 to-nordic-700/30"></div>
+        </div>
+        
+        {/* Décoration animée */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-20 left-10 w-32 h-32 border border-accent-400/20 rounded-full"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-10 w-24 h-24 border border-accent-400/30 rounded-full"
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/4 w-16 h-16 border border-accent-400/25 rounded-full"
+            animate={{ 
+              rotate: [0, 360],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            {/* Header */}
-            <div className="text-center mb-16">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Badge animé */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="inline-flex items-center space-x-2 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30 mb-8"
+                initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.2,
+                  type: "spring",
+                  stiffness: 120
+                }}
+                className="mb-8"
               >
-                <div className="w-2 h-2 bg-accent-400 rounded-full animate-pulse"></div>
-                <span className="text-accent-200 text-sm font-medium">EXPERTISE TECHNIQUE</span>
+                <motion.div 
+                  className="inline-flex items-center space-x-3 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <motion.div 
+                    className="w-2 h-2 bg-accent-400 rounded-full"
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <span className="text-accent-200 text-sm font-medium tracking-wider">SOLUTIONS INDUSTRIELLES</span>
+                </motion.div>
               </motion.div>
               
+              {/* Titre avec animation en cascade */}
               <motion.h1 
+                className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="text-5xl lg:text-7xl font-bold text-white mb-6"
+                transition={{ 
+                  duration: 1, 
+                  delay: 0.4,
+                  type: "spring",
+                  stiffness: 60
+                }}
               >
-                <span className="block">Inspection</span>
-                <span className="block text-accent-400">Industrielle</span>
+                <motion.span 
+                  className="block"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  Inspection
+                </motion.span>
               </motion.h1>
               
-              <motion.p 
+              {/* Description avec animation */}
+              <motion.div
+                className="max-w-3xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-nordic-200 max-w-3xl mx-auto"
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.8,
+                  type: "spring",
+                  stiffness: 50
+                }}
               >
-                Expertise technique et conformité réglementaire pour vos projets industriels les plus exigeants
-              </motion.p>
+                <p className="text-xl lg:text-2xl text-nordic-200 leading-relaxed mb-6">
+                  Nous proposons des prestations d'inspection technique sur l'ensemble du cycle projet, en appui aux démarches qualité, sécurité et conformité documentaire de nos clients.
+                </p>
+                <p className="text-lg text-nordic-300 leading-relaxed">
+                  Notre objectif : vous accompagner avec rigueur, méthode et fiabilité, en France comme à l'international.
+                </p>
+              </motion.div>
             </div>
-            
-            {/* Grid de stats et services */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-              {[
-                {
-                  number: "500+",
-                  label: "Inspections réalisées",
-                  icon: "🔍",
-                  color: "from-blue-500/20 to-blue-600/20",
-                  borderColor: "border-blue-400/30"
-                },
-                {
-                  number: "15+",
-                  label: "Années d'expérience",
-                  icon: "⏰",
-                  color: "from-green-500/20 to-green-600/20",
-                  borderColor: "border-green-400/30"
-                },
-                {
-                  number: "100%",
-                  label: "Conformité réglementaire",
-                  icon: "✅",
-                  color: "from-accent-500/20 to-accent-600/20",
-                  borderColor: "border-accent-400/30"
-                },
-                {
-                  number: "24/7",
-                  label: "Disponibilité",
-                  icon: "🚀",
-                  color: "from-purple-500/20 to-purple-600/20",
-                  borderColor: "border-purple-400/30"
-                }
-              ].map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 0.6 + index * 0.1,
-                    type: "spring",
-                    stiffness: 80
-                  }}
-                  whileHover={{ 
-                    y: -5,
-                    scale: 1.02
-                  }}
-                  className={`bg-white/10 backdrop-blur-lg rounded-2xl p-6 border ${stat.borderColor} hover:bg-white/15 transition-all duration-300 text-center`}
-                >
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${stat.color} flex items-center justify-center mx-auto mb-4`}>
-                    <span className="text-2xl">{stat.icon}</span>
-                  </div>
-                  <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                  <div className="text-nordic-200 text-sm">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Services grid */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              {[
-                {
-                  title: "Inspection Visuelle",
-                  description: "Contrôles visuels approfondis selon les normes en vigueur",
-                  features: ["VT - Visuel", "PT - Pénétration", "Conformité ISO"]
-                },
-                {
-                  title: "Contrôles Spécialisés",
-                  description: "Techniques avancées pour détecter les défauts cachés",
-                  features: ["Ultrasons", "Magnétoscopie", "Radiographie"]
-                },
-                {
-                  title: "Certification",
-                  description: "Validation et certification selon les standards internationaux",
-                  features: ["ISO 9712", "PCN", "ASNT Level II/III"]
-                }
-              ].map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 1.0 + index * 0.2,
-                    type: "spring",
-                    stiffness: 80
-                  }}
-                  whileHover={{ 
-                    y: -5,
-                    scale: 1.02
-                  }}
-                  className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-300"
-                >
-                  <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
-                  <p className="text-nordic-200 mb-6">{service.description}</p>
-                  <div className="space-y-2">
-                    {service.features.map((feature, featureIndex) => (
-                      <motion.div
-                        key={feature}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ 
-                          duration: 0.5, 
-                          delay: 1.2 + index * 0.2 + featureIndex * 0.1
-                        }}
-                        className="flex items-center space-x-2 text-accent-300"
-                      >
-                        <div className="w-2 h-2 bg-accent-400 rounded-full"></div>
-                        <span className="text-sm">{feature}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Boutons d'action */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center"
-            >
-              <button className="bg-accent-600 hover:bg-accent-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
-                <span className="flex items-center justify-center space-x-2">
-                  <span>Découvrir nos services</span>
-                  <ArrowRight className="w-5 h-5" />
-                </span>
-              </button>
-              <button className="border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm px-10 py-4 rounded-xl font-semibold transition-all duration-300">
-                <span className="flex items-center justify-center space-x-2">
-                  <span>Contactez-nous</span>
-                  <Send className="w-5 h-5" />
-                </span>
-              </button>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Sections */}
-      {sections.map((section, index) => (
-        <section key={section.id} className="py-20 bg-white">
-          <div className="container-nordic">
-            {section.image ? (
-              section.layout === 'left' ? (
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Sections de contenu */}
+      <div className="py-24">
+        {sections.map((section, index) => (
+          <section key={section.id} className={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
+            <div className="container-nordic">
+              <div className={`grid lg:grid-cols-2 gap-12 items-center ${section.layout === 'right' ? 'lg:grid-flow-col-dense' : ''}`}>
+                <div className={section.layout === 'right' ? 'lg:col-start-2' : ''}>
                   <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="order-2 lg:order-1"
-                  >
-                    <div className="relative">
-                      <ImageWrapper
-                        src={section.image}
-                        alt={section.title}
-                        className="w-full h-[400px] object-cover rounded-lg shadow-lg"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent rounded-lg"></div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="order-1 lg:order-2 space-y-6"
-                  >
-                    <h2 className="text-2xl lg:text-3xl font-bold text-nordic-900">
-                      {section.title}
-                    </h2>
-                    <div className="text-sm text-nordic-700 leading-relaxed space-y-3 text-justify">
-                      {section.content.split('\n').map((paragraph, index) => (
-                        <p key={index} className={paragraph.startsWith('•') ? 'ml-4 relative' : ''}>
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              ) : (
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                  <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="space-y-6"
                   >
-                    <h2 className="text-2xl lg:text-3xl font-bold text-nordic-900">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-nordic-900">
                       {section.title}
                     </h2>
-                    <div className="text-sm text-nordic-700 leading-relaxed space-y-3 text-justify">
-                      {section.content.split('\n').map((paragraph, index) => (
-                        <p key={index} className={paragraph.startsWith('•') ? 'ml-4 relative' : ''}>
-                          {paragraph}
-                        </p>
-                      ))}
+                    <div className="text-nordic-700 leading-relaxed whitespace-pre-line">
+                      {section.content}
                     </div>
                   </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  >
-                    <div className="relative">
+                </div>
+                
+                {section.image && (
+                  <div className={section.layout === 'right' ? 'lg:col-start-1' : ''}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="relative rounded-2xl overflow-hidden shadow-2xl"
+                    >
                       <ImageWrapper
                         src={section.image}
                         alt={section.title}
-                        className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+                        className="w-full h-96 object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 to-transparent rounded-lg"></div>
-                    </div>
-                  </motion.div>
-                </div>
-              )
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-4xl mx-auto text-center space-y-6"
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-accent-600 to-accent-700">
+        <div className="container-nordic">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+              Prêt à optimiser vos inspections industrielles ?
+            </h2>
+            <p className="text-xl text-accent-100 mb-8 leading-relaxed">
+              Contactez nos experts pour discuter de vos besoins en inspection technique et découvrir comment nous pouvons vous accompagner.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-accent-600 px-8 py-4 rounded-lg font-semibold hover:bg-accent-50 transition-colors duration-200 flex items-center justify-center"
               >
-                <h2 className="text-2xl lg:text-3xl font-bold text-nordic-900">
-                  {section.title}
-                </h2>
-                <div className="text-sm text-nordic-700 leading-relaxed space-y-3 text-justify">
-                  {section.content.split('\n').map((paragraph, index) => (
-                    <p key={index} className={paragraph.startsWith('•') ? 'ml-4 relative' : ''}>
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </div>
-        </section>
-      ))}
-
-
+                <Send className="w-5 h-5 mr-2" />
+                Demander un devis
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-accent-600 transition-colors duration-200 flex items-center justify-center"
+              >
+                <ArrowRight className="w-5 h-5 mr-2" />
+                En savoir plus
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }

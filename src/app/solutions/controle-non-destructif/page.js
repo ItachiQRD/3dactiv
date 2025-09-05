@@ -9,323 +9,310 @@ import { ArrowRight, Send } from 'lucide-react'
 const ControleNonDestructif = () => {
   const sections = [
     {
-      id: 'services-cnd',
-      title: 'Des services CND adaptés à chaque environnement industriel',
-      content: `Nos équipes interviennent sur des sites industriels sensibles où la fiabilité du contrôle non destructif est un impératif : nucléaire, pétrole & gaz, énergies renouvelables, infrastructures métalliques, etc.
+      id: 'cnd-expertise',
+      title: 'Le Contrôle Non Destructif : une expertise technique de pointe',
+      content: `Le Contrôle Non Destructif (CND) est un maillon essentiel de la chaîne qualité dans les secteurs industriels à forte exigence réglementaire.
 
-Nous adaptons les techniques utilisées aux contraintes spécifiques de chaque environnement : accessibilité, matériau, type de défaut attendu, conditions d'intervention.
+Nous mobilisons des techniciens certifiés pour réaliser des examens CND fiables et traçables, conformes aux normes internationales, en France comme à l'étranger.
 
-Grâce à leur polyvalence, nos techniciens peuvent mettre en œuvre aussi bien des méthodes conventionnelles que des procédés avancés, selon le besoin :
-• Inspections en zone confinée ou atmosphère contrôlée
-• Opérations en hauteur, onshore, offshore ou milieux corrosifs
-• Sites en activité nécessitant une coordination stricte avec la production
+Nos domaines d'expertise :
+• Radiographie industrielle (RT)
+• Ultrasons (UT)
+• Magnétoscopie (MT)
+• Liquides pénétrants (PT)
+• Courants de Foucault (ET)
+• Contrôle visuel (VT)
 
-Nos ressources sont mobilisables rapidement, en France comme à l'international, avec une parfaite maîtrise des exigences terrain, des procédures sécurité et des référentiels clients.`
+Chaque technique est adaptée aux spécificités de vos équipements et aux exigences réglementaires de votre secteur d'activité.`
     },
     {
-      id: 'controles-non-destructifs',
-      title: 'Contrôles Non Destructifs',
+      id: 'certifications-normes',
+      title: 'Certifications et conformité aux normes internationales',
       image: '/images/solutions/cnd/cnd1.avif',
-      content: `3D ACTIV fournit des prestations de Contrôle Non Destructif (CND) en appui aux opérations de fabrication, de maintenance, ou d'inspection en service.
+      content: `Nos techniciens CND sont certifiés selon les standards internationaux les plus exigeants :
 
-Nos techniciens interviennent dans des environnements à forte exigence réglementaire : nucléaire, oil & gas, énergie, infrastructures critiques.
+Certifications principales :
+• ISO 9712 (niveaux 1, 2 et 3)
+• ASNT (American Society for Nondestructive Testing)
+• PCN (Personnel Certification in Nondestructive Testing)
+• COFREND (Comité français d'essais non destructifs)
 
-➤ Méthodes conventionnelles (Basic Techniques)
+Normes et codes applicables :
+• ASME (American Society of Mechanical Engineers)
+• API (American Petroleum Institute)
+• EN (Normes européennes)
+• PED (Pressure Equipment Directive)
+• RCC-M (Règles de conception et de construction des matériels)
 
-Nous maîtrisons les méthodes CND dites conventionnelles, largement utilisées dans l'industrie pour détecter des défauts de surface ou de volume : VT - PT - MT - UT - RT
-
-Ces techniques sont appliquées dans le respect strict des procédures client, des normes en vigueur, et des contraintes HSE.
-
-➤ Méthodes avancées (Advanced Techniques)
-
-Nous mobilisons également des techniciens formés aux méthodes plus spécialisées ou automatisées, adaptées aux inspections complexes ou à forte criticité : IRIS - TOFD - Phased Array UT (PAUT) - Pulsed Eddy Current (PEC) - Digital Radiography (DR) - ACFM (Alternating Current Field Measurement)
-
-Ces techniques permettent une analyse fine, une traçabilité numérique, et une réduction des temps d'immobilisation.
-
-➤ Certifications & Reconnaissance internationale
-
-Nos intervenants sont qualifiés selon les principaux référentiels internationaux :
-• ISO 9712
-• PCN
-• ASNT
-• Autres équivalences reconnues selon le pays d'exécution ou les exigences client`,
+Cette expertise nous permet d'intervenir sur des projets critiques dans les secteurs nucléaire, pétrochimique, aéronautique et énergétique.`,
       layout: 'left'
     },
     {
-      id: 'pourquoi-choisir',
-      title: 'Pourquoi choisir nos experts CND ?',
+      id: 'methodes-cnd',
+      title: 'Méthodes CND et applications industrielles',
       image: '/images/solutions/cnd/cnd2.avif',
-      content: `Nos intervenants sont sélectionnés pour leur expérience terrain, leur maîtrise technique, et leur capacité à travailler selon les standards et codes internationaux.
+      content: `Nous maîtrisons l'ensemble des techniques CND pour répondre à vos besoins spécifiques :
 
-Chaque mission est adaptée au contexte local, au type de structure à inspecter, et aux exigences qualité du client.
+Radiographie industrielle :
+• Contrôle de soudures et assemblages
+• Détection de défauts internes
+• Contrôle de corrosion et d'érosion
 
-Nous garantissons :
-• La maîtrise des procédures CND selon la méthode appliquée
-• La traçabilité documentaire complète
-• Des rapports clairs, structurés, adaptés aux standards du site ou de l'exploitant
-• L'adaptabilité aux langages techniques (anglais, français, etc.)`,
+Ultrasons :
+• Mesure d'épaisseur
+• Détection de défauts de soudure
+• Contrôle de l'intégrité des matériaux
+
+Magnétoscopie et liquides pénétrants :
+• Détection de fissures de surface
+• Contrôle de pièces magnétiques et non-magnétiques
+• Inspection de composants critiques
+
+Chaque méthode est choisie en fonction de la nature des défauts recherchés et des contraintes techniques du projet.`,
       layout: 'right'
     },
     {
-      id: 'processus-selection',
-      title: 'Un processus de sélection structuré & conforme',
+      id: 'traçabilite-qualite',
+      title: 'Traçabilité et assurance qualité',
       image: '/images/solutions/cnd/cnd3.avif',
-      content: `Nos techniciens CND sont recrutés selon un processus de sélection rigoureux, conforme à notre système de management de la qualité ISO 9001.
+      content: `La traçabilité est au cœur de notre démarche qualité pour garantir la fiabilité de nos interventions :
 
-Chaque profil est vérifié sur la base :
-• Des certifications CND valides et vérifiables
-• De l'expérience sectorielle (nucléaire, oil & gas, offshore, etc.)
-• Des retours d'expériences sur chantiers en France et à l'international
+Documentation technique :
+• Procédures d'examen personnalisées
+• Rapports d'inspection détaillés
+• Certificats de conformité
+• Archives numériques sécurisées
 
-Cette exigence garantit la mobilisation rapide de profils fiables, opérationnels sur des environnements critiques à fort enjeu réglementaire.`,
+Assurance qualité :
+• Contrôles croisés et validation
+• Formation continue des techniciens
+• Mise à jour des certifications
+• Audit qualité régulier
+
+Cette approche rigoureuse garantit la conformité de nos prestations aux exigences les plus strictes et assure la pérennité de vos équipements industriels.`,
       layout: 'left'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <Navigation />
       
-      {/* Hero Section - Style Parallax avec Cards */}
+      {/* Hero Section - Style épuré */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background avec effet parallax */}
+        {/* Background */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/cnd/background.avif"
-            alt="Contrôle Non-Destructif"
+            alt="Contrôle Non Destructif"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/80 via-nordic-800/60 to-nordic-700/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/70 via-nordic-800/50 to-nordic-700/30"></div>
+        </div>
+        
+        {/* Décoration animée */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-20 right-10 w-32 h-32 border border-accent-400/20 rounded-full"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 left-10 w-24 h-24 border border-accent-400/30 rounded-full"
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 right-1/4 w-16 h-16 border border-accent-400/25 rounded-full"
+            animate={{ 
+              rotate: [0, -360],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="text-center mb-16">
+            <div className="max-w-4xl mx-auto text-center">
+              {/* Badge animé */}
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="inline-flex items-center space-x-2 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30 mb-8"
+                initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.2,
+                  type: "spring",
+                  stiffness: 120
+                }}
+                className="mb-8"
               >
-                <div className="w-2 h-2 bg-accent-400 rounded-full animate-pulse"></div>
-                <span className="text-accent-200 text-sm font-medium">CERTIFICATION INTERNATIONALE</span>
+                <motion.div 
+                  className="inline-flex items-center space-x-3 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <motion.div 
+                    className="w-2 h-2 bg-accent-400 rounded-full"
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ 
+                      duration: 2, 
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  <span className="text-accent-200 text-sm font-medium tracking-wider">SOLUTIONS INDUSTRIELLES</span>
+                </motion.div>
               </motion.div>
               
+              {/* Titre avec animation en cascade */}
               <motion.h1 
+                className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="text-5xl lg:text-7xl font-bold text-white mb-6"
+                transition={{ 
+                  duration: 1, 
+                  delay: 0.4,
+                  type: "spring",
+                  stiffness: 60
+                }}
               >
-                <span className="block">Contrôle</span>
-                <span className="block text-accent-400">Non-Destructif</span>
+                <motion.span 
+                  className="block"
+                  initial={{ x: -50, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  Contrôle Non-Destructif
+                </motion.span>
               </motion.h1>
               
-              <motion.p 
+              {/* Description avec animation */}
+              <motion.div
+                className="max-w-3xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-xl text-nordic-200 max-w-3xl mx-auto"
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.8,
+                  type: "spring",
+                  stiffness: 50
+                }}
               >
-                Le CND est un maillon essentiel de la chaîne qualité dans les secteurs industriels à forte exigence réglementaire.
-              </motion.p>
+                <p className="text-xl lg:text-2xl text-nordic-200 leading-relaxed mb-6">
+                  Le Contrôle Non Destructif (CND) est un maillon essentiel de la chaîne qualité dans les secteurs industriels à forte exigence réglementaire.
+                </p>
+                <p className="text-lg text-nordic-300 leading-relaxed">
+                  Nous mobilisons des techniciens certifiés pour réaliser des examens CND fiables et traçables, conformes aux normes internationales, en France comme à l'étranger.
+                </p>
+              </motion.div>
             </div>
-            
-            {/* Cards flottantes */}
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  title: "Méthodes Conventionnelles",
-                  techniques: ["VT - PT", "MT - UT", "RT"],
-                  description: "Techniques de base largement utilisées",
-                  color: "from-blue-500/20 to-blue-600/20",
-                  borderColor: "border-blue-400/30"
-                },
-                {
-                  title: "Techniques Avancées",
-                  techniques: ["IRIS", "TOFD", "PAUT"],
-                  description: "Méthodes spécialisées et automatisées",
-                  color: "from-accent-500/20 to-accent-600/20",
-                  borderColor: "border-accent-400/30"
-                },
-                {
-                  title: "Certifications",
-                  techniques: ["ISO 9712", "PCN", "ASNT"],
-                  description: "Reconnaissance internationale",
-                  color: "from-green-500/20 to-green-600/20",
-                  borderColor: "border-green-400/30"
-                }
-              ].map((card, index) => (
-                <motion.div
-                  key={card.title}
-                  initial={{ opacity: 0, y: 100 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.8, 
-                    delay: 0.6 + index * 0.2,
-                    type: "spring",
-                    stiffness: 80
-                  }}
-                  whileHover={{ 
-                    y: -10,
-                    scale: 1.02
-                  }}
-                  className={`bg-white/10 backdrop-blur-lg rounded-2xl p-8 border ${card.borderColor} hover:bg-white/15 transition-all duration-300`}
-                >
-                  <div className="text-center">
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${card.color} flex items-center justify-center mx-auto mb-6`}>
-                      <div className="w-8 h-8 bg-accent-400 rounded-full"></div>
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold text-white mb-4">{card.title}</h3>
-                    <p className="text-nordic-200 mb-6">{card.description}</p>
-                    
-                    <div className="space-y-2">
-                      {card.techniques.map((technique, techIndex) => (
-                        <motion.div
-                          key={technique}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ 
-                            duration: 0.5, 
-                            delay: 0.8 + index * 0.2 + techIndex * 0.1
-                          }}
-                          className="bg-white/5 rounded-lg px-4 py-2 text-accent-300 font-medium"
-                        >
-                          {technique}
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            
-            {/* Boutons d'action */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center mt-16"
-            >
-              <button className="bg-accent-600 hover:bg-accent-700 text-white px-10 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg hover:shadow-xl">
-                <span className="flex items-center justify-center space-x-2">
-                  <span>Nos techniques</span>
-                  <ArrowRight className="w-5 h-5" />
-                </span>
-              </button>
-              <button className="border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm px-10 py-4 rounded-xl font-semibold transition-all duration-300">
-                <span className="flex items-center justify-center space-x-2">
-                  <span>Devis gratuit</span>
-                  <Send className="w-5 h-5" />
-                </span>
-              </button>
-            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Sections */}
-      {sections.map((section, index) => (
-        <section key={section.id} className="py-20 bg-white">
-          <div className="container-nordic">
-            {section.image ? (
-              section.layout === 'left' ? (
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Sections de contenu */}
+      <div className="py-24">
+        {sections.map((section, index) => (
+          <section key={section.id} className={`py-16 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
+            <div className="container-nordic">
+              <div className={`grid lg:grid-cols-2 gap-12 items-center ${section.layout === 'right' ? 'lg:grid-flow-col-dense' : ''}`}>
+                <div className={section.layout === 'right' ? 'lg:col-start-2' : ''}>
                   <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="order-2 lg:order-1"
-                  >
-                    <div className="relative">
-                      <ImageWrapper
-                        src={section.image}
-                        alt={section.title}
-                        className="w-full h-auto min-h-[500px] object-cover rounded-lg shadow-lg"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-transparent rounded-lg"></div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="order-1 lg:order-2 space-y-6"
-                  >
-                    <h2 className="text-2xl lg:text-3xl font-bold text-nordic-900">
-                      {section.title}
-                    </h2>
-                    <div className="text-sm text-nordic-700 leading-relaxed space-y-3 text-justify">
-                      {section.content.split('\n').map((paragraph, index) => (
-                        <p key={index} className={paragraph.startsWith('•') ? 'ml-4 relative' : ''}>
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              ) : (
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                  <motion.div
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     className="space-y-6"
                   >
-                    <h2 className="text-2xl lg:text-3xl font-bold text-nordic-900">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-nordic-900">
                       {section.title}
                     </h2>
-                    <div className="text-sm text-nordic-700 leading-relaxed space-y-3 text-justify">
-                      {section.content.split('\n').map((paragraph, index) => (
-                        <p key={index} className={paragraph.startsWith('•') ? 'ml-4 relative' : ''}>
-                          {paragraph}
-                        </p>
-                      ))}
+                    <div className="text-nordic-700 leading-relaxed whitespace-pre-line">
+                      {section.content}
                     </div>
                   </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                  >
-                    <div className="relative">
+                </div>
+                
+                {section.image && (
+                  <div className={section.layout === 'right' ? 'lg:col-start-1' : ''}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="relative rounded-2xl overflow-hidden shadow-2xl"
+                    >
                       <ImageWrapper
                         src={section.image}
                         alt={section.title}
-                        className="w-full h-[400px] object-cover rounded-lg shadow-lg"
+                        className="w-full h-96 object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-cyan-900/20 to-transparent rounded-lg"></div>
-                    </div>
-                  </motion.div>
-                </div>
-              )
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                className="max-w-4xl mx-auto text-center space-y-6"
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-accent-600 to-accent-700">
+        <div className="container-nordic">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+              Besoin d'expertise CND pour vos projets ?
+            </h2>
+            <p className="text-xl text-accent-100 mb-8 leading-relaxed">
+              Nos techniciens certifiés sont à votre disposition pour des prestations CND conformes aux normes internationales les plus exigeantes.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-white text-accent-600 px-8 py-4 rounded-lg font-semibold hover:bg-accent-50 transition-colors duration-200 flex items-center justify-center"
               >
-                <h2 className="text-2xl lg:text-3xl font-bold text-nordic-900">
-                  {section.title}
-                </h2>
-                <div className="text-sm text-nordic-700 leading-relaxed space-y-3 text-justify">
-                  {section.content.split('\n').map((paragraph, index) => (
-                    <p key={index} className={paragraph.startsWith('•') ? 'ml-4 relative' : ''}>
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-          </div>
-        </section>
-      ))}
-
-
+                <Send className="w-5 h-5 mr-2" />
+                Demander un devis
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-accent-600 transition-colors duration-200 flex items-center justify-center"
+              >
+                <ArrowRight className="w-5 h-5 mr-2" />
+                En savoir plus
+              </motion.button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }
