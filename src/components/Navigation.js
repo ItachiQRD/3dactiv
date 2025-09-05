@@ -11,6 +11,7 @@ const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [isSolutionsOpen, setIsSolutionsOpen] = useState(false)
   const [solutionsTimeout, setSolutionsTimeout] = useState(null)
+  const [isMouseAtTop, setIsMouseAtTop] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,8 +19,19 @@ const Navigation = () => {
       setIsScrolled(scrollY > 20)
       setIsVisible(scrollY > 100) // Apparaît après 100px de scroll
     }
+    
+    const handleMouseMove = (e) => {
+      // Vérifier si la souris est dans les 50px du haut de la page
+      setIsMouseAtTop(e.clientY <= 50)
+    }
+    
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('mousemove', handleMouseMove)
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('mousemove', handleMouseMove)
+    }
   }, [])
 
   // Fonction pour gérer l'ouverture du menu Solutions
@@ -59,7 +71,7 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isVisible 
+      isVisible || isMouseAtTop
         ? 'translate-y-0 opacity-100' 
         : '-translate-y-full opacity-0'
     } ${
@@ -133,7 +145,7 @@ const Navigation = () => {
             <Link href="/emplois" className="px-3 py-1.5 text-sm border border-accent-600 text-accent-600 hover:bg-accent-600 hover:text-white font-medium rounded-md transition-all duration-200">
               Search Jobs
             </Link>
-            <Link href="/admin" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200">
+            <Link href="/connexion" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200">
               Espace Admin
             </Link>
           </div>
@@ -186,7 +198,7 @@ const Navigation = () => {
                 <Link href="/emplois" className="px-3 py-1.5 text-sm border border-accent-600 text-accent-600 hover:bg-accent-600 hover:text-white font-medium rounded-md transition-all duration-200 w-full text-center block">
                   Search Jobs
                 </Link>
-                <Link href="/admin" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200 w-full text-center block">
+                <Link href="/connexion" className="px-3 py-1.5 text-sm bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-md transition-all duration-200 w-full text-center block">
                   Espace Admin
                 </Link>
               </div>

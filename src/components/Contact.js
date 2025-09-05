@@ -288,61 +288,6 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* Section Carte */}
-        <div className="mt-16">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-8"
-          >
-            <h3 className="text-2xl font-bold text-nordic-900 mb-4">Notre Localisation</h3>
-            <p className="text-nordic-600 max-w-2xl mx-auto">
-              Retrouvez-nous au cœur de Reims, facilement accessible en transport en commun et en voiture.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white rounded-2xl shadow-nordic overflow-hidden"
-          >
-            <div className="h-96 w-full">
-              <iframe 
-                src="https://maps.google.com/maps?q=5+allée+des+bretons,+51100+Reims,+France&t=&z=15&ie=UTF8&iwloc=&output=embed" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Localisation 3D ACTIV - 5 allée des bretons, 51100 Reims"
-              ></iframe>
-            </div>
-            
-            <div className="p-6 bg-nordic-50">
-              <div className="flex flex-col md:flex-row items-center justify-between">
-                <div className="text-center md:text-left mb-4 md:mb-0">
-                  <h4 className="font-semibold text-nordic-900 mb-2">3D ACTIV</h4>
-                  <p className="text-nordic-600">5 allée des bretons</p>
-                  <p className="text-nordic-600">51100 Reims, France</p>
-                </div>
-                <div className="flex space-x-3">
-                  <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=5%20allée%20des%20bretons,%2051100%20Reims,%20France"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <MapPin className="w-4 h-4" />
-                    <span>Itinéraire</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
 
       </div>
     </section>
