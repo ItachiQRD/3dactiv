@@ -105,16 +105,48 @@ class DataManager {
       const defaultNews = [
         {
           id: 1,
-          title: 'Transition énergétique : 3D ACTIV s\'engage',
-          excerpt: 'Notre entreprise renforce son engagement dans la transition énergétique avec de nouveaux projets d\'énergies renouvelables.',
-          content: 'Contenu complet de l\'article...',
+          title: 'Nouveaux défis de la transition énergétique en 2024',
+          excerpt: 'Analyse des enjeux et opportunités de la transition énergétique dans le secteur industriel français.',
+          content: 'La transition énergétique représente un défi majeur pour l\'industrie française en 2024. Avec l\'objectif de neutralité carbone d\'ici 2050, les entreprises du secteur énergétique doivent adapter leurs processus et former leurs équipes aux nouvelles technologies. 3D ACTIV s\'engage activement dans cette transformation en proposant des solutions d\'inspection et de maintenance adaptées aux énergies renouvelables.',
           category: 'industry',
           author: 'Marie Dubois',
           imageUrl: '/images/news/transition-energetique.jpg',
           tags: 'transition énergétique, industrie, 2024, neutralité carbone',
           status: 'published',
+          publishDate: '2024-01-20',
+          readTime: '5 min',
+          views: 1247,
+          createdAt: '2024-01-20'
+        },
+        {
+          id: 2,
+          title: 'Innovations technologiques en CND : vers l\'inspection 4.0',
+          excerpt: 'Découvrez les dernières innovations en contrôle non-destructif qui révolutionnent l\'inspection industrielle.',
+          content: 'L\'industrie 4.0 transforme également le secteur du contrôle non-destructif. Les nouvelles technologies d\'inspection, intégrant l\'intelligence artificielle et la réalité augmentée, permettent une détection plus précise des défauts et une maintenance prédictive. 3D ACTIV investit massivement dans ces technologies pour offrir à ses clients les services d\'inspection les plus avancés du marché.',
+          category: 'technology',
+          author: 'Pierre Martin',
+          imageUrl: '/images/news/cnd-innovation.jpg',
+          tags: 'CND, innovation, industrie 4.0, IA, maintenance prédictive',
+          status: 'published',
           publishDate: '2024-01-15',
+          readTime: '4 min',
+          views: 892,
           createdAt: '2024-01-15'
+        },
+        {
+          id: 3,
+          title: '3D ACTIV obtient la certification ISO 9712 niveau III',
+          excerpt: 'Notre équipe de techniciens CND a obtenu la certification internationale la plus élevée en contrôle non-destructif.',
+          content: 'Nous sommes fiers d\'annoncer que 3D ACTIV a obtenu la certification ISO 9712 niveau III, la plus haute certification internationale en contrôle non-destructif. Cette certification atteste de notre expertise technique et de notre capacité à mener des inspections complexes sur les installations les plus critiques. Nos clients bénéficient ainsi de la garantie d\'un service d\'inspection de niveau international.',
+          category: 'company',
+          author: 'Sophie Leroy',
+          imageUrl: '/images/news/certification-iso.jpg',
+          tags: 'certification, ISO 9712, CND, expertise, qualité',
+          status: 'published',
+          publishDate: '2024-01-10',
+          readTime: '3 min',
+          views: 1563,
+          createdAt: '2024-01-10'
         }
       ]
       this.setData('news', defaultNews)

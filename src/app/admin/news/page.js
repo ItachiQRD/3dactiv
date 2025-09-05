@@ -137,11 +137,11 @@ const NewsManagement = () => {
 
   const categories = [
     { value: 'industry', label: 'Industrie', color: 'from-blue-500 to-blue-600' },
+    { value: 'technology', label: 'Technologie', color: 'from-teal-500 to-teal-600' },
+    { value: 'company', label: 'Entreprise', color: 'from-purple-500 to-purple-600' },
     { value: 'nuclear', label: 'Nucléaire', color: 'from-red-500 to-red-600' },
     { value: 'oil-gas', label: 'Pétrole & Gaz', color: 'from-orange-500 to-orange-600' },
-    { value: 'renewable', label: 'Énergies Renouvelables', color: 'from-green-500 to-green-600' },
-    { value: 'training', label: 'Formation', color: 'from-purple-500 to-purple-600' },
-    { value: 'technology', label: 'Technologie', color: 'from-teal-500 to-teal-600' }
+    { value: 'renewable', label: 'Énergies Renouvelables', color: 'from-green-500 to-green-600' }
   ]
 
   const statusOptions = [
