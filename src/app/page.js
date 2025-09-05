@@ -8,15 +8,20 @@ import Portfolio from '../components/Portfolio'
 import Partenaires from '../components/Partenaires'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
+import DynamicMetadata from '../components/DynamicMetadata'
 
 export const metadata = {
-  title: '3DACTIV - Accueil',
-  description: 'Cabinet de recrutement spécialisé dans l\'industrie énergétique : gaz, nucléaire et renouvelable.',
+  title: '3DACTIV - Accueil'
 }
 
 export default function Home() {
   return (
     <>
+      <DynamicMetadata 
+        title="3DACTIV - Accueil"
+        description="Cabinet de recrutement spécialisé dans l'industrie énergétique : gaz, nucléaire et renouvelable. Découvrez nos opportunités de carrière."
+        keywords="recrutement, énergie, gaz, nucléaire, renouvelable, emploi, carrière"
+      />
       <main className="min-h-screen">
         <Navigation />
         <Hero />
