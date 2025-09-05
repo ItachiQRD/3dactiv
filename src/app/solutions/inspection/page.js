@@ -79,136 +79,70 @@ Notre rigueur s'appuie sur :
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
       <Navigation />
       
-      {/* Hero Section - Style épuré */}
+      {/* Hero Section - Design 1: Centré avec image en arrière-plan */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background */}
+        {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/inspection/background.avif"
             alt="Inspection industrielle"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-nordic-900/70 via-nordic-800/50 to-nordic-700/30"></div>
-        </div>
-        
-        {/* Décoration animée */}
-        <div className="absolute inset-0 overflow-hidden">
-          <motion.div
-            className="absolute top-20 left-10 w-32 h-32 border border-accent-400/20 rounded-full"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-10 w-24 h-24 border border-accent-400/30 rounded-full"
-            animate={{ 
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{ 
-              duration: 3, 
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/4 w-16 h-16 border border-accent-400/25 rounded-full"
-            animate={{ 
-              rotate: [0, 360],
-              opacity: [0.2, 0.4, 0.2]
-            }}
-            transition={{ 
-              duration: 8, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
+          <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/90 via-nordic-800/60 to-nordic-700/40"></div>
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="max-w-4xl mx-auto text-center">
-              {/* Badge animé */}
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.2,
-                  type: "spring",
-                  stiffness: 120
-                }}
-                className="mb-8"
-              >
-                <motion.div 
-                  className="inline-flex items-center space-x-3 bg-accent-600/20 backdrop-blur-sm px-6 py-3 rounded-full border border-accent-400/30"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+            <div className="max-w-5xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                {/* Contenu texte */}
+                <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="space-y-8"
                 >
-                  <motion.div 
-                    className="w-2 h-2 bg-accent-400 rounded-full"
-                    animate={{ 
-                      scale: [1, 1.3, 1],
-                      opacity: [0.6, 1, 0.6]
-                    }}
-                    transition={{ 
-                      duration: 2, 
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  />
-                  <span className="text-accent-200 text-sm font-medium tracking-wider">SOLUTIONS INDUSTRIELLES</span>
+                  <motion.h1 
+                    className="text-4xl lg:text-6xl font-bold text-white leading-tight"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    Inspection
+                  </motion.h1>
+                  
+                  <motion.div
+                    className="space-y-6"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    <p className="text-xl text-nordic-200 leading-relaxed">
+                      Nous proposons des prestations d'inspection technique sur l'ensemble du cycle projet, en appui aux démarches qualité, sécurité et conformité documentaire de nos clients.
+                    </p>
+                    <p className="text-lg text-nordic-300 leading-relaxed">
+                      Notre objectif : vous accompagner avec rigueur, méthode et fiabilité, en France comme à l'international.
+                    </p>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-              
-              {/* Titre avec animation en cascade */}
-              <motion.h1 
-                className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 1, 
-                  delay: 0.4,
-                  type: "spring",
-                  stiffness: 60
-                }}
-              >
-                <motion.span 
-                  className="block"
-                  initial={{ x: -50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
+                
+                {/* Image illustrative */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="relative"
                 >
-                  Inspection
-                </motion.span>
-              </motion.h1>
-              
-              {/* Description avec animation */}
-              <motion.div
-                className="max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 0.8,
-                  type: "spring",
-                  stiffness: 50
-                }}
-              >
-                <p className="text-xl lg:text-2xl text-nordic-200 leading-relaxed mb-6">
-                  Nous proposons des prestations d'inspection technique sur l'ensemble du cycle projet, en appui aux démarches qualité, sécurité et conformité documentaire de nos clients.
-                </p>
-                <p className="text-lg text-nordic-300 leading-relaxed">
-                  Notre objectif : vous accompagner avec rigueur, méthode et fiabilité, en France comme à l'international.
-                </p>
-              </motion.div>
+                  <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <ImageWrapper
+                      src="/images/solutions/inspection/inspection1.avif"
+                      alt="Inspection technique"
+                      className="w-full h-96 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/20 to-transparent"></div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
