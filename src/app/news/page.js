@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Navigation from '../../components/Navigation'
 import { Calendar, User, ArrowRight, Heart, MessageCircle } from 'lucide-react'
+import Link from 'next/link'
 import AssetPath from '../../components/AssetPath'
 import ImageWrapper from '../../components/ImageWrapper'
 import { useState, useEffect } from 'react'
@@ -58,6 +59,18 @@ const News = () => {
     window.addEventListener('storage', handleStorageChange)
     return () => window.removeEventListener('storage', handleStorageChange)
   }, [])
+
+  // Fonction pour créer un slug à partir du titre
+  const createSlug = (title) => {
+    return title
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .trim('-')
+  }
 
   // Utiliser les articles chargés depuis le dataManager
   const displayArticles = articles
@@ -127,29 +140,35 @@ const News = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 group"
               >
-                <div className="relative">
-                  <ImageWrapper
-                    src={article.imageUrl}
-                    alt={article.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="bg-accent-600 text-white px-2 py-1 rounded text-xs font-medium">
-                      {categories.find(cat => cat.value === article.category)?.label || article.category}
-                    </span>
+                <Link href={`/news/${createSlug(article.title)}`}>
+                  <div className="relative">
+                    <ImageWrapper
+                      src={article.imageUrl}
+                      alt={article.title}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3">
+                      <span className="bg-accent-600 text-white px-2 py-1 rounded text-xs font-medium">
+                        {categories.find(cat => cat.value === article.category)?.label || article.category}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
                 
                 <div className="p-6">
-                  <h3 className="text-lg font-bold text-nordic-900 mb-3 line-clamp-2">
-                    {article.title}
-                  </h3>
+                  <Link href={`/news/${createSlug(article.title)}`}>
+                    <h3 className="text-lg font-bold text-nordic-900 mb-3 line-clamp-2 group-hover:text-accent-600 transition-colors duration-200">
+                      {article.title}
+                    </h3>
+                  </Link>
                   
-                  <p className="text-nordic-600 mb-4 line-clamp-3 text-sm leading-relaxed text-justify cursor-pointer hover:text-accent-600 transition-colors duration-200">
-                    {article.excerpt}
-                  </p>
+                  <Link href={`/news/${createSlug(article.title)}`}>
+                    <p className="text-nordic-600 mb-4 line-clamp-3 text-sm leading-relaxed text-justify cursor-pointer hover:text-accent-600 transition-colors duration-200">
+                      {article.excerpt}
+                    </p>
+                  </Link>
                   
                   <div className="flex items-center justify-between text-xs text-nordic-500 mb-4">
                     <div className="flex items-center">
@@ -179,10 +198,13 @@ const News = () => {
                   </div>
                   
                   <div className="flex items-center justify-end">
-                    <button className="text-accent-600 hover:text-accent-700 font-medium text-sm flex items-center transition-colors duration-200">
+                    <Link 
+                      href={`/news/${createSlug(article.title)}`}
+                      className="text-accent-600 hover:text-accent-700 font-medium text-sm flex items-center transition-colors duration-200"
+                    >
                       Lire
                       <ArrowRight size={12} className="ml-1" />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </motion.article>
