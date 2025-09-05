@@ -9,7 +9,7 @@ const ImageUpload = ({
   value, 
   onChange, 
   label = "Image", 
-  accept = "image/*",
+  accept = "image/*,.avif",
   maxSize = 5 * 1024 * 1024, // 5MB
   className = ""
 }) => {

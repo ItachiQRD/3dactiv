@@ -115,9 +115,6 @@ class DataManager {
           status: 'published',
           publishDate: '2024-01-25',
           readTime: '4 min',
-          views: 2156,
-          likes: 42,
-          comments: 8,
           createdAt: '2024-01-25'
         },
         {
@@ -132,9 +129,6 @@ class DataManager {
           status: 'published',
           publishDate: '2024-01-20',
           readTime: '5 min',
-          views: 1247,
-          likes: 28,
-          comments: 5,
           createdAt: '2024-01-20'
         },
         {
@@ -149,9 +143,6 @@ class DataManager {
           status: 'published',
           publishDate: '2024-01-15',
           readTime: '4 min',
-          views: 892,
-          likes: 19,
-          comments: 3,
           createdAt: '2024-01-15'
         },
         {
@@ -166,9 +157,6 @@ class DataManager {
           status: 'published',
           publishDate: '2024-01-10',
           readTime: '3 min',
-          views: 1563,
-          likes: 35,
-          comments: 7,
           createdAt: '2024-01-10'
         }
       ]

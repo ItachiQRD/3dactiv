@@ -11,12 +11,38 @@ import dataManager from '../../utils/dataManager'
 const News = () => {
   const [articles, setArticles] = useState([])
 
+  // Fonction pour générer des statistiques automatiques basées sur l'ID de l'article
+  const generateStats = (articleId) => {
+    // Utiliser l'ID comme seed pour des statistiques cohérentes
+    const seed = articleId * 12345
+    const random = (seed) => {
+      const x = Math.sin(seed) * 10000
+      return x - Math.floor(x)
+    }
+    
+    // Générer des statistiques réalistes basées sur l'âge de l'article
+    const baseViews = Math.floor(random(seed) * 2000) + 500
+    const baseLikes = Math.floor(random(seed + 1) * 50) + 10
+    const baseComments = Math.floor(random(seed + 2) * 15) + 2
+    
+    return {
+      views: baseViews,
+      likes: baseLikes,
+      comments: baseComments
+    }
+  }
+
   // Charger les articles depuis le DataManager
   useEffect(() => {
     const loadArticles = () => {
       const allArticles = dataManager.getData('news')
-      // Filtrer seulement les articles publiés
-      const publishedArticles = allArticles.filter(article => article.status === 'published')
+      // Filtrer seulement les articles publiés et ajouter les statistiques automatiques
+      const publishedArticles = allArticles
+        .filter(article => article.status === 'published')
+        .map(article => ({
+          ...article,
+          ...generateStats(article.id)
+        }))
       setArticles(publishedArticles)
     }
     

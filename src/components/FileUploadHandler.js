@@ -57,7 +57,7 @@ export const useFileUpload = () => {
 export const validateFile = (file, options = {}) => {
   const {
     maxSize = 5 * 1024 * 1024, // 5MB par défaut
-    allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+    allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp', 'image/avif']
   } = options
 
   const errors = []

@@ -19,9 +19,7 @@ import {
   X,
   Upload,
   ExternalLink,
-  Home,
-  Heart,
-  MessageCircle
+  Home
 } from 'lucide-react'
 import ImageWrapper from '../../../components/ImageWrapper'
 import ImageUpload from '../../../components/ImageUpload'
@@ -48,10 +46,7 @@ const NewsManagement = () => {
     tags: '',
     status: 'draft',
     publishDate: '',
-    readTime: '',
-    views: 0,
-    likes: 0,
-    comments: 0
+    readTime: ''
   })
 
   // Charger les articles depuis le DataManager
@@ -125,10 +120,7 @@ const NewsManagement = () => {
       tags: '',
       status: 'draft',
       publishDate: '',
-      readTime: '',
-      views: 0,
-      likes: 0,
-      comments: 0
+      readTime: ''
     })
   }
 
@@ -350,15 +342,7 @@ const NewsManagement = () => {
                     </div>
                     <div className="flex items-center">
                       <EyeIcon className="w-4 h-4 mr-2" />
-                      <span>{article.views} vues</span>
-                    </div>
-                    <div className="flex items-center">
-                      <Heart className="w-4 h-4 mr-2" />
-                      <span>{article.likes || 0} j'aimes</span>
-                    </div>
-                    <div className="flex items-center">
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      <span>{article.comments || 0} commentaires</span>
+                      <span>{article.views || 0} vues</span>
                     </div>
                   </div>
 
@@ -620,49 +604,6 @@ const ArticleFormModal = ({ title, formData, setFormData, onSubmit, onClose, cat
               <p className="text-xs text-nordic-500 mt-1">Séparez les tags par des virgules</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-nordic-700 mb-2">
-                  Nombre de vues
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={formData.views}
-                  onChange={(e) => setFormData({ ...formData, views: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-nordic-700 mb-2">
-                  Nombre de j'aimes
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={formData.likes}
-                  onChange={(e) => setFormData({ ...formData, likes: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-nordic-700 mb-2">
-                  Nombre de commentaires
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={formData.comments}
-                  onChange={(e) => setFormData({ ...formData, comments: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-2 border border-nordic-200 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
-                  placeholder="0"
-                />
-              </div>
-            </div>
           </div>
 
           <div className="flex items-center justify-end space-x-4 mt-8 pt-6 border-t border-nordic-100">
