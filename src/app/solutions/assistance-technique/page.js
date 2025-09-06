@@ -114,16 +114,15 @@ Cette approche garantit une montée en compétences durable de vos équipes et u
         {/* Overlay collaboration */}
         <div className="absolute inset-0 bg-gradient-to-r from-purple-900/95 via-violet-900/90 to-slate-900/95"></div>
         
-        {/* Éléments décoratifs collaboration */}
+        {/* Éléments décoratifs collaboration simplifiés */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-24 left-24 w-28 h-28 border-2 border-purple-400/20 rounded-full"
             animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
+              scale: [1, 1.2, 1]
             }}
             transition={{ 
-              duration: 5, 
+              duration: 4, 
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -131,38 +130,13 @@ Cette approche garantit une montée en compétences durable de vos équipes et u
           <motion.div
             className="absolute bottom-24 right-24 w-20 h-20 border-2 border-purple-400/30 rounded-full"
             animate={{ 
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.5, 0.2]
+              scale: [1.2, 1, 1.2]
             }}
             transition={{ 
-              duration: 4, 
+              duration: 3, 
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute top-1/3 right-1/4 w-16 h-16 border border-purple-400/25 rounded-full"
-            animate={{ 
-              rotate: [0, 180, 360],
-              opacity: [0.2, 0.4, 0.2]
-            }}
-            transition={{ 
-              duration: 6, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <motion.div
-            className="absolute bottom-1/3 left-1/4 w-12 h-12 border border-purple-400/20 rounded-full"
-            animate={{ 
-              rotate: [360, 180, 0],
-              scale: [1, 1.3, 1]
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity,
-              ease: "easeInOut"
             }}
           />
         </div>
@@ -219,7 +193,7 @@ Cette approche garantit une montée en compétences durable de vos équipes et u
                   <div className="absolute -inset-8 bg-gradient-to-r from-purple-500/10 via-violet-500/10 to-purple-500/10 rounded-3xl blur-xl"></div>
                   <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-purple-400/30 bg-slate-800/50 backdrop-blur-sm">
                     <ImageWrapper
-                      src="/images/solutions/assistance/assistance1.avif"
+                      src="/images/solutions/assistance/head.png"
                       alt="Assistance Technique"
                       className="w-full h-64 lg:h-80 object-cover"
                     />

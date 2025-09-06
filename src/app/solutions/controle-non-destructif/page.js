@@ -119,42 +119,29 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
         {/* Overlay technique */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-indigo-900/90 to-slate-900/95"></div>
         
-        {/* Éléments décoratifs techniques */}
+        {/* Éléments décoratifs techniques simplifiés */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute top-32 right-32 w-20 h-20 border-2 border-emerald-400/30 rounded-full"
             animate={{ 
-              rotate: [0, 360],
               scale: [1, 1.1, 1]
             }}
             transition={{ 
-              duration: 6, 
+              duration: 4, 
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut"
             }}
           />
           <motion.div
             className="absolute bottom-32 left-32 w-16 h-16 border-2 border-emerald-400/40 rounded-full"
             animate={{ 
-              rotate: [360, 0],
               scale: [1.1, 1, 1.1]
-            }}
-            transition={{ 
-              duration: 4, 
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 right-1/3 w-12 h-12 border border-emerald-400/20 rounded-full"
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.3, 0.7, 0.3]
             }}
             transition={{ 
               duration: 3, 
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
+              delay: 1
             }}
           />
         </div>
@@ -175,7 +162,7 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
                     <div className="absolute -inset-6 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-3xl blur-lg"></div>
                     <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-400/30 bg-slate-800/50 backdrop-blur-sm">
                       <ImageWrapper
-                        src="/images/solutions/cnd/cnd1.avif"
+                        src="/images/solutions/cnd/head.png"
                         alt="Contrôle Non Destructif"
                         className="w-full h-80 lg:h-96 object-cover"
                       />

@@ -208,7 +208,7 @@ Notre rigueur s'appuie sur :
                     <div className="absolute -inset-4 bg-gradient-to-r from-accent-600/20 to-accent-500/20 rounded-2xl blur-sm"></div>
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-accent-500/30">
                       <ImageWrapper
-                        src="/images/solutions/inspection/inspection1.avif"
+                        src="/images/solutions/inspection/head.png"
                         alt="Inspection technique"
                         className="w-full h-96 object-cover"
                       />
