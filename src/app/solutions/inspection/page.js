@@ -79,21 +79,71 @@ Notre rigueur s'appuie sur :
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
       <Navigation />
       
-      {/* Hero Section - Design 1: Centré avec image en arrière-plan */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Hero Section - Design Industriel Professionnel */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-900 via-nordic-900 to-slate-800">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/inspection/background.avif"
             alt="Inspection industrielle"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/90 via-nordic-800/60 to-nordic-700/40"></div>
+        </div>
+        
+        {/* Overlay avec effet industriel */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-nordic-900/90 to-slate-800/95"></div>
+        
+        {/* Éléments décoratifs industriels */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-20 left-20 w-32 h-32 border border-accent-500/20 rounded-full"
+            animate={{ 
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-20 w-24 h-24 border border-accent-500/30 rounded-full"
+            animate={{ 
+              scale: [1.1, 1, 1.1],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/4 w-16 h-16 border border-accent-500/25 rounded-full"
+            animate={{ 
+              rotate: [0, 360],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ 
+              duration: 8, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <div className="grid lg:grid-cols-2 gap-16 items-center">
                 {/* Contenu texte */}
                 <motion.div
@@ -102,20 +152,32 @@ Notre rigueur s'appuie sur :
                   transition={{ duration: 0.8 }}
                   className="space-y-8"
                 >
+                  {/* Badge industriel */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="inline-flex items-center space-x-3 bg-accent-600/20 backdrop-blur-sm px-4 py-2 rounded-full border border-accent-500/30"
+                  >
+                    <div className="w-2 h-2 bg-accent-500 rounded-full animate-pulse"></div>
+                    <span className="text-accent-300 text-sm font-medium tracking-wider">EXPERTISE TECHNIQUE</span>
+                  </motion.div>
+                  
                   <motion.h1 
-                    className="text-4xl lg:text-6xl font-bold text-white leading-tight"
+                    className="text-5xl lg:text-7xl font-bold text-white leading-tight"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
                   >
-                    Inspection
+                    <span className="block text-accent-400">INSPECTION</span>
+                    <span className="block text-3xl lg:text-4xl text-nordic-300 font-light mt-2">TECHNIQUE INDUSTRIELLE</span>
                   </motion.h1>
                   
                   <motion.div
                     className="space-y-6"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                   >
                     <p className="text-xl text-nordic-200 leading-relaxed">
                       Nous proposons des prestations d'inspection technique sur l'ensemble du cycle projet, en appui aux démarches qualité, sécurité et conformité documentaire de nos clients.
@@ -124,22 +186,38 @@ Notre rigueur s'appuie sur :
                       Notre objectif : vous accompagner avec rigueur, méthode et fiabilité, en France comme à l'international.
                     </p>
                   </motion.div>
+                  
+                  {/* Barre de progression décorative */}
+                  <motion.div
+                    initial={{ opacity: 0, scaleX: 0 }}
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    transition={{ duration: 1, delay: 0.8 }}
+                    className="w-24 h-1 bg-gradient-to-r from-accent-500 to-accent-600 rounded-full"
+                  />
                 </motion.div>
                 
-                {/* Image illustrative */}
+                {/* Image illustrative avec cadre industriel */}
                 <motion.div
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.3 }}
                   className="relative"
                 >
-                  <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                    <ImageWrapper
-                      src="/images/solutions/inspection/inspection1.avif"
-                      alt="Inspection technique"
-                      className="w-full h-96 object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/20 to-transparent"></div>
+                  <div className="relative">
+                    {/* Cadre industriel */}
+                    <div className="absolute -inset-4 bg-gradient-to-r from-accent-600/20 to-accent-500/20 rounded-2xl blur-sm"></div>
+                    <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-accent-500/30">
+                      <ImageWrapper
+                        src="/images/solutions/inspection/inspection1.avif"
+                        alt="Inspection technique"
+                        className="w-full h-96 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+                    </div>
+                    
+                    {/* Éléments décoratifs */}
+                    <div className="absolute -top-2 -right-2 w-4 h-4 bg-accent-500 rounded-full animate-pulse"></div>
+                    <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-accent-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
                   </div>
                 </motion.div>
               </div>

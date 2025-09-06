@@ -98,36 +98,93 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <Navigation />
       
-      {/* Hero Section - Design 2: Image en pleine largeur avec overlay */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Hero Section - Design Laboratoire Technique */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900">
+        {/* Background Pattern Technique */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/cnd/background.avif"
             alt="Contrôle Non Destructif"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-nordic-900/80 via-nordic-800/60 to-nordic-900/80"></div>
+        </div>
+        
+        {/* Overlay technique */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-indigo-900/90 to-slate-900/95"></div>
+        
+        {/* Éléments décoratifs techniques */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-32 right-32 w-20 h-20 border-2 border-emerald-400/30 rounded-full"
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-32 left-32 w-16 h-16 border-2 border-emerald-400/40 rounded-full"
+            animate={{ 
+              rotate: [360, 0],
+              scale: [1.1, 1, 1.1]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 right-1/3 w-12 h-12 border border-emerald-400/20 rounded-full"
+            animate={{ 
+              scale: [1, 1.3, 1],
+              opacity: [0.3, 0.7, 0.3]
+            }}
+            transition={{ 
+              duration: 3, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-3 gap-12 items-center">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-5 gap-12 items-center">
                 {/* Image principale */}
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.8 }}
-                  className="lg:col-span-1 order-2 lg:order-1"
+                  className="lg:col-span-2 order-2 lg:order-1"
                 >
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                    <ImageWrapper
-                      src="/images/solutions/cnd/cnd1.avif"
-                      alt="Contrôle Non Destructif"
-                      className="w-full h-80 lg:h-96 object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/30 to-transparent"></div>
+                  <div className="relative">
+                    {/* Cadre technique avec effet de laboratoire */}
+                    <div className="absolute -inset-6 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 rounded-3xl blur-lg"></div>
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-emerald-400/30 bg-slate-800/50 backdrop-blur-sm">
+                      <ImageWrapper
+                        src="/images/solutions/cnd/cnd1.avif"
+                        alt="Contrôle Non Destructif"
+                        className="w-full h-80 lg:h-96 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
+                      
+                      {/* Overlay technique */}
+                      <div className="absolute top-4 right-4 w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+                      <div className="absolute bottom-4 left-4 w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                    </div>
                   </div>
                 </motion.div>
                 
@@ -136,22 +193,34 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="lg:col-span-2 order-1 lg:order-2 space-y-8"
+                  className="lg:col-span-3 order-1 lg:order-2 space-y-8"
                 >
+                  {/* Badge technique */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="inline-flex items-center space-x-3 bg-emerald-600/20 backdrop-blur-sm px-4 py-2 rounded-full border border-emerald-500/30"
+                  >
+                    <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span className="text-emerald-300 text-sm font-medium tracking-wider">CERTIFICATION QUALITÉ</span>
+                  </motion.div>
+                  
                   <motion.h1 
-                    className="text-4xl lg:text-6xl font-bold text-white leading-tight"
+                    className="text-5xl lg:text-7xl font-bold text-white leading-tight"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
                   >
-                    Contrôle Non-Destructif
+                    <span className="block text-emerald-400">CONTRÔLE</span>
+                    <span className="block text-3xl lg:text-4xl text-blue-300 font-light mt-2">NON-DESTRUCTIF</span>
                   </motion.h1>
                   
                   <motion.div
                     className="space-y-6"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
                   >
                     <p className="text-xl text-nordic-200 leading-relaxed">
                       Le Contrôle Non Destructif (CND) est un maillon essentiel de la chaîne qualité dans les secteurs industriels à forte exigence réglementaire.
@@ -159,6 +228,27 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
                     <p className="text-lg text-nordic-300 leading-relaxed">
                       Nous mobilisons des techniciens certifiés pour réaliser des examens CND fiables et traçables, conformes aux normes internationales, en France comme à l'étranger.
                     </p>
+                  </motion.div>
+                  
+                  {/* Indicateurs techniques */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 1 }}
+                    className="flex space-x-6"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                      <span className="text-sm text-nordic-300">ISO 9712</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <span className="text-sm text-nordic-300">ASNT</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
+                      <span className="text-sm text-nordic-300">COFREND</span>
+                    </div>
                   </motion.div>
                 </motion.div>
               </div>

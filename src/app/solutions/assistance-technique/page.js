@@ -93,37 +93,111 @@ Cette approche garantit une montée en compétences durable de vos équipes et u
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
       <Navigation />
       
-      {/* Hero Section - Design 3: Centré avec image en superposition */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Hero Section - Design Équipe & Collaboration */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-purple-900 via-violet-900 to-slate-900">
+        {/* Background Pattern Collaboration */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M40 40c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20zm20 0c0-11-9-20-20-20s-20 9-20 20 9 20 20 20 20-9 20-20z'/%3E%3C/g%3E%3C/svg%3E")`,
+          }}></div>
+        </div>
+        
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/assistance/background.avif"
             alt="Assistance Technique"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-25"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-nordic-900/60 via-nordic-800/40 to-nordic-900/80"></div>
+        </div>
+        
+        {/* Overlay collaboration */}
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/95 via-violet-900/90 to-slate-900/95"></div>
+        
+        {/* Éléments décoratifs collaboration */}
+        <div className="absolute inset-0 overflow-hidden">
+          <motion.div
+            className="absolute top-24 left-24 w-28 h-28 border-2 border-purple-400/20 rounded-full"
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.6, 0.3]
+            }}
+            transition={{ 
+              duration: 5, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-24 right-24 w-20 h-20 border-2 border-purple-400/30 rounded-full"
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.5, 0.2]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/4 w-16 h-16 border border-purple-400/25 rounded-full"
+            animate={{ 
+              rotate: [0, 180, 360],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{ 
+              duration: 6, 
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/3 left-1/4 w-12 h-12 border border-purple-400/20 rounded-full"
+            animate={{ 
+              rotate: [360, 180, 0],
+              scale: [1, 1.3, 1]
+            }}
+            transition={{ 
+              duration: 4, 
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="max-w-4xl mx-auto text-center">
+            <div className="max-w-6xl mx-auto text-center">
+              {/* Badge collaboration */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-flex items-center space-x-3 bg-purple-600/20 backdrop-blur-sm px-4 py-2 rounded-full border border-purple-500/30 mb-8"
+              >
+                <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                <span className="text-purple-300 text-sm font-medium tracking-wider">SOUTIEN OPÉRATIONNEL</span>
+              </motion.div>
+              
               {/* Titre principal */}
               <motion.h1 
-                className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight"
+                className="text-5xl lg:text-7xl font-bold text-white mb-8 leading-tight"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Assistance Technique
+                <span className="block text-purple-400">ASSISTANCE</span>
+                <span className="block text-3xl lg:text-4xl text-violet-300 font-light mt-2">TECHNIQUE & EXPERTISE</span>
               </motion.h1>
               
               {/* Description */}
               <motion.div
-                className="max-w-3xl mx-auto mb-12"
+                className="max-w-4xl mx-auto mb-12"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <p className="text-xl text-nordic-200 leading-relaxed mb-6">
                   Nous apportons à nos partenaires industriels un soutien opérationnel structuré pour renforcer leurs équipes, sur site comme en environnement d'ingénierie.
@@ -133,20 +207,55 @@ Cette approche garantit une montée en compétences durable de vos équipes et u
                 </p>
               </motion.div>
               
-              {/* Image illustrative centrée */}
+              {/* Image illustrative avec cadre collaboration */}
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative max-w-2xl mx-auto"
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="relative max-w-3xl mx-auto"
               >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <ImageWrapper
-                    src="/images/solutions/assistance/assistance1.avif"
-                    alt="Assistance Technique"
-                    className="w-full h-64 lg:h-80 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/40 to-transparent"></div>
+                <div className="relative">
+                  {/* Cadre collaboration avec effet de profondeur */}
+                  <div className="absolute -inset-8 bg-gradient-to-r from-purple-500/10 via-violet-500/10 to-purple-500/10 rounded-3xl blur-xl"></div>
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-purple-400/30 bg-slate-800/50 backdrop-blur-sm">
+                    <ImageWrapper
+                      src="/images/solutions/assistance/assistance1.avif"
+                      alt="Assistance Technique"
+                      className="w-full h-64 lg:h-80 object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 to-transparent"></div>
+                    
+                    {/* Éléments décoratifs collaboration */}
+                    <div className="absolute top-4 left-4 w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-violet-400 rounded-full animate-pulse" style={{ animationDelay: '0.3s' }}></div>
+                    <div className="absolute bottom-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '0.6s' }}></div>
+                    <div className="absolute bottom-4 right-4 w-3 h-3 bg-violet-400 rounded-full animate-pulse" style={{ animationDelay: '0.9s' }}></div>
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* Indicateurs d'expertise */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="flex justify-center space-x-8 mt-12"
+              >
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <span className="text-sm text-nordic-300">Ingénierie</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-violet-400 rounded-full"></div>
+                  <span className="text-sm text-nordic-300">Formation</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                  <span className="text-sm text-nordic-300">Support</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-violet-400 rounded-full"></div>
+                  <span className="text-sm text-nordic-300">Expertise</span>
                 </div>
               </motion.div>
             </div>
