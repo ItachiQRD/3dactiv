@@ -98,9 +98,9 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
       <Navigation />
       
-      {/* Hero Section - Design 2: Image en pleine largeur avec overlay */}
+      {/* Hero Section - Style overlay avec double image */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image principale */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/cnd/background.avif"
@@ -110,58 +110,63 @@ Cette approche rigoureuse garantit la conformité de nos prestations aux exigenc
           <div className="absolute inset-0 bg-gradient-to-r from-nordic-900/80 via-nordic-800/60 to-nordic-900/80"></div>
         </div>
         
+        {/* Image de superposition */}
+        <div className="absolute inset-0 w-full h-full">
+          <AssetPath
+            src="/images/solutions/cnd/background1.png"
+            alt="CND technique overlay"
+            className="w-full h-full object-cover mix-blend-overlay opacity-60"
+          />
+        </div>
+        
+        {/* Overlay sombre pour le contraste */}
+        <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/90 via-nordic-800/70 to-nordic-700/50"></div>
+        
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-3 gap-12 items-center">
-                {/* Image principale */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.8 }}
-                  className="lg:col-span-1 order-2 lg:order-1"
-                >
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                    <ImageWrapper
-                      src="/images/solutions/cnd/cnd1.avif"
-                      alt="Contrôle Non Destructif"
-                      className="w-full h-80 lg:h-96 object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/30 to-transparent"></div>
-                  </div>
-                </motion.div>
-                
-                {/* Contenu texte */}
-                <motion.div
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="lg:col-span-2 order-1 lg:order-2 space-y-8"
-                >
-                  <motion.h1 
-                    className="text-4xl lg:text-6xl font-bold text-white leading-tight"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    Contrôle Non-Destructif
-                  </motion.h1>
-                  
-                  <motion.div
-                    className="space-y-6"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                  >
-                    <p className="text-xl text-nordic-200 leading-relaxed">
-                      Le Contrôle Non Destructif (CND) est un maillon essentiel de la chaîne qualité dans les secteurs industriels à forte exigence réglementaire.
-                    </p>
-                    <p className="text-lg text-nordic-300 leading-relaxed">
-                      Nous mobilisons des techniciens certifiés pour réaliser des examens CND fiables et traçables, conformes aux normes internationales, en France comme à l'étranger.
-                    </p>
-                  </motion.div>
-                </motion.div>
-              </div>
+            <div className="max-w-6xl mx-auto text-center">
+              {/* Titre principal avec effet dramatique */}
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="mb-8"
+              >
+                <h1 className="text-6xl lg:text-8xl font-bold text-white leading-tight tracking-tight">
+                  <span className="block text-4xl lg:text-5xl text-nordic-300 mb-4 font-light">CONTRÔLE</span>
+                  <span className="block text-7xl lg:text-9xl font-black text-white drop-shadow-2xl" style={{ textShadow: '0 0 20px rgba(16, 185, 129, 0.5)' }}>
+                    NON-DESTRUCTIF
+                  </span>
+                  <span className="block text-3xl lg:text-4xl text-emerald-400 mt-4 font-medium tracking-wider">
+                    CERTIFICATION & QUALITÉ
+                  </span>
+                </h1>
+              </motion.div>
+              
+              {/* Description avec animation */}
+              <motion.div
+                className="max-w-4xl mx-auto"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <p className="text-xl lg:text-2xl text-nordic-200 leading-relaxed mb-6 font-light">
+                  Le Contrôle Non Destructif (CND) est un maillon essentiel de la chaîne qualité dans les secteurs industriels à forte exigence réglementaire.
+                </p>
+                <p className="text-lg text-nordic-300 leading-relaxed font-medium">
+                  Nous mobilisons des techniciens certifiés pour réaliser des examens CND fiables et traçables, conformes aux normes internationales, en France comme à l'étranger.
+                </p>
+              </motion.div>
+              
+              {/* Élément décoratif */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="mt-12"
+              >
+                <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-emerald-600 mx-auto rounded-full"></div>
+              </motion.div>
             </div>
           </div>
         </div>

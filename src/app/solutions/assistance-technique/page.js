@@ -93,61 +93,74 @@ Cette approche garantit une montée en compétences durable de vos équipes et u
     <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50">
       <Navigation />
       
-      {/* Hero Section - Design 3: Centré avec image en superposition */}
+      {/* Hero Section - Style overlay avec double image */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image principale */}
         <div className="absolute inset-0 w-full h-full">
           <AssetPath
             src="/images/solutions/assistance/background.avif"
             alt="Assistance Technique"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-nordic-900/60 via-nordic-800/40 to-nordic-900/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-nordic-900/80 via-nordic-800/60 to-nordic-900/80"></div>
         </div>
+        
+        {/* Image de superposition */}
+        <div className="absolute inset-0 w-full h-full">
+          <AssetPath
+            src="/images/solutions/assistance/background1.png"
+            alt="Assistance technique overlay"
+            className="w-full h-full object-cover mix-blend-overlay opacity-60"
+          />
+        </div>
+        
+        {/* Overlay sombre pour le contraste */}
+        <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/90 via-nordic-800/70 to-nordic-700/50"></div>
         
         <div className="relative z-10 w-full">
           <div className="container-nordic">
-            <div className="max-w-4xl mx-auto text-center">
-              {/* Titre principal */}
-              <motion.h1 
-                className="text-4xl lg:text-6xl font-bold text-white mb-8 leading-tight"
+            <div className="max-w-6xl mx-auto text-center">
+              {/* Titre principal avec effet dramatique */}
+              <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
+                transition={{ duration: 1, delay: 0.2 }}
+                className="mb-8"
               >
-                Assistance Technique
-              </motion.h1>
+                <h1 className="text-6xl lg:text-8xl font-bold text-white leading-tight tracking-tight">
+                  <span className="block text-4xl lg:text-5xl text-nordic-300 mb-4 font-light">SOUTIEN</span>
+                  <span className="block text-7xl lg:text-9xl font-black text-white drop-shadow-2xl" style={{ textShadow: '0 0 20px rgba(168, 85, 247, 0.5)' }}>
+                    ASSISTANCE
+                  </span>
+                  <span className="block text-3xl lg:text-4xl text-purple-400 mt-4 font-medium tracking-wider">
+                    EXPERTISE TECHNIQUE
+                  </span>
+                </h1>
+              </motion.div>
               
-              {/* Description */}
+              {/* Description avec animation */}
               <motion.div
-                className="max-w-3xl mx-auto mb-12"
+                className="max-w-4xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <p className="text-xl text-nordic-200 leading-relaxed mb-6">
+                <p className="text-xl lg:text-2xl text-nordic-200 leading-relaxed mb-6 font-light">
                   Nous apportons à nos partenaires industriels un soutien opérationnel structuré pour renforcer leurs équipes, sur site comme en environnement d'ingénierie.
                 </p>
-                <p className="text-lg text-nordic-300 leading-relaxed">
+                <p className="text-lg text-nordic-300 leading-relaxed font-medium">
                   Nos intervenants sont sélectionnés pour leur expertise technique, leur autonomie, et leur capacité à évoluer dans des contextes industriels exigeants, en France comme à l'international.
                 </p>
               </motion.div>
               
-              {/* Image illustrative centrée */}
+              {/* Élément décoratif */}
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                className="relative max-w-2xl mx-auto"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="mt-12"
               >
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                  <ImageWrapper
-                    src="/images/solutions/assistance/assistance1.avif"
-                    alt="Assistance Technique"
-                    className="w-full h-64 lg:h-80 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-nordic-900/40 to-transparent"></div>
-                </div>
+                <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-purple-600 mx-auto rounded-full"></div>
               </motion.div>
             </div>
           </div>
